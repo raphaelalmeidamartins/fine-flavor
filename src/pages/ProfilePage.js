@@ -1,8 +1,13 @@
 import React from 'react';
+import Header from '../components/Header';
+import NavBar from '../components/NavBar';
 
 function ProfilePage() {
   return (
-    <h1>Profile page</h1>
+    <div>
+      <Header />
+      <NavBar />
+    </div>
   );
 }
 

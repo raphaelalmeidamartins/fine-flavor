@@ -1,8 +1,17 @@
 import React from 'react';
+import CategoryButton from '../components/CategoryButton';
+import FavoriteRecipecard from '../components/FavoriteRecipeCard';
+import Header from '../components/Header';
 
 function FavoriteRecipesPage() {
   return (
-    <h1>Favorite recipes page</h1>
+    <div>
+      <Header />
+      <main>
+        <FavoriteRecipecard />
+        <CategoryButton />
+      </main>
+    </div>
   );
 }
 

@@ -1,8 +1,19 @@
 import React from 'react';
+import CategoryButton from '../components/CategoryButton';
+import Header from '../components/Header';
+import NavBar from '../components/NavBar';
+import RecipeDoneCard from '../components/RecipeDoneCard';
 
 function RecipesDonePage() {
   return (
-    <h1>Recipes Done Page</h1>
+    <div>
+      <Header />
+      <CategoryButton />
+      <main>
+        <RecipeDoneCard />
+      </main>
+      <NavBar />
+    </div>
   );
 }
 

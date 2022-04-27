@@ -1,8 +1,16 @@
 import React from 'react';
+import Ingredients from '../components/Ingredients';
+import RecipeInfo from '../components/RecipeInfo';
 
 function RecipePage() {
   return (
-    <h1>Recipe page</h1>
+    <div>
+      <main>
+        <Ingredients />
+        {/* deve retornar checklist ou lista não ordenada */}
+        <RecipeInfo />
+      </main>
+    </div>
   );
 }
 

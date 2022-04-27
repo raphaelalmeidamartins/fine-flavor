@@ -2,7 +2,7 @@ import React from 'react';
 
 function ExploreOption() {
   return (
-    <h1>Explore Option</h1>
+    <button type="button">Explore Option</button>
   );
 }
 

@@ -1,8 +1,18 @@
 import React from 'react';
+import Header from '../components/Header';
+import NavBar from '../components/NavBar';
+import RecipeCard from '../components/RecipeCard';
 
 function ExploreNationalityPage() {
   return (
-    <h1>Explore Nationality page</h1>
+    <div>
+      <Header />
+      <main>
+        <RecipeCard />
+        {/* tem que renderizar mais de um RecipeCard */}
+      </main>
+      <NavBar />
+    </div>
   );
 }
 
