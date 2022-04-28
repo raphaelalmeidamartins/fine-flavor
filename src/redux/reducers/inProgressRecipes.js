@@ -1,3 +1,5 @@
+import { GET_LOCAL_STORAGE } from '../actions';
+
 const INITIAL_STATE = {
   cocktails: {},
   meals: {},
@@ -7,6 +9,8 @@ const INITIAL_STATE = {
 
 const inProgressRecipes = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+  case GET_LOCAL_STORAGE:
+    return action.inProgressRecipes;
   default:
     return state;
   }
