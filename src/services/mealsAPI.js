@@ -6,7 +6,7 @@ async function getMealsByName(token, name) {
   );
   const meals = await response.json();
   return meals;
-  // retorna lista com refeições de acordo com o nome fornecido. Obs: não retorna objetos detalhados
+  // retorna lista com refeições de acordo com o nome fornecido. Obs: retorna objetos detalhados
 }
 
 async function getMealsByFirstLetter(token, letter) {
@@ -15,7 +15,7 @@ async function getMealsByFirstLetter(token, letter) {
   );
   const meals = await response.json();
   return meals;
-  // retorna lista com refeições cujo nome começam com a letra fornecida. Obs: não retorna objetos detalhados
+  // retorna lista com refeições cujo nome começam com a letra fornecida. Obs: retorna objetos detalhados
 }
 
 async function getMealDetailsById(token, id) {

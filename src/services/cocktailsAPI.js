@@ -6,7 +6,7 @@ async function getCocktailsByName(token, name) {
   );
   const cocktails = await response.json();
   return cocktails;
-  // retorna lista de bebidas de acordo com o nome fornecido. Obs: não retorna objetos detalhados.
+  // retorna lista de bebidas de acordo com o nome fornecido. Obs: retorna objetos detalhados.
 }
 
 async function getCocktailsByFirstLetter(token, letter) {
@@ -15,7 +15,7 @@ async function getCocktailsByFirstLetter(token, letter) {
   );
   const cocktails = await response.json();
   return cocktails;
-  // retorna lista com bebidas cujo nome começam com a letra fornecida. Obs: não retorna objetos detalhados
+  // retorna lista com bebidas cujo nome começam com a letra fornecida. Obs: retorna objetos detalhados
 }
 
 async function getCocktailsIngredientByName(token, name) {
@@ -119,7 +119,7 @@ async function getCocktailsByGlass(token, glass) {
 
 function getCocktailsIngredientThumbnail(ingredient) {
   return `www.thecocktaildb.com/images/ingredients/${ingredient}.png`;
-  // retorna imagem do ingrediente fornecido
+  // retorna imagem do ingrediente fornecido. Esta função não é assíncrona
 }
 
 export {

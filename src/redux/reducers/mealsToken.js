@@ -1,4 +1,4 @@
-const INITIAL_STATE = '';
+const INITIAL_STATE = 1;
 
 const mealsToken = (state = INITIAL_STATE, action) => {
   switch (action.type) {
