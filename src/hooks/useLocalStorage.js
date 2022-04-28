@@ -6,18 +6,21 @@ const useLocalStorage = (option) => {
   const globalState = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  if (option === 'get') {
-    const savedState = Object.keys(globalState)
-      .reduce((acc, currKey) => {
-        const currState = JSON.parse(localStorage.getItem(currKey));
-        return { ...acc, currState };
-      }, {});
-    dispatch(actionGetLocalStorage(savedState));
-  }
-  if (option === 'set') {
-    Object.entries(globalState)
-      .forEach(([key, value]) => localStorage.setItem(key, JSON.stringify(value)));
-  }
+  return () => {
+    if (option === 'get') {
+      const savedState = Object.keys(globalState)
+        .reduce((acc, currKey) => {
+          const currState = JSON.parse(localStorage.getItem(currKey));
+          return { ...acc, [currKey]: currState };
+        }, {});
+      console.log(savedState);
+      dispatch(actionGetLocalStorage(savedState));
+    }
+    if (option === 'set') {
+      Object.entries(globalState)
+        .forEach(([key, value]) => localStorage.setItem(key, JSON.stringify(value)));
+    }
+  };
 };
 
 export default useLocalStorage;
