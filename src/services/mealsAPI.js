@@ -1,3 +1,5 @@
+// referência: https://www.themealdb.com/api.php
+
 async function getMealsByName(token, name) {
   const response = await fetch(
     `www.themealdb.com/api/json/v1/${token}/search.php?s=${name}`,

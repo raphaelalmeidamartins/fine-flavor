@@ -1,3 +1,5 @@
+// referência: https://www.thecocktaildb.com/api.php
+
 async function getCocktailsByName(token, name) {
   const response = await fetch(
     `www.thecocktaildb.com/api/json/v1/${token}/search.php?s==${name}`,
