@@ -1,6 +1,7 @@
 /* Aqui criaremos as actions */
 const GET_LOCAL_STORAGE = 'GET_LOCAL_STORAGE';
 const SAVE_USER = 'SAVE_USER';
+const UPDATE_USER = 'UPDATE_USER';
 
 const actionGetLocalStorage = (state) => ({
   type: GET_LOCAL_STORAGE,
@@ -12,9 +13,17 @@ const actionSaveUser = (user) => ({
   user,
 });
 
+const actionUpdateUser = (name, value) => ({
+  type: UPDATE_USER,
+  name,
+  value,
+});
+
 export {
   GET_LOCAL_STORAGE,
   actionGetLocalStorage,
   SAVE_USER,
   actionSaveUser,
+  UPDATE_USER,
+  actionUpdateUser,
 };

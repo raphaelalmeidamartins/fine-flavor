@@ -1,29 +1,30 @@
-import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
-import { actionSaveUser } from '../redux/actions';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import useLocalStorage from '../hooks/useLocalStorage';
+import { actionUpdateUser } from '../redux/actions';
 
 function LoginPage({ history }) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const email = useSelector((state) => state.user.email);
+  const password = useSelector((state) => state.user.password);
   const dispatch = useDispatch();
   const setLocalStorage = useLocalStorage('set');
 
   const validateFields = () => {
     const emailRegExp = /^([a-z0-9]{1,}[._]{0,1}[a-z0-9]{1,})*(@[a-z0-9]{1,}.com)$/i;
     const passMinLength = 7;
-    if (password.length < passMinLength || !email.match(emailRegExp)) return false;
+    if (password.length < passMinLength || !email.match(emailRegExp)
+    ) {
+      return false;
+    }
     return true;
   };
 
-  function handleSubmit(event) {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(actionSaveUser(email));
     setLocalStorage();
-
     if (validateFields()) history.push('/foods');
-  }
+  };
 
   return (
     <div>
@@ -33,14 +34,18 @@ function LoginPage({ history }) {
           type="email"
           data-testid="email-input"
           value={ email }
-          onChange={ ({ target }) => setEmail(target.value) }
+          onChange={ ({ target }) => {
+            dispatch(actionUpdateUser(target.name, target.value));
+          } }
         />
         <input
           name="password"
           type="password"
           data-testid="password-input"
           value={ password }
-          onChange={ ({ target }) => setPassword(target.value) }
+          onChange={ ({ target }) => {
+            dispatch(actionUpdateUser(target.name, target.value));
+          } }
         />
         <button
           type="submit"
