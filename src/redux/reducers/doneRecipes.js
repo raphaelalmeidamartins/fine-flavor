@@ -5,7 +5,9 @@ const INITIAL_STATE = [];
 const doneRecipes = (state = INITIAL_STATE, action) => {
   switch (action.type) {
   case GET_LOCAL_STORAGE:
-    return action.doneRecipes;
+    return action.doneRecipes === null
+      ? state
+      : action.doneRecipes;
   default:
     return state;
   }

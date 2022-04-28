@@ -13,7 +13,6 @@ const useLocalStorage = (option) => {
           const currState = JSON.parse(localStorage.getItem(currKey));
           return { ...acc, [currKey]: currState };
         }, {});
-      console.log(savedState);
       dispatch(actionGetLocalStorage(savedState));
     }
     if (option === 'set') {

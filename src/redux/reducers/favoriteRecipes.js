@@ -5,7 +5,9 @@ const INITIAL_STATE = [];
 const favoriteRecipes = (state = INITIAL_STATE, action) => {
   switch (action.type) {
   case GET_LOCAL_STORAGE:
-    return action.favoriteRecipes;
+    return action.favoriteRecipes === null
+      ? state
+      : action.favoriteRecipes;
   default:
     return state;
   }

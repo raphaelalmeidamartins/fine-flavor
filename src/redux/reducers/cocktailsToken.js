@@ -5,7 +5,9 @@ const INITIAL_STATE = 1;
 const cocktailsToken = (state = INITIAL_STATE, action) => {
   switch (action.type) {
   case GET_LOCAL_STORAGE:
-    return action.cocktailsToken;
+    return action.cocktailsToken === null
+      ? state
+      : action.cocktailsToken;
   default:
     return state;
   }

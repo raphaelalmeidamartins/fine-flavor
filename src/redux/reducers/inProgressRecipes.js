@@ -10,7 +10,9 @@ const INITIAL_STATE = {
 const inProgressRecipes = (state = INITIAL_STATE, action) => {
   switch (action.type) {
   case GET_LOCAL_STORAGE:
-    return action.inProgressRecipes;
+    return action.inProgressRecipes === null
+      ? state
+      : action.inProgressRecipes;
   default:
     return state;
   }

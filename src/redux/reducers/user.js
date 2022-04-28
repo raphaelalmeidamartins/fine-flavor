@@ -7,7 +7,9 @@ const INITIAL_STATE = {
 const user = (state = INITIAL_STATE, action) => {
   switch (action.type) {
   case GET_LOCAL_STORAGE:
-    return action.user;
+    return action.user === null
+      ? state
+      : action.user;
   default:
     return state;
   }
