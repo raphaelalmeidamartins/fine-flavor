@@ -5,7 +5,7 @@ import NavBar from '../components/NavBar';
 function ProfilePage() {
   return (
     <div>
-      <Header />
+      <Header title="Profile" />
       <NavBar />
     </div>
   );

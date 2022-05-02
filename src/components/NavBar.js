@@ -1,9 +1,14 @@
 import React from 'react';
+import IconButton from './IconButton';
 
 function NavBar() {
   return (
     <nav>
-      <h1>NavBar</h1>
+      <ul>
+        <li><IconButton route="/drinks" /></li>
+        <li><IconButton route="/explore" /></li>
+        <li><IconButton route="/foods" /></li>
+      </ul>
     </nav>
   );
 }

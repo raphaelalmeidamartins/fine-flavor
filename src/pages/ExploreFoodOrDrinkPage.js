@@ -6,7 +6,11 @@ import NavBar from '../components/NavBar';
 function ExploreFoodOrDrinkPage() {
   return (
     <div>
-      <Header />
+      <Header
+        title={
+          pathname === '/explore/foods' ? 'Explore Foods' : 'Explore Drinks'
+        }
+      />
       <main>
         <ExploreOption />
         {/* tem que renderizar mais de um ExploreOption */}

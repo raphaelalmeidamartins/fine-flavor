@@ -6,14 +6,16 @@ import searchIcon from '../images/searchIcon.svg';
 import drinkIcon from '../images/drinkIcon.svg';
 import exploreIcon from '../images/exploreIcon.svg';
 import profileIcon from '../images/profileIcon.svg';
+import mealsIcon from '../images/mealIcon.svg';
 
 function IconButton({ route, handleClick }) {
   const images = {
+    '/foods': mealsIcon,
     '/profile': profileIcon,
     '/drinks': drinkIcon,
     '/explore': exploreIcon,
     '/favorites-recipes': blackHeartIcon,
-    '/search': searchIcon,
+    search: searchIcon,
   };
   const history = useHistory();
 
@@ -28,13 +30,14 @@ function IconButton({ route, handleClick }) {
 }
 
 IconButton.defaultProps = {
+  route: 'search',
   handleClick: (history, route) => {
     history.push(route);
   },
 };
 
 IconButton.propTypes = {
-  route: PropTypes.string.isRequired,
+  route: PropTypes.string,
   handleClick: PropTypes.func,
 };
 
