@@ -1,20 +1,32 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import IconButton from './IconButton';
 import SearchIconButton from './SearchIconButton';
+import '../sass/components/Header.css';
 
-function Header({ title }) {
+function Header() {
+  const { pathname } = useLocation();
+  const titles = [
+    ['/foods', 'Foods'],
+    ['/drinks', 'Drinks'],
+    ['/explore', 'Explore'],
+    ['/explore/foods', 'Explore Foods'],
+    ['/explore', 'Explore Drinks'],
+    ['/explore/foods/ingredients', 'Explore Ingredients'],
+    ['/explore/drinks/ingredients', 'Explore Ingredients'],
+    ['/explore/foods/nationalities', 'Explore Nationalities'],
+    ['/profile', 'Profile'],
+    ['/done-recipes', 'Done Recipes'],
+    ['/favorite-recipes', 'Favorite Recipes'],
+  ];
+
   return (
-    <header>
-      <IconButton />
-      <h1>{ title }</h1>
-      <SearchIconButton />
+    <header className="Header">
+      <IconButton route="/profile" data-testid="profile-top-btn" />
+      <h1 data-testid="page-title">{ titles.find((item) => item[0] === pathname)[1] }</h1>
+      <SearchIconButton data-testid="search-top-btn" />
     </header>
   );
 }
-
-Header.propTypes = {
-  title: PropTypes.string.isRequired,
-};
 
 export default Header;
