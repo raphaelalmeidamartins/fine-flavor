@@ -1,7 +1,10 @@
+import services from "../../services";
+
 /* Aqui criaremos as actions */
 const GET_LOCAL_STORAGE = 'GET_LOCAL_STORAGE';
 const SAVE_USER = 'SAVE_USER';
 const UPDATE_USER = 'UPDATE_USER';
+const START_LOADING = 'START_LOADING';
 
 const actionGetLocalStorage = (state) => ({
   type: GET_LOCAL_STORAGE,
@@ -18,6 +21,18 @@ const actionUpdateUser = (name, value) => ({
   name,
   value,
 });
+
+const actionStartLoading = () => ({
+  type: START_LOADING,
+});
+
+const actionDefaultSearch = () => {
+  return (dispatch) => {
+    dispatch(actionStartLoading());
+    const { mealsAPI } = services;
+    const defaultSearch = mealsAPI.
+  };
+};
 
 export {
   GET_LOCAL_STORAGE,
