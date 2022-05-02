@@ -3,6 +3,7 @@ const INITIAL_STATE = {
   searchBar: {
     display: false,
   },
+  loading: true,
 };
 
 const search = (state = INITIAL_STATE, action) => {
