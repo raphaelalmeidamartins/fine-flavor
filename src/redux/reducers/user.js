@@ -1,4 +1,4 @@
-import { GET_LOCAL_STORAGE } from '../actions';
+import { GET_LOCAL_STORAGE, SAVE_USER, UPDATE_USER } from '../actions';
 
 const INITIAL_STATE = {
   email: '',
@@ -10,6 +10,16 @@ const user = (state = INITIAL_STATE, action) => {
     return action.user === null
       ? state
       : action.user;
+  case SAVE_USER:
+    return {
+      ...state,
+      email: action.user,
+    };
+  case UPDATE_USER:
+    return {
+      ...state,
+      [action.name]: action.value,
+    };
   default:
     return state;
   }
