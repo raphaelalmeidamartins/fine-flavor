@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import drinkIcon from '../images/drinkIcon.svg';
@@ -8,36 +9,35 @@ import mealIcon from '../images/mealIcon.svg';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 
-// como condicionar os icons aos endereços corretos?
-function IconButton() {
-  const { route } = this.props;
-  const images = [
-    ['/profile', blackHeartIcon],
-    ['/profile', searchIcon],
-    ['/profile', drinkIcon],
-    ['/profile', exploreIcon],
-    ['/profile', mealIcon],
-    ['/profile', shareIcon],
-    ['/profile', whiteHeartIcon],
-    ['/profile', blackHeartIcon],
-  ];
+function IconButton({ route, handleClick }) {
+  const images = {
+    '/profile': mealIcon,
+    '/drinks': drinkIcon,
+    '/explore': exploreIcon,
+    '/favorites-recipes': blackHeartIcon,
+    '/search': searchIcon,
+  };
+  const history = useHistory();
 
-  function handleChangeIcon(event) {
-    event.preventDefault();
-  }
   return (
     <button
       type="button"
-      onClick={ handleChangeIcon }
+      onClick={ () => handleClick(history, route) }
     >
-      IconButton
-
+      <img src={ images[route] } alt={ route } />
     </button>
   );
 }
 
+IconButton.defaultProps = {
+  handleClick: (history, route) => {
+    history.push(route);
+  },
+};
+
 IconButton.propTypes = {
   route: PropTypes.string.isRequired,
+  handleClick: PropTypes.func,
 };
 
 export default IconButton;
