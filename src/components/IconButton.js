@@ -5,13 +5,11 @@ import blackHeartIcon from '../images/blackHeartIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import drinkIcon from '../images/drinkIcon.svg';
 import exploreIcon from '../images/exploreIcon.svg';
-import mealIcon from '../images/mealIcon.svg';
-import shareIcon from '../images/shareIcon.svg';
-import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import profileIcon from '../images/profileIcon.svg';
 
 function IconButton({ route, handleClick }) {
   const images = {
-    '/profile': mealIcon,
+    '/profile': profileIcon,
     '/drinks': drinkIcon,
     '/explore': exploreIcon,
     '/favorites-recipes': blackHeartIcon,
