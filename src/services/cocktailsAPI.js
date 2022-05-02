@@ -29,7 +29,7 @@ async function getCocktailsIngredientByName(token, name) {
 
 async function getCocktailDetailsById(token, id) {
   const response = await fetch(
-    `www.thecocktaildb.com/api/json/v1/${token}/lookup.php?i=${id}`,
+    `https://www.thecocktaildb.com/api/json/v1/${token}/lookup.php?i=${id}`,
   );
   const cocktail = await response.json();
   return cocktail;
