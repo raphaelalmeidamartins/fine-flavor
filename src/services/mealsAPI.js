@@ -1,5 +1,14 @@
 // referência: https://www.themealdb.com/api.php
 
+async function getMealsDefault(token) {
+  const response = await fetch(
+    `https://www.themealdb.com/api/json/v1/${token}/search.php?s=`,
+  );
+  const meals = await response.json();
+  return meals;
+  // retorna 12 refeições padrão que devem aparecer ao usuário entrar na página de refeições
+}
+
 async function getMealsByName(token, name) {
   const response = await fetch(
     `www.themealdb.com/api/json/v1/${token}/search.php?s=${name}`,
@@ -96,6 +105,7 @@ function getMealsIngredientThumbnail(ingredient) {
 }
 
 export {
+  getMealsDefault,
   getMealsByName,
   getMealsByFirstLetter,
   getMealDetailsById,

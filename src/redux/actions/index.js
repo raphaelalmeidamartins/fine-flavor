@@ -30,7 +30,7 @@ const actionDefaultSearch = () => {
   return (dispatch) => {
     dispatch(actionStartLoading());
     const { mealsAPI } = services;
-    const defaultSearch = mealsAPI.
+    const defaultSearch = mealsAPI;
   };
 };
 

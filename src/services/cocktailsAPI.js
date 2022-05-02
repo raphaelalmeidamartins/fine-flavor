@@ -1,5 +1,14 @@
 // referência: https://www.thecocktaildb.com/api.php
 
+async function getCocktailsDefault(token) {
+  const response = await fetch(
+    `https://www.thecocktaildb.com/api/json/v1/${token}/search.php?s=.`,
+  );
+  const cocktails = await response.json();
+  return cocktails;
+  // retorna 12 bebidas padrão que devem aparecer ao usuário entrar na página de bebidas
+}
+
 async function getCocktailsByName(token, name) {
   const response = await fetch(
     `www.thecocktaildb.com/api/json/v1/${token}/search.php?s==${name}`,
@@ -123,6 +132,7 @@ function getCocktailsIngredientThumbnail(ingredient) {
 }
 
 export {
+  getCocktailsDefault,
   getCocktailsByName,
   getCocktailsByFirstLetter,
   getCocktailsIngredientByName,
