@@ -20,7 +20,7 @@ async function getMealsByFirstLetter(token, letter) {
 
 async function getMealDetailsById(token, id) {
   const response = await fetch(
-    `www.themealdb.com/api/json/v1/${token}/lookup.php?i=${id}`,
+    `https://www.themealdb.com/api/json/v1/${token}/lookup.php?i=${id}`,
   );
   const meal = await response.json();
   return meal;
