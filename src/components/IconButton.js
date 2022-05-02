@@ -1,14 +1,14 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
-import searchIcon from '../images/searchIcon.svg';
 import drinkIcon from '../images/drinkIcon.svg';
 import exploreIcon from '../images/exploreIcon.svg';
-import profileIcon from '../images/profileIcon.svg';
 import mealsIcon from '../images/mealIcon.svg';
+import profileIcon from '../images/profileIcon.svg';
+import searchIcon from '../images/searchIcon.svg';
 
-function IconButton({ route, handleClick }) {
+function IconButton({ route, handleClick, dataTestId }) {
   const images = {
     '/foods': mealsIcon,
     '/profile': profileIcon,
@@ -20,12 +20,13 @@ function IconButton({ route, handleClick }) {
   const history = useHistory();
 
   return (
-    <button
-      type="button"
+    <input
+      src={ images[route] }
+      alt={ route }
+      data-testid={ dataTestId }
+      type="image"
       onClick={ () => handleClick(history, route) }
-    >
-      <img src={ images[route] } alt={ route } />
-    </button>
+    />
   );
 }
 
@@ -34,11 +35,13 @@ IconButton.defaultProps = {
   handleClick: (history, route) => {
     history.push(route);
   },
+  dataTestId: '',
 };
 
 IconButton.propTypes = {
   route: PropTypes.string,
   handleClick: PropTypes.func,
+  dataTestId: PropTypes.string,
 };
 
 export default IconButton;

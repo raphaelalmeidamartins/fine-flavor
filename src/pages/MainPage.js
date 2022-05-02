@@ -11,7 +11,7 @@ function MainPage() {
 
   return (
     <div>
-      <Header title={ pathname === '/foods' ? 'Foods' : 'Drinks' } />
+      <Header title={ pathname === '/foods' ? 'Foods' : 'Drinks' } search />
       <SearchBar />
       <CategoryButton />
       {/* tem que renderizar mais de um CategoryButton */}

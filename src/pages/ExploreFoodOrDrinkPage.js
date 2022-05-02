@@ -1,9 +1,12 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import ExploreOption from '../components/ExploreOption';
 import Header from '../components/Header';
 import NavBar from '../components/NavBar';
 
 function ExploreFoodOrDrinkPage() {
+  const { pathname } = useLocation();
+
   return (
     <div>
       <Header

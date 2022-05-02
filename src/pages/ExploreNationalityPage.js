@@ -6,7 +6,7 @@ import RecipeCard from '../components/RecipeCard';
 function ExploreNationalityPage() {
   return (
     <div>
-      <Header title="Explore Nationalities" />
+      <Header title="Explore Nationalities" search />
       <main>
         <RecipeCard />
         {/* tem que renderizar mais de um RecipeCard */}

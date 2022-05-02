@@ -7,7 +7,7 @@ import RecipeDoneCard from '../components/RecipeDoneCard';
 function RecipesDonePage() {
   return (
     <div>
-      <Header />
+      <Header title="Done Recipes" />
       <CategoryButton />
       <main>
         <RecipeDoneCard />
