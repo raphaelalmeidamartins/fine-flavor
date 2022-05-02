@@ -1,8 +1,14 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 function SearchBar() {
+  const { display } = useSelector((state) => state.search.searchBar);
+
+  const displayClass = 'SearchBar SearchBar-display';
+  const hiddenClass = 'SearchBar SearchBar-hidden';
+
   return (
-    <form>
+    <form className={ display ? displayClass : hiddenClass }>
       <input
         data-testid="exec-search-btn"
         type="text"
