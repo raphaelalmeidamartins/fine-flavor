@@ -33,7 +33,11 @@ function MainPage() {
       <Header title={ pathname === '/foods' ? 'Foods' : 'Drinks' } search />
       <SearchBar />
       <section>
-        {Boolean(categories.length && results.length && results[0][`id${key()}`])
+        <CategoryButton
+          categoryName="All"
+          mealOrDrink={ key() }
+        />
+        {Boolean(categories.length)
           && categories.map((name) => (
             <CategoryButton
               key={ name }
@@ -43,7 +47,7 @@ function MainPage() {
           ))}
       </section>
       <main>
-        {Boolean(results.length && results[0][`id${key()}`])
+        {Boolean(results?.length)
           && results.map((recipe, index) => (
             <RecipeCard
               key={ recipe[`id${key()}`] }

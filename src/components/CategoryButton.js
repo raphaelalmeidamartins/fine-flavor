@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { actionSearchByCategory } from '../redux/actions';
+import { actionDefaultSearch, actionSearchByCategory } from '../redux/actions';
 
 function CategoryButton({ categoryName, mealOrDrink }) {
   const mealsToken = useSelector((state) => state.mealsToken);
@@ -14,7 +14,13 @@ function CategoryButton({ categoryName, mealOrDrink }) {
     <button
       type="button"
       data-testid={ `${categoryName}-category-filter` }
-      onClick={ () => dispatch(actionSearchByCategory(token, foodOrDrink, categoryName)) }
+      onClick={ () => {
+        if (categoryName !== 'All') {
+          dispatch(actionSearchByCategory(token, foodOrDrink, categoryName));
+        } else {
+          dispatch(actionDefaultSearch(token, foodOrDrink));
+        }
+      } }
     >
       {categoryName}
     </button>
