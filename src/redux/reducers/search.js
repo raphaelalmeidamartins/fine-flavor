@@ -1,4 +1,4 @@
-import { RECIEVE_RECIPES, START_LOADING } from '../actions';
+import { RECIEVE_CATEGORIES, RECIEVE_RECIPES, START_LOADING } from '../actions';
 
 const INITIAL_STATE = {
   results: [],
@@ -21,8 +21,12 @@ const search = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       results: action.results,
-      categories: action.categories,
       loading: false,
+    };
+  case RECIEVE_CATEGORIES:
+    return {
+      ...state,
+      categories: action.categories,
     };
   default:
     return state;

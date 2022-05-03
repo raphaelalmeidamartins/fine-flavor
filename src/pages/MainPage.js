@@ -26,28 +26,32 @@ function MainPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
-  const key = pathname === '/foods' ? 'Meal' : 'Drink';
+  const key = () => (pathname === '/foods' ? 'Meal' : 'Drink');
 
   return (
     <div>
       <Header title={ pathname === '/foods' ? 'Foods' : 'Drinks' } search />
       <SearchBar />
       <section>
-        {Boolean(categories.length && results.length && results[0][`id${key}`])
+        {Boolean(categories.length && results.length && results[0][`id${key()}`])
           && categories.map((name) => (
-            <CategoryButton key={ name } categoryName={ name } />
+            <CategoryButton
+              key={ name }
+              categoryName={ name }
+              mealOrDrink={ key() }
+            />
           ))}
       </section>
       <main>
-        {Boolean(results.length && results[0][`id${key}`])
+        {Boolean(results.length && results[0][`id${key()}`])
           && results.map((recipe, index) => (
             <RecipeCard
-              key={ recipe[`id${key}`] }
-              id={ recipe[`id${key}`] }
-              mealOrDrink={ key }
+              key={ recipe[`id${key()}`] }
+              id={ recipe[`id${key()}`] }
+              mealOrDrink={ key() }
               index={ index }
-              thumbnail={ recipe[`str${key}Thumb`] }
-              title={ recipe[`str${key}`] }
+              thumbnail={ recipe[`str${key()}Thumb`] }
+              title={ recipe[`str${key()}`] }
             />
           ))}
       </main>
