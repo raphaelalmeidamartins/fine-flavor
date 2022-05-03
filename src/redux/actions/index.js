@@ -9,6 +9,7 @@ const UPDATE_USER = 'UPDATE_USER';
 const START_LOADING = 'START_LOADING';
 const RECIEVE_RECIPES = 'RECIEVE_RECIPES';
 const RECIEVE_CATEGORIES = 'RECIEVE_CATEGORIES';
+const TOGGLE_FILTER = 'TOGGLE_FILTER';
 
 const actionGetLocalStorage = (state) => ({
   type: GET_LOCAL_STORAGE,
@@ -40,55 +41,65 @@ const actionRecieveCategories = (categories) => ({
   categories,
 });
 
-const actionRequestCategories = (token, foodOrDrink) => (
+const actionRequestCategories = (token, foodsOrDrinks) => (
   async (dispatch) => {
     dispatch(actionStartLoading());
-    let categories = [];
-    if (foodOrDrink === 'food') {
-      categories = await mealsAPI.getMealsCategoriesList(token);
-    }
-    if (foodOrDrink === 'drink') {
-      categories = await cocktailsAPI.getCocktailsCategoriesList(token);
-    }
     const maxCategories = 5;
-    categories = categories
-      .map((category) => category.strCategory)
-      .splice(0, maxCategories);
-    dispatch(actionRecieveCategories(categories));
+    if (foodsOrDrinks === 'foods') {
+      let foods = await mealsAPI.getMealsCategoriesList(token);
+      foods = foods
+        .map((category) => category.strCategory)
+        .slice(0, maxCategories);
+      dispatch(actionRecieveCategories({ foods }));
+    }
+    if (foodsOrDrinks === 'drinks') {
+      let drinks = await cocktailsAPI.getCocktailsCategoriesList(token);
+      drinks = drinks
+        .map((category) => category.strCategory)
+        .slice(0, maxCategories);
+      dispatch(actionRecieveCategories({ drinks }));
+    }
   }
 );
 
-const actionDefaultSearch = (token, foodOrDrink) => (
+const actionDefaultSearch = (token, foodsOrDrinks) => (
   async (dispatch) => {
     dispatch(actionStartLoading());
-    let defaultSearch = [];
-    if (foodOrDrink === 'food') {
-      defaultSearch = await mealsAPI.getMealsDefault(token);
-    }
-    if (foodOrDrink === 'drink') {
-      defaultSearch = await cocktailsAPI.getCocktailsDefault(token);
-    }
-    const maxDefaultSearch = 12;
-    defaultSearch = defaultSearch.splice(0, maxDefaultSearch);
-    dispatch(actionRecieveRecipes(defaultSearch));
-  }
-);
-
-const actionSearchByCategory = (token, foodOrDrink, category) => (
-  async (dispatch) => {
-    dispatch(actionStartLoading());
-    let results = [];
-    if (foodOrDrink === 'food') {
-      results = await mealsAPI.getMealsByCategory(token, category);
-    }
-    if (foodOrDrink === 'drink') {
-      results = await cocktailsAPI.getCocktailsByCategory(token, category);
-    }
     const maxResults = 12;
-    results = results.splice(0, maxResults);
-    dispatch(actionRecieveRecipes(results));
+    if (foodsOrDrinks === 'foods') {
+      let foods = await mealsAPI.getMealsDefault(token);
+      foods = foods.slice(0, maxResults);
+      dispatch(actionRecieveRecipes({ foods }));
+    }
+    if (foodsOrDrinks === 'drinks') {
+      let drinks = await cocktailsAPI.getCocktailsDefault(token);
+      drinks = drinks.slice(0, maxResults);
+      dispatch(actionRecieveRecipes({ drinks }));
+    }
   }
 );
+
+const actionSearchByCategory = (token, foodsOrDrinks, category) => (
+  async (dispatch) => {
+    dispatch(actionStartLoading());
+    const maxResults = 12;
+    if (foodsOrDrinks === 'foods') {
+      let foods = await mealsAPI.getMealsByCategory(token, category);
+      foods = foods.slice(0, maxResults);
+      dispatch(actionRecieveRecipes({ foods }));
+    }
+    if (foodsOrDrinks === 'drinks') {
+      let drinks = await cocktailsAPI.getCocktailsByCategory(token, category);
+      drinks = drinks.slice(0, maxResults);
+      dispatch(actionRecieveRecipes({ drinks }));
+    }
+  }
+);
+
+const actionToggleFilter = (filter) => ({
+  type: TOGGLE_FILTER,
+  filter,
+});
 
 export {
   GET_LOCAL_STORAGE,
@@ -103,6 +114,7 @@ export {
   actionDefaultSearch,
   RECIEVE_CATEGORIES,
   actionRequestCategories,
-  actionRecieveCategories,
   actionSearchByCategory,
+  TOGGLE_FILTER,
+  actionToggleFilter,
 };

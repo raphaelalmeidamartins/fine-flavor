@@ -1,8 +1,20 @@
-import { RECIEVE_CATEGORIES, RECIEVE_RECIPES, START_LOADING } from '../actions';
+import {
+  RECIEVE_CATEGORIES,
+  RECIEVE_RECIPES,
+  START_LOADING,
+  TOGGLE_FILTER,
+} from '../actions';
 
 const INITIAL_STATE = {
-  results: [],
-  categories: [],
+  results: {
+    foods: [],
+    drinks: [],
+  },
+  categories: {
+    filter: '',
+    foods: [],
+    drinks: [],
+  },
   searchBar: {
     display: false,
   },
@@ -14,19 +26,32 @@ const search = (state = INITIAL_STATE, action) => {
   case START_LOADING:
     return {
       ...state,
-      results: [],
       loading: true,
     };
   case RECIEVE_RECIPES:
     return {
       ...state,
-      results: action.results,
+      results: {
+        ...state.results,
+        ...action.results,
+      },
       loading: false,
     };
   case RECIEVE_CATEGORIES:
     return {
       ...state,
-      categories: action.categories,
+      categories: {
+        ...state.categories,
+        ...action.categories,
+      },
+    };
+  case TOGGLE_FILTER:
+    return {
+      ...state,
+      categories: {
+        ...state.categories,
+        filter: action.filter,
+      },
     };
   default:
     return state;

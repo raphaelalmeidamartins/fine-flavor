@@ -11,22 +11,22 @@ import { actionDefaultSearch, actionRequestCategories } from '../redux/actions';
 function MainPage() {
   const { pathname } = useLocation();
   const mealsToken = useSelector((state) => state.mealsToken);
+  const { foods, drinks } = useSelector((state) => state.search.results);
+  const results = pathname === '/foods' ? foods : drinks;
   const cocktailsToken = useSelector((state) => state.cocktailsToken);
-  const results = useSelector((state) => state.search.results);
-  const categories = useSelector((state) => state.search.categories);
+  const { foods: foodsCategories, drinks: drinksCategories } = useSelector(
+    (state) => state.search.categories,
+  );
+  const categories = pathname === '/foods' ? foodsCategories : drinksCategories;
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (pathname === '/foods') {
-      dispatch(actionRequestCategories(mealsToken, 'food'));
-      dispatch(actionDefaultSearch(mealsToken, 'food'));
-    }
-    if (pathname === '/drinks') {
-      dispatch(actionRequestCategories(cocktailsToken, 'drink'));
-      dispatch(actionDefaultSearch(cocktailsToken, 'drink'));
-    }
+    dispatch(actionRequestCategories(mealsToken, 'foods'));
+    dispatch(actionRequestCategories(cocktailsToken, 'drinks'));
+    dispatch(actionDefaultSearch(mealsToken, 'foods'));
+    dispatch(actionDefaultSearch(cocktailsToken, 'drinks'));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pathname]);
+  }, []);
 
   const key = () => (pathname === '/foods' ? 'Meal' : 'Drink');
 
@@ -35,10 +35,7 @@ function MainPage() {
       <Header title={ pathname === '/foods' ? 'Foods' : 'Drinks' } search />
       <SearchBar />
       <section>
-        <CategoryButton
-          categoryName="All"
-          mealOrDrink={ key() }
-        />
+        <CategoryButton categoryName="All" mealOrDrink={ key() } />
         {Boolean(categories.length)
           && categories.map((name) => (
             <CategoryButton
