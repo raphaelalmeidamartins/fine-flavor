@@ -2,7 +2,6 @@ import { GET_LOCAL_STORAGE, SAVE_USER, UPDATE_USER } from '../actions';
 
 const INITIAL_STATE = {
   email: '',
-  password: '',
 };
 
 const user = (state = INITIAL_STATE, action) => {

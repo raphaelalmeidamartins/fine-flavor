@@ -6,7 +6,7 @@ import Header from '../components/Header';
 function FavoriteRecipesPage() {
   return (
     <div>
-      <Header />
+      <Header title="Favorite Recipes" />
       <main>
         <FavoriteRecipecard />
         <CategoryButton />

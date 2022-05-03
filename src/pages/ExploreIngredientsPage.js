@@ -6,7 +6,7 @@ import NavBar from '../components/NavBar';
 function ExploreIngredientsPage() {
   return (
     <div>
-      <Header />
+      <Header title="Explore Ingredients" />
       <main>
         <ExploreOption />
         {/* tem que renderizar mais de um ExploreOption */}

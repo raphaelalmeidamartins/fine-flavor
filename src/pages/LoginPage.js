@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import useLocalStorage from '../hooks/useLocalStorage';
 import { actionUpdateUser } from '../redux/actions';
 
 function LoginPage({ history }) {
   const email = useSelector((state) => state.user.email);
-  const password = useSelector((state) => state.user.password);
+  const [password, setPassword] = useState('');
   const dispatch = useDispatch();
   const setLocalStorage = useLocalStorage('set');
 
@@ -33,7 +33,6 @@ function LoginPage({ history }) {
           name="email"
           type="email"
           data-testid="email-input"
-          value={ email }
           onChange={ ({ target }) => {
             dispatch(actionUpdateUser(target.name, target.value));
           } }
@@ -42,10 +41,7 @@ function LoginPage({ history }) {
           name="password"
           type="password"
           data-testid="password-input"
-          value={ password }
-          onChange={ ({ target }) => {
-            dispatch(actionUpdateUser(target.name, target.value));
-          } }
+          onChange={ ({ target }) => setPassword(target.value) }
         />
         <button
           type="submit"
