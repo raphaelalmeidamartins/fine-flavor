@@ -5,7 +5,7 @@ import '../sass/components/RecipeCard.css';
 
 function RecipeCard({ id, mealOrDrink, title, thumbnail, index }) {
   const history = useHistory();
-  const route = mealOrDrink === 'Meal' ? '/food' : '/drink';
+  const route = mealOrDrink === 'Meal' ? '/foods' : '/drinks';
 
   return (
     <button
