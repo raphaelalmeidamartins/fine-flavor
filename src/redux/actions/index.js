@@ -69,6 +69,7 @@ const actionRequestCategories = (token, foodsOrDrinks) => (
 
 const notFound = (array) => {
   if (array.length === 0) {
+    // eslint-disable-next-line no-alert
     alert('Sorry, we haven\'t found any recipes for these filters.');
   }
 };

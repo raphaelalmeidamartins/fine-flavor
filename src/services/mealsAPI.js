@@ -26,6 +26,7 @@ async function getMealsByFirstLetter(token, letter) {
     const { meals } = await response.json();
     return meals;
   }
+  // eslint-disable-next-line no-alert
   alert('Your search must have only 1 (one) character');
   // retorna lista com refeições cujo nome começam com a letra fornecida. Obs: retorna objetos detalhados
 }

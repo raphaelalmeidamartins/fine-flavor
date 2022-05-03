@@ -26,6 +26,7 @@ async function getCocktailsByFirstLetter(token, letter) {
     const { drinks } = await response.json();
     return drinks;
   }
+  // eslint-disable-next-line no-alert
   alert('Your search must have only 1 (one) character');
   // retorna lista com bebidas cujo nome começam com a letra fornecida. Obs: retorna objetos detalhados
 }

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import {
   actionSearchByFirstLetter,
   actionSearchByIngredients,
@@ -9,6 +9,19 @@ import {
 import '../sass/components/SearchBar.css';
 
 function SearchBar() {
+  const history = useHistory();
+  const { pathname } = useLocation();
+  const dispatch = useDispatch();
+
+  const { foods, drinks } = useSelector((state) => state.search.results);
+  const results = pathname === '/foods' ? foods : drinks;
+
+  const mealsToken = useSelector((state) => state.mealsToken);
+  const cocktailsToken = useSelector((state) => state.cocktailsToken);
+  const foodsOrDrinks = pathname === '/foods' ? 'foods' : 'drinks';
+  const mealOrDrink = () => (pathname === '/foods' ? 'Meal' : 'Drink');
+  const token = pathname === '/foods' ? mealsToken : cocktailsToken;
+
   const [searchValue, setSearchValue] = useState('');
   const [ingredient, setIngredient] = useState('Off');
   const [name, setName] = useState('Off');
@@ -18,6 +31,13 @@ function SearchBar() {
   // const hiddenClass = 'SearchBar SearchBar-hidden';
 
   // const { display } = useSelector((state) => state.search.searchBar);
+
+  useEffect(() => {
+    if (results.length === 1) {
+      history.push(`${pathname}/${results[0][`id${mealOrDrink()}`]}`);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [results]);
 
   const handleChange = ({ target }) => {
     const fields = {
@@ -30,13 +50,6 @@ function SearchBar() {
       else fields[key]('Off');
     });
   };
-
-  const dispatch = useDispatch();
-  const { pathname } = useLocation();
-  const mealsToken = useSelector((state) => state.mealsToken);
-  const cocktailsToken = useSelector((state) => state.cocktailsToken);
-  const foodsOrDrinks = pathname === '/foods' ? 'foods' : 'drinks';
-  const token = pathname === '/foods' ? mealsToken : cocktailsToken;
 
   const handleClick = () => {
     const fields = {

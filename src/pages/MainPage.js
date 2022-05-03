@@ -9,6 +9,8 @@ import { actionDefaultSearch, actionRequestCategories } from '../redux/actions';
 
 function MainPage() {
   const { pathname } = useLocation();
+  const dispatch = useDispatch();
+
   const mealsToken = useSelector((state) => state.mealsToken);
   const { foods, drinks } = useSelector((state) => state.search.results);
   const results = pathname === '/foods' ? foods : drinks;
@@ -17,7 +19,7 @@ function MainPage() {
     (state) => state.search.categories,
   );
   const categories = pathname === '/foods' ? foodsCategories : drinksCategories;
-  const dispatch = useDispatch();
+  const key = () => (pathname === '/foods' ? 'Meal' : 'Drink');
 
   useEffect(() => {
     dispatch(actionRequestCategories(mealsToken, 'foods'));
@@ -26,8 +28,6 @@ function MainPage() {
     dispatch(actionDefaultSearch(cocktailsToken, 'drinks'));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const key = () => (pathname === '/foods' ? 'Meal' : 'Drink');
 
   return (
     <div>
