@@ -131,7 +131,7 @@ function getCocktailsIngredientThumbnail(ingredient) {
   // retorna imagem do ingrediente fornecido. Esta função não é assíncrona
 }
 
-export {
+const cocktailsAPI = {
   getCocktailsDefault,
   getCocktailsByName,
   getCocktailsByFirstLetter,
@@ -148,3 +148,5 @@ export {
   getCocktailsByGlass,
   getCocktailsIngredientThumbnail,
 };
+
+export default cocktailsAPI;

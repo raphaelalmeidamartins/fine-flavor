@@ -104,7 +104,7 @@ function getMealsIngredientThumbnail(ingredient) {
   // retorna imagem de um ingrediente. Obs: não é uma função assíncrona
 }
 
-export {
+const mealsAPI = {
   getMealsDefault,
   getMealsByName,
   getMealsByFirstLetter,
@@ -118,3 +118,5 @@ export {
   getMealsByArea,
   getMealsIngredientThumbnail,
 };
+
+export default mealsAPI;
