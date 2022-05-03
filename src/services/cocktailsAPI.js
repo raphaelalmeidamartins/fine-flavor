@@ -11,7 +11,7 @@ async function getCocktailsDefault(token) {
 
 async function getCocktailsByName(token, name) {
   const response = await fetch(
-    `www.thecocktaildb.com/api/json/v1/${token}/search.php?s==${name}`,
+    `https://www.thecocktaildb.com/api/json/v1/${token}/search.php?s==${name}`,
   );
   const { drinks } = await response.json();
   return drinks;
@@ -20,7 +20,7 @@ async function getCocktailsByName(token, name) {
 
 async function getCocktailsByFirstLetter(token, letter) {
   const response = await fetch(
-    `www.thecocktaildb.com/api/json/v1/${token}/search.php?f=${letter}`,
+    `https://www.thecocktaildb.com/api/json/v1/${token}/search.php?f=${letter}`,
   );
   const { drinks } = await response.json();
   return drinks;
@@ -29,7 +29,7 @@ async function getCocktailsByFirstLetter(token, letter) {
 
 async function getCocktailsIngredientByName(token, name) {
   const response = await fetch(
-    `www.thecocktaildb.com/api/json/v1/${token}/search.php?i=${name}`,
+    `https://www.thecocktaildb.com/api/json/v1/${token}/search.php?i=${name}`,
   );
   const { drinks } = await response.json();
   return drinks;
@@ -38,7 +38,7 @@ async function getCocktailsIngredientByName(token, name) {
 
 async function getCocktailDetailsById(token, id) {
   const response = await fetch(
-    `www.thecocktaildb.com/api/json/v1/${token}/lookup.php?i=${id}`,
+    `https://www.thecocktaildb.com/api/json/v1/${token}/lookup.php?i=${id}`,
   );
   const { drinks } = await response.json();
   return drinks;
@@ -47,7 +47,7 @@ async function getCocktailDetailsById(token, id) {
 
 async function getCocktailsIngredientById(token, id) {
   const response = await fetch(
-    `www.thecocktaildb.com/api/json/v1/${token}/lookup.php?iid==${id}`,
+    `https://www.thecocktaildb.com/api/json/v1/${token}/lookup.php?iid==${id}`,
   );
   const { drinks } = await response.json();
   return drinks;
@@ -56,7 +56,7 @@ async function getCocktailsIngredientById(token, id) {
 
 async function getSingleRandomCocktailDetails(token) {
   const response = await fetch(
-    `www.thecocktaildb.com/api/json/v1/${token}/random.php`,
+    `https://www.thecocktaildb.com/api/json/v1/${token}/random.php`,
   );
   const { drinks } = await response.json();
   return drinks;
@@ -65,7 +65,7 @@ async function getSingleRandomCocktailDetails(token) {
 
 async function getCocktailsCategoriesList(token) {
   const response = await fetch(
-    `www.thecocktaildb.com/api/json/v1/${token}/list.php?c=list`,
+    `https://www.thecocktaildb.com/api/json/v1/${token}/list.php?c=list`,
   );
   const { drinks } = await response.json();
   return drinks;
@@ -74,7 +74,7 @@ async function getCocktailsCategoriesList(token) {
 
 async function getCocktailssGlassesList(token) {
   const response = await fetch(
-    `www.thecocktaildb.com/api/json/v1/${token}/list.php?g=list`,
+    `https://www.thecocktaildb.com/api/json/v1/${token}/list.php?g=list`,
   );
   const { drinks } = await response.json();
   return drinks;
@@ -83,7 +83,7 @@ async function getCocktailssGlassesList(token) {
 
 async function getCocktailsIngredientList(token) {
   const response = await fetch(
-    `www.thecocktaildb.com/api/json/v1/${token}/list.php?i=list`,
+    `https://www.thecocktaildb.com/api/json/v1/${token}/list.php?i=list`,
   );
   const { drinks } = await response.json();
   return drinks;
@@ -92,7 +92,7 @@ async function getCocktailsIngredientList(token) {
 
 async function getCocktailsAlcoholicList(token) {
   const response = await fetch(
-    `www.thecocktaildb.com/api/json/v1/${token}/list.php?a=list`,
+    `https://www.thecocktaildb.com/api/json/v1/${token}/list.php?a=list`,
   );
   const { drinks } = await response.json();
   return drinks;
@@ -101,7 +101,7 @@ async function getCocktailsAlcoholicList(token) {
 
 async function getCocktailsByMainIngredient(token, ingredient) {
   const response = await fetch(
-    `www.thecocktaildb.com/api/json/v1/${token}/filter.php?i=${ingredient}`,
+    `https://www.thecocktaildb.com/api/json/v1/${token}/filter.php?i=${ingredient}`,
   );
   const { drinks } = await response.json();
   return drinks;
@@ -110,7 +110,7 @@ async function getCocktailsByMainIngredient(token, ingredient) {
 
 async function getCocktailsByCategory(token, category) {
   const response = await fetch(
-    `www.thecocktaildb.com/api/json/v1/${token}/filter.php?c=${category}`,
+    `https://www.thecocktaildb.com/api/json/v1/${token}/filter.php?c=${category}`,
   );
   const { drinks } = await response.json();
   return drinks;
@@ -119,7 +119,7 @@ async function getCocktailsByCategory(token, category) {
 
 async function getCocktailsByGlass(token, glass) {
   const response = await fetch(
-    `www.thecocktaildb.com/api/json/v1/${token}/filter.php?g=${glass}`,
+    `https://www.thecocktaildb.com/api/json/v1/${token}/filter.php?g=${glass}`,
   );
   const { drinks } = await response.json();
   return drinks;
@@ -127,7 +127,7 @@ async function getCocktailsByGlass(token, glass) {
 }
 
 function getCocktailsIngredientThumbnail(ingredient) {
-  return `www.thecocktaildb.com/images/ingredients/${ingredient}.png`;
+  return `https://www.thecocktaildb.com/images/ingredients/${ingredient}.png`;
   // retorna imagem do ingrediente fornecido. Esta função não é assíncrona
 }
 

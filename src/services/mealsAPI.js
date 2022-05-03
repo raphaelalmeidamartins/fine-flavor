@@ -11,7 +11,7 @@ async function getMealsDefault(token) {
 
 async function getMealsByName(token, name) {
   const response = await fetch(
-    `www.themealdb.com/api/json/v1/${token}/search.php?s=${name}`,
+    `https://www.themealdb.com/api/json/v1/${token}/search.php?s=${name}`,
   );
   const { meals } = await response.json();
   return meals;
@@ -20,7 +20,7 @@ async function getMealsByName(token, name) {
 
 async function getMealsByFirstLetter(token, letter) {
   const response = await fetch(
-    `www.thecocktaildb.com/api/json/v1/${token}/search.php?f=${letter}`,
+    `https://www.thecocktaildb.com/api/json/v1/${token}/search.php?f=${letter}`,
   );
   const { meals } = await response.json();
   return meals;
@@ -29,7 +29,7 @@ async function getMealsByFirstLetter(token, letter) {
 
 async function getMealDetailsById(token, id) {
   const response = await fetch(
-    `www.themealdb.com/api/json/v1/${token}/lookup.php?i=${id}`,
+    `https://www.themealdb.com/api/json/v1/${token}/lookup.php?i=${id}`,
   );
   const { meals } = await response.json();
   return meals;
@@ -38,7 +38,7 @@ async function getMealDetailsById(token, id) {
 
 async function getSingleRandomMealDetails(token) {
   const response = await fetch(
-    `www.themealdb.com/api/json/v1/${token}/random.php`,
+    `https://www.themealdb.com/api/json/v1/${token}/random.php`,
   );
   const { meals } = await response.json();
   return meals;
@@ -47,7 +47,7 @@ async function getSingleRandomMealDetails(token) {
 
 async function getMealsCategoriesList(token) {
   const response = await fetch(
-    `www.themealdb.com/api/json/v1/${token}/list.php?c=list`,
+    `https://www.themealdb.com/api/json/v1/${token}/list.php?c=list`,
   );
   const { meals } = await response.json();
   return meals;
@@ -56,7 +56,7 @@ async function getMealsCategoriesList(token) {
 
 async function getMealsAreasList(token) {
   const response = await fetch(
-    `www.themealdb.com/api/json/v1/${token}/list.php?a=list`,
+    `https://www.themealdb.com/api/json/v1/${token}/list.php?a=list`,
   );
   const { meals } = await response.json();
   return meals;
@@ -65,7 +65,7 @@ async function getMealsAreasList(token) {
 
 async function getMealsIngredientList(token) {
   const response = await fetch(
-    `www.themealdb.com/api/json/v1/${token}/list.php?i=list`,
+    `https://www.themealdb.com/api/json/v1/${token}/list.php?i=list`,
   );
   const { meals } = await response.json();
   return meals;
@@ -74,7 +74,7 @@ async function getMealsIngredientList(token) {
 
 async function getMealsByMainIngredient(token, ingredient) {
   const response = await fetch(
-    `www.themealdb.com/api/json/v1/${token}/filter.php?i=${ingredient}`,
+    `https://www.themealdb.com/api/json/v1/${token}/filter.php?i=${ingredient}`,
   );
   const { meals } = await response.json();
   return meals;
@@ -83,7 +83,7 @@ async function getMealsByMainIngredient(token, ingredient) {
 
 async function getMealsByCategory(token, category) {
   const response = await fetch(
-    `www.themealdb.com/api/json/v1/${token}/filter.php?c=${category}`,
+    `https://www.themealdb.com/api/json/v1/${token}/filter.php?c=${category}`,
   );
   const { meals } = await response.json();
   return meals;
@@ -92,7 +92,7 @@ async function getMealsByCategory(token, category) {
 
 async function getMealsByArea(token, area) {
   const response = await fetch(
-    `www.themealdb.com/api/json/v1/${token}/filter.php?a=${area}`,
+    `https://www.themealdb.com/api/json/v1/${token}/filter.php?a=${area}`,
   );
   const { meals } = await response.json();
   return meals;
@@ -100,7 +100,7 @@ async function getMealsByArea(token, area) {
 }
 
 function getMealsIngredientThumbnail(ingredient) {
-  return `www.themealdb.com/images/ingredients/${ingredient}.png`;
+  return `https://www.themealdb.com/images/ingredients/${ingredient}.png`;
   // retorna imagem de um ingrediente. Obs: não é uma função assíncrona
 }
 
