@@ -13,6 +13,7 @@ const START_LOADING = 'START_LOADING';
 const RECIEVE_RECIPES = 'RECIEVE_RECIPES';
 const RECIEVE_CATEGORIES = 'RECIEVE_CATEGORIES';
 const TOGGLE_FILTER = 'TOGGLE_FILTER';
+const FAVORITE_RECIPE = 'FAVORITE_RECIPE';
 
 const actionGetLocalStorage = (state) => ({
   type: GET_LOCAL_STORAGE,
@@ -51,7 +52,7 @@ const getRecipeByIdThunk = (id, pathname, token) => async (dispatch) => {
 
   dispatch(getRecipe());
   try {
-    const response = await getDetailsById(token, id);
+    const [response] = await getDetailsById(token, id);
     dispatch(getRecipeSuccess(response));
   } catch (error) {
     dispatch(getRecipeError(error));
@@ -132,6 +133,11 @@ const actionToggleFilter = (filter) => ({
   filter,
 });
 
+const actionFavoriteRecipe = (recipe) => ({
+  type: FAVORITE_RECIPE,
+  recipe,
+});
+
 export {
   GET_LOCAL_STORAGE,
   actionGetLocalStorage,
@@ -150,4 +156,6 @@ export {
   actionSearchByCategory,
   TOGGLE_FILTER,
   actionToggleFilter,
+  FAVORITE_RECIPE,
+  actionFavoriteRecipe,
 };
