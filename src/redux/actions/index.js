@@ -10,6 +10,7 @@ const START_LOADING = 'START_LOADING';
 const RECIEVE_RECIPES = 'RECIEVE_RECIPES';
 const RECIEVE_CATEGORIES = 'RECIEVE_CATEGORIES';
 const TOGGLE_FILTER = 'TOGGLE_FILTER';
+const TOGGLE_SEARCHBAR = 'TOGGLE_SEARCHBAR';
 
 const actionGetLocalStorage = (state) => ({
   type: GET_LOCAL_STORAGE,
@@ -41,6 +42,10 @@ const actionRecieveCategories = (categories) => ({
   categories,
 });
 
+const actionToggleSearchBar = () => ({
+  type: TOGGLE_SEARCHBAR,
+});
+
 const actionRequestCategories = (token, foodsOrDrinks) => (
   async (dispatch) => {
     dispatch(actionStartLoading());
@@ -68,12 +73,12 @@ const actionDefaultSearch = (token, foodsOrDrinks) => (
     const maxResults = 12;
     if (foodsOrDrinks === 'foods') {
       let foods = await mealsAPI.getMealsDefault(token);
-      foods = foods.slice(0, maxResults);
+      foods = !foods ? [] : foods.slice(0, maxResults);
       dispatch(actionRecieveRecipes({ foods }));
     }
     if (foodsOrDrinks === 'drinks') {
       let drinks = await cocktailsAPI.getCocktailsDefault(token);
-      drinks = drinks.slice(0, maxResults);
+      drinks = !drinks ? [] : drinks.slice(0, maxResults);
       dispatch(actionRecieveRecipes({ drinks }));
     }
   }
@@ -85,12 +90,12 @@ const actionSearchByCategory = (token, foodsOrDrinks, category) => (
     const maxResults = 12;
     if (foodsOrDrinks === 'foods') {
       let foods = await mealsAPI.getMealsByCategory(token, category);
-      foods = foods.slice(0, maxResults);
+      foods = !foods ? [] : foods.slice(0, maxResults);
       dispatch(actionRecieveRecipes({ foods }));
     }
     if (foodsOrDrinks === 'drinks') {
       let drinks = await cocktailsAPI.getCocktailsByCategory(token, category);
-      drinks = drinks.slice(0, maxResults);
+      drinks = !drinks ? [] : drinks.slice(0, maxResults);
       dispatch(actionRecieveRecipes({ drinks }));
     }
   }
@@ -102,12 +107,12 @@ const actionSearchByIngredients = (token, foodsOrDrinks, ingredient) => (
     const maxResults = 12;
     if (foodsOrDrinks === 'foods') {
       let foods = await mealsAPI.getMealsByMainIngredient(token, ingredient);
-      foods = foods.slice(0, maxResults);
+      foods = !foods ? [] : foods.slice(0, maxResults);
       dispatch(actionRecieveRecipes({ foods }));
     }
     if (foodsOrDrinks === 'drinks') {
-      let drinks = await cocktailsAPI.getMealsByMainIngredient(token, ingredient);
-      drinks = drinks.slice(0, maxResults);
+      let drinks = await cocktailsAPI.getCocktailsByMainIngredient(token, ingredient);
+      drinks = !drinks ? [] : drinks.slice(0, maxResults);
       dispatch(actionRecieveRecipes({ drinks }));
     }
   }
@@ -119,12 +124,12 @@ const actionSearchByFirstLetter = (token, foodsOrDrinks, letter) => (
     const maxResults = 12;
     if (foodsOrDrinks === 'foods') {
       let foods = await mealsAPI.getMealsByFirstLetter(token, letter);
-      foods = foods.slice(0, maxResults);
+      foods = !foods ? [] : foods.slice(0, maxResults);
       dispatch(actionRecieveRecipes({ foods }));
     }
     if (foodsOrDrinks === 'drinks') {
-      let drinks = await cocktailsAPI.getMealsByFirstLetter(token, letter);
-      drinks = drinks.slice(0, maxResults);
+      let drinks = await cocktailsAPI.getCocktailsByFirstLetter(token, letter);
+      drinks = !drinks ? [] : drinks.slice(0, maxResults);
       dispatch(actionRecieveRecipes({ drinks }));
     }
   }
@@ -136,12 +141,12 @@ const actionSearchByName = (token, foodsOrDrinks, name) => (
     const maxResults = 12;
     if (foodsOrDrinks === 'foods') {
       let foods = await mealsAPI.getMealsByName(token, name);
-      foods = foods.slice(0, maxResults);
+      foods = !foods ? [] : foods.slice(0, maxResults);
       dispatch(actionRecieveRecipes({ foods }));
     }
     if (foodsOrDrinks === 'drinks') {
-      let drinks = await cocktailsAPI.getMealsByName(token, name);
-      drinks = drinks.slice(0, maxResults);
+      let drinks = await cocktailsAPI.getCocktailsByName(token, name);
+      drinks = !drinks ? [] : drinks.slice(0, maxResults);
       dispatch(actionRecieveRecipes({ drinks }));
     }
   }
@@ -171,4 +176,6 @@ export {
   actionSearchByFirstLetter,
   actionSearchByName,
   actionToggleFilter,
+  actionToggleSearchBar,
+  TOGGLE_SEARCHBAR,
 };

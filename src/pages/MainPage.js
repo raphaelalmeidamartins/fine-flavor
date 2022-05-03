@@ -5,7 +5,6 @@ import CategoryButton from '../components/CategoryButton';
 import Header from '../components/Header';
 import NavBar from '../components/NavBar';
 import RecipeCard from '../components/RecipeCard';
-import SearchBar from '../components/SearchBar';
 import { actionDefaultSearch, actionRequestCategories } from '../redux/actions';
 
 function MainPage() {
@@ -33,7 +32,6 @@ function MainPage() {
   return (
     <div>
       <Header title={ pathname === '/foods' ? 'Foods' : 'Drinks' } search />
-      <SearchBar />
       <section>
         <CategoryButton categoryName="All" mealOrDrink={ key() } />
         {Boolean(categories.length)
