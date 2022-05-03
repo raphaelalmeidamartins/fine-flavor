@@ -57,6 +57,7 @@ const getRecipeByIdThunk = (id, pathname, token) => async (dispatch) => {
     dispatch(getRecipeError(error));
   }
 };
+
 const actionStartLoading = () => ({
   type: START_LOADING,
 });
