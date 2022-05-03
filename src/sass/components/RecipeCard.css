@@ -1,0 +1,8 @@
+.RecipeCard {
+  border: 1px solid black;
+  width: 100px;
+}
+
+.RecipeCard img {
+  width: 100%;
+}
