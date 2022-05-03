@@ -27,17 +27,33 @@ const actionStartLoading = () => ({
   type: START_LOADING,
 });
 
-const actionRecieveRecipes = (results) => ({
+const actionRecieveRecipes = (results, categories) => ({
   type: RECIEVE_RECIPES,
   results,
+  categories,
 });
 
-const actionDefaultSearch = (token) => async function searchRecipes(dispatch) {
-  dispatch(actionStartLoading());
-  const { mealsAPI } = services;
-  const defaultSearch = await mealsAPI.getMealsDefault(token);
-  dispatch(actionRecieveRecipes(defaultSearch));
-};
+const actionDefaultSearch = (token, foodOrDrink) => (
+  async (dispatch) => {
+    dispatch(actionStartLoading());
+    const { mealsAPI, cocktailsAPI } = services;
+    let defaultSearch = [];
+    let categories = [];
+    if (foodOrDrink === 'food') {
+      defaultSearch = await mealsAPI.getMealsDefault(token);
+      categories = await mealsAPI.getMealsCategoriesList(token);
+    }
+    if (foodOrDrink === 'drink') {
+      defaultSearch = await cocktailsAPI.getCocktailsDefault(token);
+      categories = await cocktailsAPI.getCocktailsCategoriesList(token);
+    }
+    const maxCategories = 5;
+    categories = categories
+      .map((category) => category.strCategory)
+      .splice(0, maxCategories);
+    dispatch(actionRecieveRecipes(defaultSearch, categories));
+  }
+);
 
 export {
   GET_LOCAL_STORAGE,
@@ -49,6 +65,5 @@ export {
   START_LOADING,
   actionStartLoading,
   RECIEVE_RECIPES,
-  actionRecieveRecipes,
   actionDefaultSearch,
 };
