@@ -40,27 +40,37 @@ const actionRecieveCategories = (categories) => ({
   categories,
 });
 
-const actionDefaultSearch = (token, foodOrDrink) => (
+const actionRequestCategories = (token, foodOrDrink) => (
   async (dispatch) => {
     dispatch(actionStartLoading());
-    let defaultSearch = [];
     let categories = [];
     if (foodOrDrink === 'food') {
-      defaultSearch = await mealsAPI.getMealsDefault(token);
       categories = await mealsAPI.getMealsCategoriesList(token);
     }
     if (foodOrDrink === 'drink') {
-      defaultSearch = await cocktailsAPI.getCocktailsDefault(token);
       categories = await cocktailsAPI.getCocktailsCategoriesList(token);
     }
-    const maxDefaultSearch = 12;
-    defaultSearch = defaultSearch.splice(0, maxDefaultSearch);
     const maxCategories = 5;
     categories = categories
       .map((category) => category.strCategory)
       .splice(0, maxCategories);
-    dispatch(actionRecieveRecipes(defaultSearch));
     dispatch(actionRecieveCategories(categories));
+  }
+);
+
+const actionDefaultSearch = (token, foodOrDrink) => (
+  async (dispatch) => {
+    dispatch(actionStartLoading());
+    let defaultSearch = [];
+    if (foodOrDrink === 'food') {
+      defaultSearch = await mealsAPI.getMealsDefault(token);
+    }
+    if (foodOrDrink === 'drink') {
+      defaultSearch = await cocktailsAPI.getCocktailsDefault(token);
+    }
+    const maxDefaultSearch = 12;
+    defaultSearch = defaultSearch.splice(0, maxDefaultSearch);
+    dispatch(actionRecieveRecipes(defaultSearch));
   }
 );
 
@@ -92,6 +102,7 @@ export {
   RECIEVE_RECIPES,
   actionDefaultSearch,
   RECIEVE_CATEGORIES,
+  actionRequestCategories,
   actionRecieveCategories,
   actionSearchByCategory,
 };

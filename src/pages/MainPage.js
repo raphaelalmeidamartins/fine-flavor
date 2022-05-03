@@ -6,7 +6,7 @@ import Header from '../components/Header';
 import NavBar from '../components/NavBar';
 import RecipeCard from '../components/RecipeCard';
 import SearchBar from '../components/SearchBar';
-import { actionDefaultSearch } from '../redux/actions';
+import { actionDefaultSearch, actionRequestCategories } from '../redux/actions';
 
 function MainPage() {
   const { pathname } = useLocation();
@@ -18,9 +18,11 @@ function MainPage() {
 
   useEffect(() => {
     if (pathname === '/foods') {
+      dispatch(actionRequestCategories(mealsToken, 'food'));
       dispatch(actionDefaultSearch(mealsToken, 'food'));
     }
     if (pathname === '/drinks') {
+      dispatch(actionRequestCategories(cocktailsToken, 'drink'));
       dispatch(actionDefaultSearch(cocktailsToken, 'drink'));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
