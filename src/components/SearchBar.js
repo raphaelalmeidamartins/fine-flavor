@@ -28,8 +28,9 @@ function SearchBar() {
   const [firstLetter, setFirstLetter] = useState('Off');
 
   const displayClass = 'SearchBar SearchBar-display';
-  // const hiddenClass = 'SearchBar SearchBar-hidden';
 
+  // Deixamos esses comentários aqui para quando formos implementar o CSS
+  // const hiddenClass = 'SearchBar SearchBar-hidden';
   // const { display } = useSelector((state) => state.search.searchBar);
 
   useEffect(() => {
