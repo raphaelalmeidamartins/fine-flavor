@@ -10,9 +10,9 @@ import '../sass/components/SearchBar.css';
 
 function SearchBar() {
   const [searchValue, setSearchValue] = useState('');
+  const [ingredient, setIngredient] = useState('Off');
   const [name, setName] = useState('Off');
   const [firstLetter, setFirstLetter] = useState('Off');
-  const [ingredient, setIngredient] = useState('Off');
 
   const displayClass = 'SearchBar SearchBar-display';
   // const hiddenClass = 'SearchBar SearchBar-hidden';

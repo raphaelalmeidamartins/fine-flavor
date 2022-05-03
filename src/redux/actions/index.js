@@ -67,6 +67,12 @@ const actionRequestCategories = (token, foodsOrDrinks) => (
   }
 );
 
+const notFound = (array) => {
+  if (array.length === 0) {
+    alert('Sorry, we haven\'t found any recipes for these filters.');
+  }
+};
+
 const actionDefaultSearch = (token, foodsOrDrinks) => (
   async (dispatch) => {
     dispatch(actionStartLoading());
@@ -74,11 +80,13 @@ const actionDefaultSearch = (token, foodsOrDrinks) => (
     if (foodsOrDrinks === 'foods') {
       let foods = await mealsAPI.getMealsDefault(token);
       foods = !foods ? [] : foods.slice(0, maxResults);
+      notFound(foods);
       dispatch(actionRecieveRecipes({ foods }));
     }
     if (foodsOrDrinks === 'drinks') {
       let drinks = await cocktailsAPI.getCocktailsDefault(token);
       drinks = !drinks ? [] : drinks.slice(0, maxResults);
+      notFound(drinks);
       dispatch(actionRecieveRecipes({ drinks }));
     }
   }
@@ -91,11 +99,13 @@ const actionSearchByCategory = (token, foodsOrDrinks, category) => (
     if (foodsOrDrinks === 'foods') {
       let foods = await mealsAPI.getMealsByCategory(token, category);
       foods = !foods ? [] : foods.slice(0, maxResults);
+      notFound(foods);
       dispatch(actionRecieveRecipes({ foods }));
     }
     if (foodsOrDrinks === 'drinks') {
       let drinks = await cocktailsAPI.getCocktailsByCategory(token, category);
       drinks = !drinks ? [] : drinks.slice(0, maxResults);
+      notFound(drinks);
       dispatch(actionRecieveRecipes({ drinks }));
     }
   }
@@ -108,11 +118,13 @@ const actionSearchByIngredients = (token, foodsOrDrinks, ingredient) => (
     if (foodsOrDrinks === 'foods') {
       let foods = await mealsAPI.getMealsByMainIngredient(token, ingredient);
       foods = !foods ? [] : foods.slice(0, maxResults);
+      notFound(foods);
       dispatch(actionRecieveRecipes({ foods }));
     }
     if (foodsOrDrinks === 'drinks') {
       let drinks = await cocktailsAPI.getCocktailsByMainIngredient(token, ingredient);
       drinks = !drinks ? [] : drinks.slice(0, maxResults);
+      notFound(drinks);
       dispatch(actionRecieveRecipes({ drinks }));
     }
   }
@@ -125,11 +137,13 @@ const actionSearchByFirstLetter = (token, foodsOrDrinks, letter) => (
     if (foodsOrDrinks === 'foods') {
       let foods = await mealsAPI.getMealsByFirstLetter(token, letter);
       foods = !foods ? [] : foods.slice(0, maxResults);
+      notFound(foods);
       dispatch(actionRecieveRecipes({ foods }));
     }
     if (foodsOrDrinks === 'drinks') {
       let drinks = await cocktailsAPI.getCocktailsByFirstLetter(token, letter);
       drinks = !drinks ? [] : drinks.slice(0, maxResults);
+      notFound(drinks);
       dispatch(actionRecieveRecipes({ drinks }));
     }
   }
@@ -142,11 +156,13 @@ const actionSearchByName = (token, foodsOrDrinks, name) => (
     if (foodsOrDrinks === 'foods') {
       let foods = await mealsAPI.getMealsByName(token, name);
       foods = !foods ? [] : foods.slice(0, maxResults);
+      notFound(foods);
       dispatch(actionRecieveRecipes({ foods }));
     }
     if (foodsOrDrinks === 'drinks') {
       let drinks = await cocktailsAPI.getCocktailsByName(token, name);
       drinks = !drinks ? [] : drinks.slice(0, maxResults);
+      notFound(drinks);
       dispatch(actionRecieveRecipes({ drinks }));
     }
   }
