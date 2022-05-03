@@ -96,6 +96,57 @@ const actionSearchByCategory = (token, foodsOrDrinks, category) => (
   }
 );
 
+const actionSearchByIngredients = (token, foodsOrDrinks, ingredient) => (
+  async (dispatch) => {
+    dispatch(actionStartLoading());
+    const maxResults = 12;
+    if (foodsOrDrinks === 'foods') {
+      let foods = await mealsAPI.getMealsByMainIngredient(token, ingredient);
+      foods = foods.slice(0, maxResults);
+      dispatch(actionRecieveRecipes({ foods }));
+    }
+    if (foodsOrDrinks === 'drinks') {
+      let drinks = await cocktailsAPI.getMealsByMainIngredient(token, ingredient);
+      drinks = drinks.slice(0, maxResults);
+      dispatch(actionRecieveRecipes({ drinks }));
+    }
+  }
+);
+
+const actionSearchByFirstLetter = (token, foodsOrDrinks, letter) => (
+  async (dispatch) => {
+    dispatch(actionStartLoading());
+    const maxResults = 12;
+    if (foodsOrDrinks === 'foods') {
+      let foods = await mealsAPI.getMealsByFirstLetter(token, letter);
+      foods = foods.slice(0, maxResults);
+      dispatch(actionRecieveRecipes({ foods }));
+    }
+    if (foodsOrDrinks === 'drinks') {
+      let drinks = await cocktailsAPI.getMealsByFirstLetter(token, letter);
+      drinks = drinks.slice(0, maxResults);
+      dispatch(actionRecieveRecipes({ drinks }));
+    }
+  }
+);
+
+const actionSearchByName = (token, foodsOrDrinks, name) => (
+  async (dispatch) => {
+    dispatch(actionStartLoading());
+    const maxResults = 12;
+    if (foodsOrDrinks === 'foods') {
+      let foods = await mealsAPI.getMealsByName(token, name);
+      foods = foods.slice(0, maxResults);
+      dispatch(actionRecieveRecipes({ foods }));
+    }
+    if (foodsOrDrinks === 'drinks') {
+      let drinks = await cocktailsAPI.getMealsByName(token, name);
+      drinks = drinks.slice(0, maxResults);
+      dispatch(actionRecieveRecipes({ drinks }));
+    }
+  }
+);
+
 const actionToggleFilter = (filter) => ({
   type: TOGGLE_FILTER,
   filter,
@@ -116,5 +167,8 @@ export {
   actionRequestCategories,
   actionSearchByCategory,
   TOGGLE_FILTER,
+  actionSearchByIngredients,
+  actionSearchByFirstLetter,
+  actionSearchByName,
   actionToggleFilter,
 };
