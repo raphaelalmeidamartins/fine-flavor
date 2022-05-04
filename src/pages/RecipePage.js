@@ -10,14 +10,19 @@ import {
 
 function RecipePage(props) {
   const dispatch = useDispatch();
-  const { match: { params: { id } }, history: { location: { pathname } } } = props;
+  const {
+    match: { params: { id } },
+    history,
+    history: { location: { pathname } },
+  } = props;
   const globalState = useSelector((state) => state);
   const { mealsToken, cocktailsToken, selectedRecipe } = globalState;
-  const [alertStatus, setAlertStatus] = useState(false);
 
   const [ingredients, setIngredients] = useState([]);
-  // const [recommendedRecipes, setRecommendations] = useState([]);
+  const [alertStatus, setAlertStatus] = useState(false);
+
   const isAMeal = pathname.includes('food');
+  const inProgress = pathname.includes('in-progress');
 
   useEffect(() => {
     const token = isAMeal
@@ -43,13 +48,6 @@ function RecipePage(props) {
     const fourSeconds = 4000;
     setTimeout(() => setAlertStatus(false), fourSeconds);
   };
-
-  const isFavorite = () => {
-    const { favoriteRecipes } = globalState;
-    const idFound = favoriteRecipes.some(({ id: favoriteId }) => id === favoriteId);
-    return idFound;
-  }; // verifica se a receita já está entre os favoritos
-
   const {
     strMeal, strMealThumb, strCategory,
     strDrink, strDrinkThumb, strAlcoholic,
@@ -61,6 +59,12 @@ function RecipePage(props) {
     title: isAMeal ? strMeal : strDrink,
     category: isAMeal ? strCategory : strAlcoholic,
   };
+
+  const isFavorite = () => {
+    const { favoriteRecipes } = globalState;
+    const idFound = favoriteRecipes.some(({ id: favoriteId }) => id === favoriteId);
+    return idFound;
+  }; // verifica se a receita já está entre os favoritos
 
   const handleFavorite = () => {
     const recipeDetails = {
@@ -78,6 +82,28 @@ function RecipePage(props) {
       dispatch(actionFavoriteRecipe(recipeDetails)); // envia o objeto para o reducer
     }
   };
+
+  const recipeButton = () => (
+    inProgress
+      ? (
+        <button
+          type="button"
+          onClick={ () => history.push(`${pathname}/done-recipes`) }
+          data-testid="finish-recipe-btn"
+        >
+          Finish Recipe
+        </button>
+      )
+      : (
+        <button
+          type="button"
+          onClick={ () => history.push(`${pathname}/in-progress`) }
+          data-testid="start-recipe-btn"
+        >
+          Start Recipe
+        </button>
+      )
+  );
 
   return (
     <main>
@@ -108,6 +134,7 @@ function RecipePage(props) {
       <Ingredients data={ ingredients } />
       {/* deve retornar checklist ou lista não ordenada */}
       <RecipeInfo />
+      {recipeButton()}
     </main>
   );
 }
@@ -118,6 +145,7 @@ RecipePage.propTypes = {
   }).isRequired,
   history: PropTypes.shape({
     location: PropTypes.shape({ pathname: PropTypes.string }),
+    push: PropTypes.func,
   }).isRequired,
 };
 
