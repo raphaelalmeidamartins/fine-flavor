@@ -131,7 +131,12 @@ function RecipePage(props) {
           Link copied!
         </span>
       </section>
-      <Ingredients data={ ingredients } />
+      <Ingredients
+        data={ ingredients }
+        inProgress={ inProgress }
+        id={ id }
+        isAMeal={ isAMeal }
+      />
       {/* deve retornar checklist ou lista não ordenada */}
       <RecipeInfo />
       {recipeButton()}

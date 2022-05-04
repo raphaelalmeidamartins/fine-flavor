@@ -1,4 +1,4 @@
-import { GET_LOCAL_STORAGE } from '../actions';
+import { GET_LOCAL_STORAGE, UPDATE_IN_PROGRESS } from '../actions';
 
 const INITIAL_STATE = {
   cocktails: {},
@@ -13,6 +13,8 @@ const inProgressRecipes = (state = INITIAL_STATE, action) => {
     return action.inProgressRecipes === null
       ? state
       : action.inProgressRecipes;
+  case UPDATE_IN_PROGRESS:
+    return state;
   default:
     return state;
   }
