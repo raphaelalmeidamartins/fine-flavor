@@ -1,4 +1,4 @@
-import { FAVORITE_RECIPE, GET_LOCAL_STORAGE } from '../actions';
+import { GET_LOCAL_STORAGE, FAVORITE_RECIPE, UNFAVORITE_RECIPE } from '../actions';
 
 const INITIAL_STATE = [];
 
@@ -10,6 +10,8 @@ const favoriteRecipes = (state = INITIAL_STATE, action) => {
       : action.favoriteRecipes;
   case FAVORITE_RECIPE:
     return [...state, action.recipe];
+  case UNFAVORITE_RECIPE:
+    return state.filter(({ id }) => action.recipeId !== id);
   default:
     return state;
   }

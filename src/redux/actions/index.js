@@ -14,6 +14,7 @@ const RECIEVE_RECIPES = 'RECIEVE_RECIPES';
 const RECIEVE_CATEGORIES = 'RECIEVE_CATEGORIES';
 const TOGGLE_FILTER = 'TOGGLE_FILTER';
 const FAVORITE_RECIPE = 'FAVORITE_RECIPE';
+const UNFAVORITE_RECIPE = 'UNFAVORITE_RECIPE';
 const TOGGLE_SEARCHBAR = 'TOGGLE_SEARCHBAR';
 
 const actionGetLocalStorage = (state) => ({
@@ -211,6 +212,11 @@ const actionFavoriteRecipe = (recipe) => ({
   recipe,
 });
 
+const actionUnfavoriteRecipe = (recipeId) => ({
+  type: UNFAVORITE_RECIPE,
+  recipeId,
+});
+
 export {
   GET_LOCAL_STORAGE,
   actionGetLocalStorage,
@@ -234,6 +240,8 @@ export {
   actionToggleFilter,
   FAVORITE_RECIPE,
   actionFavoriteRecipe,
+  UNFAVORITE_RECIPE,
+  actionUnfavoriteRecipe,
   actionToggleSearchBar,
   TOGGLE_SEARCHBAR,
 };
