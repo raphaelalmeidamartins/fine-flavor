@@ -1,0 +1,12 @@
+.SearchBar {
+  border: 1px solid black;
+  transition: 400ms;
+}
+
+.SearchBar-display {
+  display: block;
+}
+
+.SearchBar-hidden {
+  display: none;
+}
