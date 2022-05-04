@@ -14,7 +14,7 @@ function App() {
 
   useEffect(getLocalStorage, []); // semelhante ao componentDidMount
   useEffect(() => {
-    if (pathname === '/') setLocalStorage();
+    if (pathname !== '/') setLocalStorage();
   }, [globalState]);
 
   return (
