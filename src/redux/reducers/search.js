@@ -3,6 +3,7 @@ import {
   RECIEVE_RECIPES,
   START_LOADING,
   TOGGLE_FILTER,
+  TOGGLE_SEARCHBAR,
 } from '../actions';
 
 const INITIAL_STATE = {
@@ -51,6 +52,13 @@ const search = (state = INITIAL_STATE, action) => {
       categories: {
         ...state.categories,
         filter: action.filter,
+      },
+    };
+  case TOGGLE_SEARCHBAR:
+    return { ...state,
+      searchBar: {
+        ...state.searchBar,
+        display: !state.searchBar.display,
       },
     };
   default:

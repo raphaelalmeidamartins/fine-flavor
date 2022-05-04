@@ -1,11 +1,14 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { actionToggleSearchBar } from '../redux/actions/index';
 import '../sass/components/Header.css';
 import IconButton from './IconButton';
+import SearchBar from './SearchBar';
 
 function Header({ title, search }) {
   const dispatch = useDispatch();
+  const { display } = useSelector((state) => state.search.searchBar);
 
   const toggleSearchBar = () => {
     dispatch(actionToggleSearchBar());
@@ -21,6 +24,7 @@ function Header({ title, search }) {
           dataTestId="search-top-btn"
         />
       ) }
+      { display && search && <SearchBar /> }
     </header>
   );
 }

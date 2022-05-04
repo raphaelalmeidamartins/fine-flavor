@@ -5,11 +5,12 @@ import CategoryButton from '../components/CategoryButton';
 import Header from '../components/Header';
 import NavBar from '../components/NavBar';
 import RecipeCard from '../components/RecipeCard';
-import SearchBar from '../components/SearchBar';
 import { actionDefaultSearch, actionRequestCategories } from '../redux/actions';
 
 function MainPage() {
   const { pathname } = useLocation();
+  const dispatch = useDispatch();
+
   const mealsToken = useSelector((state) => state.mealsToken);
   const { foods, drinks } = useSelector((state) => state.search.results);
   const results = pathname === '/foods' ? foods : drinks;
@@ -18,7 +19,7 @@ function MainPage() {
     (state) => state.search.categories,
   );
   const categories = pathname === '/foods' ? foodsCategories : drinksCategories;
-  const dispatch = useDispatch();
+  const key = () => (pathname === '/foods' ? 'Meal' : 'Drink');
 
   useEffect(() => {
     dispatch(actionRequestCategories(mealsToken, 'foods'));
@@ -28,12 +29,9 @@ function MainPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const key = () => (pathname === '/foods' ? 'Meal' : 'Drink');
-
   return (
     <div>
       <Header title={ pathname === '/foods' ? 'Foods' : 'Drinks' } search />
-      <SearchBar />
       <section>
         <CategoryButton categoryName="All" mealOrDrink={ key() } />
         {Boolean(categories.length)

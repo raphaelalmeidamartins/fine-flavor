@@ -2,9 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  actionDefaultSearch,
-  actionSearchByCategory,
-  actionToggleFilter,
+  actionDefaultSearch, actionSearchByCategory, actionToggleFilter,
 } from '../redux/actions';
 
 function CategoryButton({ categoryName, mealOrDrink }) {
@@ -17,17 +15,17 @@ function CategoryButton({ categoryName, mealOrDrink }) {
   const dispatch = useDispatch();
 
   const handleClick = () => {
-    if (categoryName !== 'All' && !categories.filter) {
+    switch (true) {
+    case categoryName !== 'All'
+        && (categories.filter !== categoryName || categories.filter === ''):
       dispatch(actionToggleFilter(categoryName));
       dispatch(actionSearchByCategory(token, foodsOrDrinks, categoryName));
-    }
-    if (categoryName !== 'All' && categories.filter) {
+      break;
+
+    default:
       dispatch(actionToggleFilter(''));
       dispatch(actionDefaultSearch(token, foodsOrDrinks, categoryName));
-    }
-    if (categoryName === 'All') {
-      dispatch(actionToggleFilter(''));
-      dispatch(actionDefaultSearch(token, foodsOrDrinks, categoryName));
+      break;
     }
   };
 
