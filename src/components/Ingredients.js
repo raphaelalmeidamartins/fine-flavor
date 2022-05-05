@@ -15,7 +15,6 @@ function Ingredients({ ingredientsData, id, isMeal }) {
   const [checkedIngredients, setCheckedIngredients] = useState([]);
 
   useEffect(() => {
-    console.log(checkedIngredients);
     dispatch(actionUpdateInProgress(id, checkedIngredients, isMeal));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [checkedIngredients]);
@@ -47,7 +46,7 @@ function Ingredients({ ingredientsData, id, isMeal }) {
                 <input
                   type="checkbox"
                   value={ index }
-                  checked={ currProgress.includes(ingredient) }
+                  checked={ currProgress?.includes(ingredient) }
                   onChange={ (e) => handleChange(e, index, ingredient) }
                   id={ `ingredient-${index}` }
                 />
