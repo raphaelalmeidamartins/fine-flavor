@@ -9,7 +9,6 @@ const RECEIVE_RECIPE_ERROR = 'RECEIVE_RECIPE_ERROR';
 const START_LOADING = 'START_LOADING';
 const RECIEVE_RECIPES = 'RECIEVE_RECIPES';
 const RECIEVE_CATEGORIES = 'RECIEVE_CATEGORIES';
-const UPDATE_IN_PROGRESS = 'UPDATE_IN_PROGRESS';
 
 const requestRecipe = () => ({
   type: REQUEST_RECIPE,
@@ -189,5 +188,4 @@ export {
   actionSearchByIngredients,
   actionSearchByFirstLetter,
   actionSearchByName,
-  UPDATE_IN_PROGRESS,
 };

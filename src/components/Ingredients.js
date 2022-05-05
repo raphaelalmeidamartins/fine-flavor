@@ -1,32 +1,38 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { actionUpdateInProgress } from '../redux/actions';
+import { actionUpdateInProgressIngredients } from '../redux/actions';
 
 function Ingredients({ ingredientsData, id, isMeal }) {
   const { pathname } = useLocation();
   const inProgress = pathname.includes('in-progress');
   const dispatch = useDispatch();
 
-  const { cocktails, meals } = useSelector((state) => state.inProgressRecipes);
-  const currProgress = pathname.includes('food') ? meals[id] : cocktails[id];
-
   const [checkedIngredients, setCheckedIngredients] = useState([]);
 
   useEffect(() => {
-    dispatch(actionUpdateInProgress(id, checkedIngredients, isMeal));
+    dispatch(actionUpdateInProgressIngredients(id, checkedIngredients, isMeal));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [checkedIngredients]);
 
-  const handleChange = ({ target: { checked } }, index, ingredient) => {
-    if (!checked) {
-      const updatedCheckedIngredients = [...checkedIngredients];
-      updatedCheckedIngredients.splice(index, 1);
-      setCheckedIngredients(updatedCheckedIngredients);
-    } else {
-      setCheckedIngredients([...checkedIngredients, ingredient]);
-    }
+  const addIngredient = (ingredient) => {
+    let updatedArray = [...checkedIngredients];
+    updatedArray = [...updatedArray, ingredient];
+    setCheckedIngredients(updatedArray);
+  };
+
+  const removeIngredient = (ingredient) => {
+    console.log('entrou');
+    const updatedArray = [...checkedIngredients];
+    const index = updatedArray.indexOf(ingredient);
+    updatedArray.splice(index, 1);
+    setCheckedIngredients(updatedArray);
+  };
+
+  const handleChange = ({ target: { checked } }, ingredient) => {
+    if (checked) addIngredient(ingredient);
+    else removeIngredient(ingredient);
   };
 
   return (
@@ -45,9 +51,8 @@ function Ingredients({ ingredientsData, id, isMeal }) {
               >
                 <input
                   type="checkbox"
-                  value={ index }
-                  checked={ currProgress?.includes(ingredient) }
-                  onChange={ (e) => handleChange(e, index, ingredient) }
+                  checked={ checkedIngredients.includes(ingredient) }
+                  onChange={ (e) => handleChange(e, ingredient) }
                   id={ `ingredient-${index}` }
                 />
 

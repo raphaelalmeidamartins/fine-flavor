@@ -21,7 +21,7 @@ const TOGGLE_FILTER = 'TOGGLE_FILTER';
 const FAVORITE_RECIPE = 'FAVORITE_RECIPE';
 const UNFAVORITE_RECIPE = 'UNFAVORITE_RECIPE';
 const TOGGLE_SEARCHBAR = 'TOGGLE_SEARCHBAR';
-const UPDATE_IN_PROGRESS = 'UPDATE_IN_PROGRESS';
+const UPDATE_IN_PROGRESS_INGREDIENTS = 'UPDATE_IN_PROGRESS_INGREDIENTS';
 
 const actionGetLocalStorage = (state) => ({
   type: GET_LOCAL_STORAGE,
@@ -58,12 +58,11 @@ const actionUnfavoriteRecipe = (recipeId) => ({
   recipeId,
 });
 
-const actionUpdateInProgress = (recipeId, checkedIngredients, isMeal) => ({
-  type: UPDATE_IN_PROGRESS,
+const actionUpdateInProgressIngredients = (recipeId, checkedIngredients, isMeal) => ({
+  type: UPDATE_IN_PROGRESS_INGREDIENTS,
+  recipeId,
+  checkedIngredients,
   isMeal,
-  inProgressRecipe: {
-    [recipeId]: checkedIngredients,
-  },
 });
 
 export {
@@ -93,6 +92,6 @@ export {
   actionUnfavoriteRecipe,
   actionToggleSearchBar,
   TOGGLE_SEARCHBAR,
-  UPDATE_IN_PROGRESS,
-  actionUpdateInProgress,
+  UPDATE_IN_PROGRESS_INGREDIENTS,
+  actionUpdateInProgressIngredients,
 };

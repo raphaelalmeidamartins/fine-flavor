@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, useLocation, useParams } from 'react-router-dom';
 import IconButton from '../components/IconButton';
 import Ingredients from '../components/Ingredients';
 import RecipeInfo from '../components/RecipeInfo';
@@ -10,19 +10,18 @@ import {
   actionUnfavoriteRecipe,
 } from '../redux/actions';
 
-function RecipePage(props) {
+function RecipePage() {
   const dispatch = useDispatch();
+  const { id } = useParams();
+  const { pathname } = useLocation();
+  const history = useHistory();
+
   const {
-    match: {
-      params: { id },
-    },
-    history,
-    history: {
-      location: { pathname },
-    },
-  } = props;
-  const globalState = useSelector((state) => state);
-  const { mealsToken, cocktailsToken, selectedRecipe } = globalState;
+    mealsToken,
+    cocktailsToken,
+    selectedRecipe,
+    favoriteRecipes,
+  } = useSelector((state) => state);
 
   const [ingredients, setIngredients] = useState([]);
   const [alertStatus, setAlertStatus] = useState(false);
@@ -52,6 +51,7 @@ function RecipePage(props) {
     const fourSeconds = 4000;
     setTimeout(() => setAlertStatus(false), fourSeconds);
   };
+
   const {
     strMeal,
     strMealThumb,
@@ -68,13 +68,8 @@ function RecipePage(props) {
     category: isMeal ? strCategory : strAlcoholic,
   };
 
-  const isFavorite = () => {
-    const { favoriteRecipes } = globalState;
-    const idFound = favoriteRecipes.some(
-      ({ id: favoriteId }) => id === favoriteId,
-    );
-    return idFound;
-  }; // verifica se a receita já está entre os favoritos
+  const isFavorite = () => favoriteRecipes
+    .some(({ id: favoriteId }) => id === favoriteId); // verifica se a receita já está entre os favoritos
 
   const handleFavorite = () => {
     const recipeDetails = {
@@ -86,6 +81,7 @@ function RecipePage(props) {
       name: recipe.title,
       image: recipe.thumbnail,
     };
+
     if (isFavorite()) {
       dispatch(actionUnfavoriteRecipe(id)); // envia o id do objeto que deve ser removido dos favoritos
     } else {
@@ -147,21 +143,10 @@ function RecipePage(props) {
         id={ id }
         isMeal={ isMeal }
       />
-      {/* deve retornar checklist ou lista não ordenada */}
       <RecipeInfo />
       {recipeButton()}
     </main>
   );
 }
-
-RecipePage.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({ id: PropTypes.string }),
-  }).isRequired,
-  history: PropTypes.shape({
-    location: PropTypes.shape({ pathname: PropTypes.string }),
-    push: PropTypes.func,
-  }).isRequired,
-};
 
 export default RecipePage;

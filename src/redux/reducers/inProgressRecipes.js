@@ -1,4 +1,7 @@
-import { GET_LOCAL_STORAGE, UPDATE_IN_PROGRESS } from '../actions';
+import {
+  GET_LOCAL_STORAGE,
+  UPDATE_IN_PROGRESS_INGREDIENTS,
+} from '../actions';
 
 const INITIAL_STATE = {
   cocktails: {},
@@ -13,13 +16,19 @@ const inProgressRecipes = (state = INITIAL_STATE, action) => {
     return action.inProgressRecipes === null
       ? state
       : action.inProgressRecipes;
-  case UPDATE_IN_PROGRESS:
+  case UPDATE_IN_PROGRESS_INGREDIENTS:
     return {
       cocktails: action.isMeal
         ? state.cocktails
-        : { ...state.cocktails, ...action.inProgressRecipe },
+        : {
+          ...state.cocktails,
+          [action.recipeId]: action.checkedIngredients,
+        },
       meals: action.isMeal
-        ? { ...state.meals, ...action.inProgressRecipe }
+        ? {
+          ...state.meals,
+          [action.recipeId]: action.checkedIngredients,
+        }
         : state.meals,
     };
   default:
