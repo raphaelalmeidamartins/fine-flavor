@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 function RecipePageButton({ inProgress }) {
   const history = useHistory();
+  const { pathname } = useLocation();
 
   return (
     <button
