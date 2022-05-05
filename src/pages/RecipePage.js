@@ -26,11 +26,10 @@ function RecipePage() {
   const [ingredients, setIngredients] = useState([]);
   const [alertStatus, setAlertStatus] = useState(false);
 
-  const isAmeal = pathname.includes('food');
-  const inProgress = pathname.includes('in-progress');
+  const isMeal = pathname.includes('food');
 
   useEffect(() => {
-    const token = isAmeal ? mealsToken : cocktailsToken;
+    const token = isMeal ? mealsToken : cocktailsToken;
     dispatch(actionGetRecipeById(id, pathname, token));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -62,10 +61,10 @@ function RecipePage() {
     strArea,
   } = selectedRecipe;
 
-  const recipeSuccintObject = {
-    thumbnail: isAmeal ? strMealThumb : strDrinkThumb,
-    title: isAmeal ? strMeal : strDrink,
-    category: isAmeal ? strCategory : strAlcoholic,
+  const recipeBasicInfo = {
+    thumbnail: isMeal ? strMealThumb : strDrinkThumb,
+    title: isMeal ? strMeal : strDrink,
+    category: isMeal ? strCategory : strAlcoholic,
   };
 
   const isFavorite = () => {
@@ -76,30 +75,30 @@ function RecipePage() {
   }; // verifica se a receita já está entre os favoritos
 
   const handleFavorite = () => {
-    const recipeDetailedObject = {
+    const recipleDetailedInfo = {
       id,
-      type: isAmeal ? 'food' : 'drink',
+      type: isMeal ? 'food' : 'drink',
       nationality: strArea,
       category: strCategory,
       alcoholicOrNot: strAlcoholic || 'Non alcoholic',
-      name: recipeSuccintObject.title,
-      image: recipeSuccintObject.thumbnail,
+      name: recipeBasicInfo.title,
+      image: recipeBasicInfo.thumbnail,
     };
 
     if (isFavorite()) dispatch(actionUnfavoriteRecipe(id)); // envia o id do objeto que deve ser removido dos favoritos
-    else dispatch(actionFavoriteRecipe(recipeDetailedObject)); // envia o objeto para o reducer
+    else dispatch(actionFavoriteRecipe(recipleDetailedInfo)); // envia o objeto para o reducer
   };
 
   return (
     <main>
       <section>
         <img
-          src={ recipeSuccintObject.thumbnail }
-          alt={ recipeSuccintObject.title }
+          src={ recipeBasicInfo.thumbnail }
+          alt={ recipeBasicInfo.title }
           data-testid="recipe-photo"
         />
-        <h1 data-testid="recipe-title">{recipeSuccintObject.title}</h1>
-        <h4 data-testid="recipe-category">{recipeSuccintObject.category}</h4>
+        <h1 data-testid="recipe-title">{recipeBasicInfo.title}</h1>
+        <h4 data-testid="recipe-category">{recipeBasicInfo.category}</h4>
       </section>
       <section>
         <IconButton
@@ -121,13 +120,12 @@ function RecipePage() {
         </span>
       </section>
       <Ingredients
-        data={ ingredients }
-        inProgress={ inProgress }
+        ingredientsData={ ingredients }
         id={ id }
-        isAMeal={ isAmeal }
+        isMeal={ isMeal }
       />
       <RecipeInfo />
-      <RecipePageButton inProgress={ inProgress } />
+      <RecipePageButton />
     </main>
   );
 }

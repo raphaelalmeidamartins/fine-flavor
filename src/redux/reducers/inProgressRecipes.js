@@ -14,7 +14,14 @@ const inProgressRecipes = (state = INITIAL_STATE, action) => {
       ? state
       : action.inProgressRecipes;
   case UPDATE_IN_PROGRESS:
-    return state;
+    return {
+      cocktails: action.isMeal
+        ? state.cocktails
+        : { ...state.cocktails, ...action.inProgressRecipe },
+      meals: action.isMeal
+        ? { ...state.meals, ...action.inProgressRecipe }
+        : state.meals,
+    };
   default:
     return state;
   }

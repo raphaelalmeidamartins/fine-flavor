@@ -58,8 +58,9 @@ const actionUnfavoriteRecipe = (recipeId) => ({
   recipeId,
 });
 
-const actionUpdateInProgress = (recipeId, checkedIngredients) => ({
+const actionUpdateInProgress = (recipeId, checkedIngredients, isMeal) => ({
   type: UPDATE_IN_PROGRESS,
+  isMeal,
   inProgressRecipe: {
     [recipeId]: checkedIngredients,
   },

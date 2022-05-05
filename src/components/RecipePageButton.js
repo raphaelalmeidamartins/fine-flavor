@@ -1,10 +1,10 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 
-function RecipePageButton({ inProgress }) {
+function RecipePageButton() {
   const history = useHistory();
   const { pathname } = useLocation();
+  const inProgress = pathname.includes('in-progress');
 
   return (
     <button
@@ -18,9 +18,5 @@ function RecipePageButton({ inProgress }) {
     </button>
   );
 }
-
-RecipePageButton.propTypes = {
-  inProgress: PropTypes.bool.isRequired,
-};
 
 export default RecipePageButton;
