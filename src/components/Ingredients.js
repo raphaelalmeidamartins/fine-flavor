@@ -10,7 +10,8 @@ function Ingredients({ ingredientsData, id, isMeal }) {
   const dispatch = useDispatch();
 
   const { cocktails, meals } = useSelector((state) => state.inProgressRecipes);
-  const checkedIngredients = pathname.includes('foods') ? meals[id] : cocktails[id];
+  let checkedIngredients = pathname.includes('foods') ? meals[id] : cocktails[id];
+  checkedIngredients = checkedIngredients || [];
 
   const addIngredient = (ingredient) => {
     let updatedArray = [...checkedIngredients];

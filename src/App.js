@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { useEffect } from 'react';
+import React, { useLayoutEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import './App.css';
@@ -13,8 +13,8 @@ function App() {
   const setLocalStorage = useLocalStorage('set');
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(getLocalStorage, []); // semelhante ao componentDidMount
-  useEffect(() => {
+  useLayoutEffect(getLocalStorage, []); // semelhante ao componentDidMount
+  useLayoutEffect(() => {
     if (pathname !== '/') setLocalStorage();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [globalState]);

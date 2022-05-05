@@ -75,9 +75,9 @@ function RecipePage() {
     const recipeDetailedInfo = {
       id,
       type: isMeal ? 'food' : 'drink',
-      nationality: strArea,
+      nationality: isMeal ? strArea : '',
       category: strCategory,
-      alcoholicOrNot: strAlcoholic || 'Non alcoholic',
+      alcoholicOrNot: isMeal ? '' : strAlcoholic,
       name: recipeBasicInfo.title,
       image: recipeBasicInfo.thumbnail,
     };

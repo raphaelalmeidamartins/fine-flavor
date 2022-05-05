@@ -24,13 +24,14 @@ function RecipePageButton({ inProgress, ingredientsData }) {
     <button
       type="button"
       onClick={ () => history.push(
-        `${pathname}/${inProgress ? 'done-recipes' : 'in-progress'}`,
+        `${pathname.slice(0, pathname.length)}/${
+          inProgress ? 'done-recipes' : 'in-progress'
+        }`,
       ) }
       data-testid={ `${inProgress ? 'finish' : 'start'}-recipe-btn` }
       disabled={
         inProgress
-        && !ingredientsData
-          .every(([ingrName]) => checkedIngredients.includes(ingrName))
+        && !ingredientsData.every(([ingrName]) => checkedIngredients.includes(ingrName))
       }
     >
       {returnButtonText()}
