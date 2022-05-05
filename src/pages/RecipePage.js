@@ -126,7 +126,7 @@ function RecipePage() {
         isMeal={ isMeal }
       />
       <RecipeInfo />
-      <RecipePageButton inProgress={ inProgress } />
+      <RecipePageButton inProgress={ inProgress } ingredientsData={ ingredients } />
     </main>
   );
 }

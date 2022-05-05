@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { actionUpdateInProgressIngredients } from '../redux/actions';
@@ -9,34 +9,20 @@ function Ingredients({ ingredientsData, id, isMeal }) {
   const inProgress = pathname.includes('in-progress');
   const dispatch = useDispatch();
 
-  const [checkedIngredients, setCheckedIngredients] = useState([]);
-
   const { cocktails, meals } = useSelector((state) => state.inProgressRecipes);
-  const savedCheckedIngredients = pathname.includes('foods') ? meals[id] : cocktails[id];
-
-  useEffect(() => {
-    if (savedCheckedIngredients) {
-      setCheckedIngredients(savedCheckedIngredients);
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [savedCheckedIngredients]);
-
-  useEffect(() => {
-    dispatch(actionUpdateInProgressIngredients(id, checkedIngredients, isMeal));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [checkedIngredients]);
+  const checkedIngredients = pathname.includes('foods') ? meals[id] : cocktails[id];
 
   const addIngredient = (ingredient) => {
     let updatedArray = [...checkedIngredients];
     updatedArray = [...updatedArray, ingredient];
-    setCheckedIngredients(updatedArray);
+    dispatch(actionUpdateInProgressIngredients(id, updatedArray, isMeal));
   };
 
   const removeIngredient = (ingredient) => {
     const updatedArray = [...checkedIngredients];
     const index = updatedArray.indexOf(ingredient);
     updatedArray.splice(index, 1);
-    setCheckedIngredients(updatedArray);
+    dispatch(actionUpdateInProgressIngredients(id, updatedArray, isMeal));
   };
 
   const handleChange = ({ target: { checked } }, ingredient) => {
@@ -78,7 +64,7 @@ function Ingredients({ ingredientsData, id, isMeal }) {
 }
 
 Ingredients.propTypes = {
-  ingredientsData: PropTypes.arrayOf(PropTypes.any).isRequired,
+  ingredientsData: PropTypes.arrayOf(PropTypes.array).isRequired,
   id: PropTypes.string.isRequired,
   isMeal: PropTypes.bool.isRequired,
 };
