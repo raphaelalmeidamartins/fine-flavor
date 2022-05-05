@@ -3,25 +3,25 @@ import services from '../../services';
 const { mealsAPI, cocktailsAPI } = services;
 
 /* Aqui criaremos as actions */
-const GET_RECIPE = 'GET_RECIPE';
-const GET_RECIPE_SUCCESS = 'GET_RECIPE_SUCCESS';
-const GET_RECIPE_ERROR = 'GET_RECIPE_ERROR';
+const REQUEST_RECIPE = 'REQUEST_RECIPE';
+const RECEIVE_RECIPE_SUCCESS = 'RECEIVE_RECIPE_SUCCESS';
+const RECEIVE_RECIPE_ERROR = 'RECEIVE_RECIPE_ERROR';
 const START_LOADING = 'START_LOADING';
 const RECIEVE_RECIPES = 'RECIEVE_RECIPES';
 const RECIEVE_CATEGORIES = 'RECIEVE_CATEGORIES';
 const UPDATE_IN_PROGRESS = 'UPDATE_IN_PROGRESS';
 
 const requestRecipe = () => ({
-  type: GET_RECIPE,
+  type: REQUEST_RECIPE,
 });
 
 const receiveRecipeSuccess = (recipe) => ({
-  type: GET_RECIPE_SUCCESS,
+  type: RECEIVE_RECIPE_SUCCESS,
   recipe,
 });
 
 const receiveRecipeError = (error) => ({
-  type: GET_RECIPE_ERROR,
+  type: RECEIVE_RECIPE_ERROR,
   error,
 });
 
@@ -177,7 +177,7 @@ const actionSearchByName = (token, foodsOrDrinks, name) => (
 );
 
 export {
-  GET_RECIPE_SUCCESS,
+  RECEIVE_RECIPE_SUCCESS,
   actionGetRecipeById,
   START_LOADING,
   actionStartLoading,
