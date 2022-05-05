@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useLocation, useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import IconButton from '../components/IconButton';
 import Ingredients from '../components/Ingredients';
 import RecipeInfo from '../components/RecipeInfo';
@@ -9,12 +9,12 @@ import {
   actionGetRecipeById,
   actionUnfavoriteRecipe,
 } from '../redux/actions';
+import RecipePageButton from './RecipePageButton';
 
 function RecipePage() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const { pathname } = useLocation();
-  const history = useHistory();
 
   const {
     mealsToken,
@@ -36,13 +36,13 @@ function RecipePage() {
   }, []);
 
   useEffect(() => {
-    const generateIngredientArray = (keyName) => Object.entries(selectedRecipe)
-      .filter(([key, value]) => key.includes(keyName) && value)
+    const generateIngredientArray = () => Object.entries(selectedRecipe)
+      .filter(([key, value]) => key.includes('strIngredient') && value)
       .map(([, value], index) => [
         value,
         selectedRecipe[`strMeasure${index + 1}`],
       ]); // filtra todos os ingredientes e quantidades para formar um array de arrays no formato [ingrediente, quantidade]
-    setIngredients(generateIngredientArray('strIngredient'));
+    setIngredients(generateIngredientArray());
   }, [selectedRecipe]);
 
   const handleShare = () => {
@@ -62,7 +62,7 @@ function RecipePage() {
     strArea,
   } = selectedRecipe;
 
-  const recipe = {
+  const recipeBasicInfo = {
     thumbnail: isMeal ? strMealThumb : strDrinkThumb,
     title: isMeal ? strMeal : strDrink,
     category: isMeal ? strCategory : strAlcoholic,
@@ -72,51 +72,33 @@ function RecipePage() {
     .some(({ id: favoriteId }) => id === favoriteId); // verifica se a receita já está entre os favoritos
 
   const handleFavorite = () => {
-    const recipeDetails = {
+    const recipeDetailedInfo = {
       id,
       type: isMeal ? 'food' : 'drink',
       nationality: strArea,
       category: strCategory,
       alcoholicOrNot: strAlcoholic || 'Non alcoholic',
-      name: recipe.title,
-      image: recipe.thumbnail,
+      name: recipeBasicInfo.title,
+      image: recipeBasicInfo.thumbnail,
     };
 
     if (isFavorite()) {
       dispatch(actionUnfavoriteRecipe(id)); // envia o id do objeto que deve ser removido dos favoritos
     } else {
-      dispatch(actionFavoriteRecipe(recipeDetails)); // envia o objeto para o reducer
+      dispatch(actionFavoriteRecipe(recipeDetailedInfo)); // envia o objeto para o reducer
     }
   };
-
-  const recipeButton = () => (inProgress ? (
-    <button
-      type="button"
-      onClick={ () => history.push(`${pathname}/done-recipes`) }
-      data-testid="finish-recipe-btn"
-    >
-      Finish Recipe
-    </button>
-  ) : (
-    <button
-      type="button"
-      onClick={ () => history.push(`${pathname}/in-progress`) }
-      data-testid="start-recipe-btn"
-    >
-      Start Recipe
-    </button>
-  ));
 
   return (
     <main>
       <section>
         <img
-          src={ recipe.thumbnail }
-          alt={ recipe.title }
+          src={ recipeBasicInfo.thumbnail }
+          alt={ recipeBasicInfo.title }
           data-testid="recipe-photo"
         />
-        <h1 data-testid="recipe-title">{recipe.title}</h1>
-        <h4 data-testid="recipe-category">{recipe.category}</h4>
+        <h1 data-testid="recipe-title">{recipeBasicInfo.title}</h1>
+        <h4 data-testid="recipe-category">{recipeBasicInfo.category}</h4>
       </section>
       <section>
         <IconButton
@@ -144,7 +126,7 @@ function RecipePage() {
         isMeal={ isMeal }
       />
       <RecipeInfo />
-      {recipeButton()}
+      <RecipePageButton inProgress={ inProgress } />
     </main>
   );
 }

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { actionUpdateInProgressIngredients } from '../redux/actions';
 
@@ -10,6 +10,16 @@ function Ingredients({ ingredientsData, id, isMeal }) {
   const dispatch = useDispatch();
 
   const [checkedIngredients, setCheckedIngredients] = useState([]);
+
+  const { cocktails, meals } = useSelector((state) => state.inProgressRecipes);
+  const savedCheckedIngredients = pathname.includes('foods') ? meals[id] : cocktails[id];
+
+  useEffect(() => {
+    if (savedCheckedIngredients) {
+      setCheckedIngredients(savedCheckedIngredients);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [savedCheckedIngredients]);
 
   useEffect(() => {
     dispatch(actionUpdateInProgressIngredients(id, checkedIngredients, isMeal));
@@ -23,7 +33,6 @@ function Ingredients({ ingredientsData, id, isMeal }) {
   };
 
   const removeIngredient = (ingredient) => {
-    console.log('entrou');
     const updatedArray = [...checkedIngredients];
     const index = updatedArray.indexOf(ingredient);
     updatedArray.splice(index, 1);
