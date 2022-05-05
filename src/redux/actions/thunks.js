@@ -11,16 +11,16 @@ const RECIEVE_RECIPES = 'RECIEVE_RECIPES';
 const RECIEVE_CATEGORIES = 'RECIEVE_CATEGORIES';
 const UPDATE_IN_PROGRESS = 'UPDATE_IN_PROGRESS';
 
-const getRecipe = () => ({
+const requestRecipe = () => ({
   type: GET_RECIPE,
 });
 
-const getRecipeSuccess = (recipe) => ({
+const receiveRecipeSuccess = (recipe) => ({
   type: GET_RECIPE_SUCCESS,
   recipe,
 });
 
-const getRecipeError = (error) => ({
+const receiveRecipeError = (error) => ({
   type: GET_RECIPE_ERROR,
   error,
 });
@@ -30,12 +30,12 @@ const actionGetRecipeById = (id, pathname, token) => async (dispatch) => {
     ? mealsAPI.getMealDetailsById
     : cocktailsAPI.getCocktailDetailsById;
 
-  dispatch(getRecipe());
+  dispatch(requestRecipe());
   try {
     const [response] = await getDetailsById(token, id);
-    dispatch(getRecipeSuccess(response));
+    dispatch(receiveRecipeSuccess(response));
   } catch (error) {
-    dispatch(getRecipeError(error));
+    dispatch(receiveRecipeError(error));
   }
 };
 
