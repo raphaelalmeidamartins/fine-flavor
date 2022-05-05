@@ -23,9 +23,9 @@ function RecipePageButton({ inProgress, ingredientsData }) {
 
   const handleClick = () => {
     history.push(
-      `${pathname.slice(0, pathname.length)}/${
-        inProgress ? 'done-recipes' : 'in-progress'
-      }`,
+      inProgress
+        ? '/done-recipes'
+        : `${pathname.slice(0, pathname.length)}/in-progress}`,
     );
   };
 
