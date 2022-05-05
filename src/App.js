@@ -12,9 +12,11 @@ function App() {
   const getLocalStorage = useLocalStorage('get');
   const setLocalStorage = useLocalStorage('set');
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(getLocalStorage, []); // semelhante ao componentDidMount
   useEffect(() => {
     if (pathname !== '/') setLocalStorage();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [globalState]);
 
   return (
