@@ -1,45 +1,48 @@
-import PropTypes from 'prop-types';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation, useParams } from 'react-router-dom';
 import IconButton from '../components/IconButton';
 import Ingredients from '../components/Ingredients';
 import RecipeInfo from '../components/RecipeInfo';
+import RecipePageButton from '../components/RecipePageButton';
 import {
-  getRecipeByIdThunk, actionFavoriteRecipe, actionUnfavoriteRecipe,
+  actionFavoriteRecipe,
+  actionGetRecipeById,
+  actionUnfavoriteRecipe,
 } from '../redux/actions';
 
-function RecipePage(props) {
+function RecipePage() {
+  const { pathname } = useLocation();
+  const { id } = useParams();
   const dispatch = useDispatch();
+
   const {
-    match: { params: { id } },
-    history,
-    history: { location: { pathname } },
-  } = props;
-  const globalState = useSelector((state) => state);
-  const { mealsToken, cocktailsToken, selectedRecipe } = globalState;
+    mealsToken,
+    cocktailsToken,
+    selectedRecipe,
+    favoriteRecipes,
+  } = useSelector((state) => state);
 
   const [ingredients, setIngredients] = useState([]);
   const [alertStatus, setAlertStatus] = useState(false);
 
-  const isAMeal = pathname.includes('food');
+  const isAmeal = pathname.includes('food');
   const inProgress = pathname.includes('in-progress');
 
   useEffect(() => {
-    const token = isAMeal
-      ? mealsToken
-      : cocktailsToken;
-    dispatch(getRecipeByIdThunk(id, pathname, token));
+    const token = isAmeal ? mealsToken : cocktailsToken;
+    dispatch(actionGetRecipeById(id, pathname, token));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    const generateIngredientArray = (keyName) => (
-      Object.entries(selectedRecipe)
-        .filter(([key, value]) => (key.includes(keyName) && value))
-        .map(([, value], index) => (
-          [value, selectedRecipe[`strMeasure${index + 1}`]]
-        ))
-    ); // filtra todos os ingredientes e quantidades para formar um array de arrays no formato [ingrediente, quantidade]
-    setIngredients(generateIngredientArray('strIngredient'));
+    const generateIngredientsArray = () => Object.entries(selectedRecipe)
+      .filter(([key, value]) => key.includes('strIngredient') && value)
+      .map(([, value], index) => [
+        value,
+        selectedRecipe[`strMeasure${index + 1}`],
+      ]); // filtra todos os ingredientes e quantidades para formar um array de arrays no formato [ingrediente, quantidade]
+    setIngredients(generateIngredientsArray());
   }, [selectedRecipe]);
 
   const handleShare = () => {
@@ -48,69 +51,55 @@ function RecipePage(props) {
     const fourSeconds = 4000;
     setTimeout(() => setAlertStatus(false), fourSeconds);
   };
+
   const {
-    strMeal, strMealThumb, strCategory,
-    strDrink, strDrinkThumb, strAlcoholic,
+    strMeal,
+    strMealThumb,
+    strCategory,
+    strDrink,
+    strDrinkThumb,
+    strAlcoholic,
     strArea,
   } = selectedRecipe;
 
-  const recipe = {
-    thumbnail: isAMeal ? strMealThumb : strDrinkThumb,
-    title: isAMeal ? strMeal : strDrink,
-    category: isAMeal ? strCategory : strAlcoholic,
+  const recipeSuccintObject = {
+    thumbnail: isAmeal ? strMealThumb : strDrinkThumb,
+    title: isAmeal ? strMeal : strDrink,
+    category: isAmeal ? strCategory : strAlcoholic,
   };
 
   const isFavorite = () => {
-    const { favoriteRecipes } = globalState;
-    const idFound = favoriteRecipes.some(({ id: favoriteId }) => id === favoriteId);
+    const idFound = favoriteRecipes.some(
+      ({ id: favoriteId }) => id === favoriteId,
+    );
     return idFound;
   }; // verifica se a receita já está entre os favoritos
 
   const handleFavorite = () => {
-    const recipeDetails = {
+    const recipeDetailedObject = {
       id,
-      type: isAMeal ? 'food' : 'drink',
+      type: isAmeal ? 'food' : 'drink',
       nationality: strArea,
       category: strCategory,
       alcoholicOrNot: strAlcoholic || 'Non alcoholic',
-      name: recipe.title,
-      image: recipe.thumbnail,
+      name: recipeSuccintObject.title,
+      image: recipeSuccintObject.thumbnail,
     };
-    if (isFavorite()) {
-      dispatch(actionUnfavoriteRecipe(id)); // envia o id do objeto que deve ser removido dos favoritos
-    } else {
-      dispatch(actionFavoriteRecipe(recipeDetails)); // envia o objeto para o reducer
-    }
-  };
 
-  const recipeButton = () => (
-    inProgress
-      ? (
-        <button
-          type="button"
-          onClick={ () => history.push(`${pathname}/done-recipes`) }
-          data-testid="finish-recipe-btn"
-        >
-          Finish Recipe
-        </button>
-      )
-      : (
-        <button
-          type="button"
-          onClick={ () => history.push(`${pathname}/in-progress`) }
-          data-testid="start-recipe-btn"
-        >
-          Start Recipe
-        </button>
-      )
-  );
+    if (isFavorite()) dispatch(actionUnfavoriteRecipe(id)); // envia o id do objeto que deve ser removido dos favoritos
+    else dispatch(actionFavoriteRecipe(recipeDetailedObject)); // envia o objeto para o reducer
+  };
 
   return (
     <main>
       <section>
-        <img src={ recipe.thumbnail } alt={ recipe.title } data-testid="recipe-photo" />
-        <h1 data-testid="recipe-title">{ recipe.title }</h1>
-        <h4 data-testid="recipe-category">{ recipe.category }</h4>
+        <img
+          src={ recipeSuccintObject.thumbnail }
+          alt={ recipeSuccintObject.title }
+          data-testid="recipe-photo"
+        />
+        <h1 data-testid="recipe-title">{recipeSuccintObject.title}</h1>
+        <h4 data-testid="recipe-category">{recipeSuccintObject.category}</h4>
       </section>
       <section>
         <IconButton
@@ -135,23 +124,12 @@ function RecipePage(props) {
         data={ ingredients }
         inProgress={ inProgress }
         id={ id }
-        isAMeal={ isAMeal }
+        isAMeal={ isAmeal }
       />
-      {/* deve retornar checklist ou lista não ordenada */}
       <RecipeInfo />
-      {recipeButton()}
+      <RecipePageButton inProgress={ inProgress } />
     </main>
   );
 }
-
-RecipePage.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({ id: PropTypes.string }),
-  }).isRequired,
-  history: PropTypes.shape({
-    location: PropTypes.shape({ pathname: PropTypes.string }),
-    push: PropTypes.func,
-  }).isRequired,
-};
 
 export default RecipePage;
