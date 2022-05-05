@@ -9,13 +9,12 @@ function RecipePageButton({ inProgress, ingredientsData }) {
   const { id } = useParams();
   const history = useHistory();
   const { cocktails, meals } = useSelector((state) => state.inProgressRecipes);
-  let checkedIngredients = pathname.includes('foods')
+  const checkedIngredients = pathname.includes('foods')
     ? meals[id]
     : cocktails[id];
-  checkedIngredients = checkedIngredients || [];
 
   const returnButtonText = () => {
-    if (!inProgress && checkedIngredients.length) {
+    if (!inProgress && checkedIngredients) {
       return 'Continue Recipe';
     }
     return inProgress ? 'Finish Recipe' : 'Start Recipe';
@@ -25,7 +24,7 @@ function RecipePageButton({ inProgress, ingredientsData }) {
     history.push(
       inProgress
         ? '/done-recipes'
-        : `${pathname.slice(0, pathname.length)}/in-progress}`,
+        : `${pathname.slice(0, pathname.length)}/in-progress`,
     );
   };
 
@@ -37,7 +36,7 @@ function RecipePageButton({ inProgress, ingredientsData }) {
       data-testid={ `${inProgress ? 'finish' : 'start'}-recipe-btn` }
       disabled={
         inProgress
-        && !ingredientsData.every(([ingrName]) => checkedIngredients.includes(ingrName))
+        && !ingredientsData.every(([ingrName]) => checkedIngredients?.includes(ingrName))
       }
     >
       {returnButtonText()}

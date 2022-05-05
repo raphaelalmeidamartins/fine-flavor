@@ -8,6 +8,18 @@ const INITIAL_STATE = {
   meals: {},
 };
 
+const returnRecipeObject = ({ recipeId, checkedIngredients }, state) => {
+  if (checkedIngredients.length) {
+    return {
+      ...state,
+      [recipeId]: checkedIngredients,
+    };
+  }
+  const updatedState = { ...state };
+  delete updatedState[recipeId];
+  return updatedState;
+};
+
 /* cada item desses objetos vai ser um chave com o id da comida e um array com os ingredientes */
 
 const inProgressRecipes = (state = INITIAL_STATE, action) => {
@@ -20,15 +32,9 @@ const inProgressRecipes = (state = INITIAL_STATE, action) => {
     return {
       cocktails: action.isMeal
         ? state.cocktails
-        : {
-          ...state.cocktails,
-          [action.recipeId]: action.checkedIngredients,
-        },
+        : returnRecipeObject(action, state.cocktails),
       meals: action.isMeal
-        ? {
-          ...state.meals,
-          [action.recipeId]: action.checkedIngredients,
-        }
+        ? returnRecipeObject(action, state.meals)
         : state.meals,
     };
   default:
