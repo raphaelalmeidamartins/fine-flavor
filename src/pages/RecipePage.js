@@ -46,7 +46,7 @@ function RecipePage() {
   }, [selectedRecipe]);
 
   const handleShare = () => {
-    navigator.clipboard.writeText(window.location.href);
+    navigator.clipboard.writeText(window.location.href.replace('/in-progress', ''));
     setAlertStatus(true);
     const fourSeconds = 4000;
     setTimeout(() => setAlertStatus(false), fourSeconds);

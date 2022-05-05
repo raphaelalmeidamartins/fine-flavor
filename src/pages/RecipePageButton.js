@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory, useLocation, useParams } from 'react-router-dom';
+import '../sass/components/RecipePageButton.css';
 
 function RecipePageButton({ inProgress, ingredientsData }) {
   const { pathname } = useLocation();
@@ -20,14 +21,19 @@ function RecipePageButton({ inProgress, ingredientsData }) {
     return inProgress ? 'Finish Recipe' : 'Start Recipe';
   };
 
+  const handleClick = () => {
+    history.push(
+      `${pathname.slice(0, pathname.length)}/${
+        inProgress ? 'done-recipes' : 'in-progress'
+      }`,
+    );
+  };
+
   return (
     <button
+      className="RecipePageButton"
       type="button"
-      onClick={ () => history.push(
-        `${pathname.slice(0, pathname.length)}/${
-          inProgress ? 'done-recipes' : 'in-progress'
-        }`,
-      ) }
+      onClick={ handleClick }
       data-testid={ `${inProgress ? 'finish' : 'start'}-recipe-btn` }
       disabled={
         inProgress
