@@ -6,7 +6,8 @@ import LikeOrShare from '../components/LikeOrShare';
 import RecipeInfo from '../components/RecipeInfo';
 import RecommendationsCarousel from '../components/RecommendationsCarousel';
 import { actionGetRecipeById, actionDefaultSearch } from '../redux/actions';
-import RecipePageButton from './RecipePageButton';
+import RecipePageButton from '../components/RecipePageButton';
+import useGenerateRecipeObject from '../hooks/useGenerateRecipeObject';
 
 function RecipePage() {
   const dispatch = useDispatch();
@@ -16,6 +17,9 @@ function RecipePage() {
   const { mealsToken, cocktailsToken, selectedRecipe } = useSelector(
     (state) => state,
   );
+
+  const doneRecipes = useSelector((state) => state.doneRecipes);
+  const isRecipeDone = doneRecipes.map((recipe) => recipe.id).includes(id);
 
   const [ingredients, setIngredients] = useState([]);
 
@@ -40,20 +44,7 @@ function RecipePage() {
     setIngredients(generateIngredientArray());
   }, [selectedRecipe]);
 
-  const {
-    strMeal,
-    strMealThumb,
-    strCategory,
-    strDrink,
-    strDrinkThumb,
-    strAlcoholic,
-  } = selectedRecipe;
-
-  const recipeBasicInfo = {
-    thumbnail: isMeal ? strMealThumb : strDrinkThumb,
-    title: isMeal ? strMeal : strDrink,
-    category: isMeal ? strCategory : strAlcoholic,
-  };
+  const { recipeBasicInfo } = useGenerateRecipeObject();
 
   return (
     <main>
@@ -75,7 +66,9 @@ function RecipePage() {
       />
       <RecipeInfo />
       <RecommendationsCarousel type={ isMeal ? 'drinks' : 'foods' } />
-      <RecipePageButton inProgress={ inProgress } ingredientsData={ ingredients } />
+      { !isRecipeDone && (
+        <RecipePageButton inProgress={ inProgress } ingredientsData={ ingredients } />
+      ) }
     </main>
   );
 }

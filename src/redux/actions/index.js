@@ -20,6 +20,8 @@ const UPDATE_USER = 'UPDATE_USER';
 const TOGGLE_FILTER = 'TOGGLE_FILTER';
 const FAVORITE_RECIPE = 'FAVORITE_RECIPE';
 const UNFAVORITE_RECIPE = 'UNFAVORITE_RECIPE';
+const FINISH_RECIPE = 'FINISH_RECIPE';
+const UNFINISH_RECIPE = 'UNFINISH_RECIPE';
 const TOGGLE_SEARCHBAR = 'TOGGLE_SEARCHBAR';
 const UPDATE_IN_PROGRESS_INGREDIENTS = 'UPDATE_IN_PROGRESS_INGREDIENTS';
 
@@ -58,6 +60,16 @@ const actionUnfavoriteRecipe = (recipeId) => ({
   recipeId,
 });
 
+const actionFinishRecipe = (recipe) => ({
+  type: FINISH_RECIPE,
+  recipe,
+});
+
+const actionUnfinishRecipe = (recipeId) => ({
+  type: UNFINISH_RECIPE,
+  recipeId,
+});
+
 const actionUpdateInProgressIngredients = (recipeId, checkedIngredients, isMeal) => ({
   type: UPDATE_IN_PROGRESS_INGREDIENTS,
   recipeId,
@@ -90,6 +102,10 @@ export {
   actionFavoriteRecipe,
   UNFAVORITE_RECIPE,
   actionUnfavoriteRecipe,
+  FINISH_RECIPE,
+  actionFinishRecipe,
+  UNFINISH_RECIPE,
+  actionUnfinishRecipe,
   actionToggleSearchBar,
   TOGGLE_SEARCHBAR,
   UPDATE_IN_PROGRESS_INGREDIENTS,
