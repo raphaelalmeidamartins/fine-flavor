@@ -25,6 +25,7 @@ function RecipePageButton({ inProgress, ingredientsData }) {
     return inProgress ? 'Finish Recipe' : 'Start Recipe';
   };
 
+  const isMeal = pathname.includes('food');
   const dispatch = useDispatch();
   const { recipeDoneObject } = useGenerateRecipeObject();
 

@@ -18,6 +18,9 @@ function RecipePage() {
     (state) => state,
   );
 
+  const doneRecipes = useSelector((state) => state.doneRecipes);
+  const isRecipeDone = doneRecipes.map((recipe) => recipe.id).includes(id);
+
   const [ingredients, setIngredients] = useState([]);
 
   const isMeal = pathname.includes('food');
@@ -63,7 +66,9 @@ function RecipePage() {
       />
       <RecipeInfo />
       <RecommendationsCarousel type={ isMeal ? 'drinks' : 'foods' } />
-      <RecipePageButton inProgress={ inProgress } ingredientsData={ ingredients } />
+      { !isRecipeDone && (
+        <RecipePageButton inProgress={ inProgress } ingredientsData={ ingredients } />
+      ) }
     </main>
   );
 }
