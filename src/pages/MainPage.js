@@ -53,7 +53,7 @@ function MainPage() {
               index={ index }
               thumbnail={ recipe[`str${key()}Thumb`] }
               title={ recipe[`str${key()}`] }
-              titleTestId={ `${index}-data-name` }
+              titleTestId={ `${index}-card-name` }
             />
           ))}
       </main>

@@ -5,7 +5,7 @@ import Ingredients from '../components/Ingredients';
 import LikeOrShare from '../components/LikeOrShare';
 import RecipeInfo from '../components/RecipeInfo';
 import RecommendationsCarousel from '../components/RecommendationsCarousel';
-import { actionGetRecipeById } from '../redux/actions';
+import { actionGetRecipeById, actionDefaultSearch } from '../redux/actions';
 import RecipePageButton from './RecipePageButton';
 
 function RecipePage() {
