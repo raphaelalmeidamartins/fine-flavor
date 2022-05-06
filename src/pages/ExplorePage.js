@@ -4,15 +4,26 @@ import Header from '../components/Header';
 import NavBar from '../components/NavBar';
 
 function ExplorePage() {
+  const options = [
+    ['Explore Foods', '/explore/foods', 'explore-foods'],
+    ['Explore Drinks', '/explore/drinks', 'explore-drinks'],
+  ];
+
   return (
-    <div>
+    <>
       <Header title="Explore" />
       <main>
-        <ExploreOption title="Explore" />
-        {/* tem que renderizar mais de um ExploreOption */}
+        {options.map(([exploreText, route, dataTestId]) => (
+          <ExploreOption
+            key={ exploreText }
+            text={ exploreText }
+            route={ route }
+            dataTestId={ dataTestId }
+          />
+        ))}
       </main>
       <NavBar />
-    </div>
+    </>
   );
 }
 
