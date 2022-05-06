@@ -16,11 +16,14 @@ function ExploreFoodOrDrinkPage() {
 
   const [options, setOptions] = useState([
     ['By Ingredient', `/explore/${foodOrDrink}/ingredients`, 'explore-by-ingredient'],
-    ['By Nationality', '/explore/foods/nationalities', 'explore-by-nationality'],
   ]);
 
   useEffect(() => {
-    if (foodOrDrink === 'drinks') options.splice(1, 1);
+    if (foodOrDrink !== 'drinks') {
+      options.push(
+        ['By Nationality', '/explore/foods/nationalities', 'explore-by-nationality'],
+      );
+    }
 
     const token = isMeal ? mealsToken : cocktailsToken;
     const fetchFunction = isMeal
