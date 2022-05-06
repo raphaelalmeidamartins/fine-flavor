@@ -6,7 +6,8 @@ import LikeOrShare from '../components/LikeOrShare';
 import RecipeInfo from '../components/RecipeInfo';
 import RecommendationsCarousel from '../components/RecommendationsCarousel';
 import { actionGetRecipeById, actionDefaultSearch } from '../redux/actions';
-import RecipePageButton from './RecipePageButton';
+import RecipePageButton from '../components/RecipePageButton';
+import useGenerateRecipeObject from '../hooks/useGenerateRecipeObject';
 
 function RecipePage() {
   const dispatch = useDispatch();
@@ -40,20 +41,7 @@ function RecipePage() {
     setIngredients(generateIngredientArray());
   }, [selectedRecipe]);
 
-  const {
-    strMeal,
-    strMealThumb,
-    strCategory,
-    strDrink,
-    strDrinkThumb,
-    strAlcoholic,
-  } = selectedRecipe;
-
-  const recipeBasicInfo = {
-    thumbnail: isMeal ? strMealThumb : strDrinkThumb,
-    title: isMeal ? strMeal : strDrink,
-    category: isMeal ? strCategory : strAlcoholic,
-  };
+  const { recipeBasicInfo } = useGenerateRecipeObject();
 
   return (
     <main>
