@@ -52,7 +52,7 @@ function SearchBar() {
     });
   };
 
-  const handleClick = () => {
+  const handleSubmit = () => {
     const fields = {
       'ingredient-search-radio': {
         value: ingredient,
@@ -74,7 +74,7 @@ function SearchBar() {
   };
 
   return (
-    <form className={ displayClass }>
+    <form className={ displayClass } onSubmit={ handleSubmit }>
       <input
         data-testid="search-input"
         type="text"
@@ -117,7 +117,7 @@ function SearchBar() {
           First Letter
         </label>
       </fieldset>
-      <button data-testid="exec-search-btn" type="button" onClick={ handleClick }>
+      <button data-testid="exec-search-btn" type="button" onClick={ handleSubmit }>
         Search
       </button>
     </form>

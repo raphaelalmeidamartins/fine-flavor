@@ -4,6 +4,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import Ingredients from '../components/Ingredients';
 import LikeOrShare from '../components/LikeOrShare';
 import RecipeInfo from '../components/RecipeInfo';
+import RecommendationsCarousel from '../components/RecommendationsCarousel';
 import { actionGetRecipeById } from '../redux/actions';
 import RecipePageButton from './RecipePageButton';
 
@@ -24,6 +25,8 @@ function RecipePage() {
   useEffect(() => {
     const token = isMeal ? mealsToken : cocktailsToken;
     dispatch(actionGetRecipeById(id, pathname, token));
+    dispatch(actionDefaultSearch(token, 'foods'));
+    dispatch(actionDefaultSearch(token, 'drinks'));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -71,6 +74,7 @@ function RecipePage() {
         isMeal={ isMeal }
       />
       <RecipeInfo />
+      <RecommendationsCarousel type={ isMeal ? 'drinks' : 'foods' } />
       <RecipePageButton inProgress={ inProgress } ingredientsData={ ingredients } />
     </main>
   );
