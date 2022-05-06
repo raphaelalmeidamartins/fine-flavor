@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useParams } from 'react-router-dom';
-import IconButton from '../components/IconButton';
 import Ingredients from '../components/Ingredients';
+import LikeOrShare from '../components/LikeOrShare';
 import RecipeInfo from '../components/RecipeInfo';
-import {
-  actionFavoriteRecipe,
-  actionGetRecipeById,
-  actionUnfavoriteRecipe,
-} from '../redux/actions';
+import { actionGetRecipeById } from '../redux/actions';
 import RecipePageButton from './RecipePageButton';
 
 function RecipePage() {
@@ -16,15 +12,11 @@ function RecipePage() {
   const { id } = useParams();
   const { pathname } = useLocation();
 
-  const {
-    mealsToken,
-    cocktailsToken,
-    selectedRecipe,
-    favoriteRecipes,
-  } = useSelector((state) => state);
+  const { mealsToken, cocktailsToken, selectedRecipe } = useSelector(
+    (state) => state,
+  );
 
   const [ingredients, setIngredients] = useState([]);
-  const [alertStatus, setAlertStatus] = useState(false);
 
   const isMeal = pathname.includes('food');
   const inProgress = pathname.includes('in-progress');
@@ -45,13 +37,6 @@ function RecipePage() {
     setIngredients(generateIngredientArray());
   }, [selectedRecipe]);
 
-  const handleShare = () => {
-    navigator.clipboard.writeText(window.location.href.replace('/in-progress', ''));
-    setAlertStatus(true);
-    const fourSeconds = 4000;
-    setTimeout(() => setAlertStatus(false), fourSeconds);
-  };
-
   const {
     strMeal,
     strMealThumb,
@@ -59,34 +44,12 @@ function RecipePage() {
     strDrink,
     strDrinkThumb,
     strAlcoholic,
-    strArea,
   } = selectedRecipe;
 
   const recipeBasicInfo = {
     thumbnail: isMeal ? strMealThumb : strDrinkThumb,
     title: isMeal ? strMeal : strDrink,
     category: isMeal ? strCategory : strAlcoholic,
-  };
-
-  const isFavorite = () => favoriteRecipes
-    .some(({ id: favoriteId }) => id === favoriteId); // verifica se a receita já está entre os favoritos
-
-  const handleFavorite = () => {
-    const recipeDetailedInfo = {
-      id,
-      type: isMeal ? 'food' : 'drink',
-      nationality: isMeal ? strArea : '',
-      category: strCategory,
-      alcoholicOrNot: isMeal ? '' : strAlcoholic,
-      name: recipeBasicInfo.title,
-      image: recipeBasicInfo.thumbnail,
-    };
-
-    if (isFavorite()) {
-      dispatch(actionUnfavoriteRecipe(id)); // envia o id do objeto que deve ser removido dos favoritos
-    } else {
-      dispatch(actionFavoriteRecipe(recipeDetailedInfo)); // envia o objeto para o reducer
-    }
   };
 
   return (
@@ -100,25 +63,7 @@ function RecipePage() {
         <h1 data-testid="recipe-title">{recipeBasicInfo.title}</h1>
         <h4 data-testid="recipe-category">{recipeBasicInfo.category}</h4>
       </section>
-      <section>
-        <IconButton
-          route="share"
-          handleClick={ handleShare }
-          dataTestId="share-btn"
-        />
-        <IconButton
-          route={ `favorite-${isFavorite()}` }
-          handleClick={ handleFavorite }
-          dataTestId="favorite-btn"
-        />
-        <span
-          className={ `alert alert-success fade ${alertStatus ? 'show' : ''}` }
-          role="alert"
-          aria-label="close"
-        >
-          Link copied!
-        </span>
-      </section>
+      <LikeOrShare />
       <Ingredients
         ingredientsData={ ingredients }
         inProgress={ inProgress }
