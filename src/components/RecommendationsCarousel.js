@@ -1,7 +1,7 @@
-import React from 'react';
-import Slider from 'react-slick';
-import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import Slider from 'react-slick';
 import RecipeCard from './RecipeCard';
 
 function RecommendationsCarousel({ type }) {
