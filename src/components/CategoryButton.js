@@ -5,7 +5,7 @@ import {
   actionDefaultSearch, actionSearchByCategory, actionToggleFilter,
 } from '../redux/actions';
 
-function CategoryButton({ categoryName, mealOrDrink }) {
+function CategoryButton({ categoryName, mealOrDrink, handleClick, dataTestId }) {
   const mealsToken = useSelector((state) => state.mealsToken);
   const cocktailsToken = useSelector((state) => state.cocktailsToken);
   const token = mealOrDrink === 'Meal' ? mealsToken : cocktailsToken;
@@ -14,7 +14,7 @@ function CategoryButton({ categoryName, mealOrDrink }) {
 
   const dispatch = useDispatch();
 
-  const handleClick = () => {
+  const handleDefaultClick = () => {
     switch (true) {
     case categoryName !== 'All'
         && (categories.filter !== categoryName || categories.filter === ''):
@@ -32,17 +32,24 @@ function CategoryButton({ categoryName, mealOrDrink }) {
   return (
     <button
       type="button"
-      data-testid={ `${categoryName}-category-filter` }
-      onClick={ handleClick }
+      data-testid={ dataTestId(categoryName) }
+      onClick={ () => handleClick(handleDefaultClick) }
     >
       {categoryName}
     </button>
   );
 }
 
+CategoryButton.defaultProps = {
+  handleClick: (handleDefaultClick) => handleDefaultClick(),
+  dataTestId: (categoryName) => `${categoryName}-category-filter`,
+};
+
 CategoryButton.propTypes = {
   categoryName: PropTypes.string.isRequired,
   mealOrDrink: PropTypes.string.isRequired,
+  handleClick: PropTypes.func,
+  dataTestId: PropTypes.func,
 };
 
 export default CategoryButton;
