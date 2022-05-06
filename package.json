@@ -24,9 +24,11 @@
     "react-redux": "^8.0.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "5.0.0",
+    "react-slick": "^0.29.0",
     "redux": "^4.2.0",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.1",
+    "slick-carousel": "^1.8.1",
     "websocket-extensions": ">=0.1.4"
   },
   "scripts": {

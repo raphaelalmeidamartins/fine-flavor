@@ -1,93 +1,139 @@
-import PropTypes from 'prop-types';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation, useParams } from 'react-router-dom';
 import IconButton from '../components/IconButton';
 import Ingredients from '../components/Ingredients';
 import RecipeInfo from '../components/RecipeInfo';
-import { getRecipeByIdThunk } from '../redux/actions';
+import RecommendationsCarousel from '../components/RecommendationsCarousel';
+import {
+  actionFavoriteRecipe,
+  actionGetRecipeById,
+  actionUnfavoriteRecipe,
+  actionDefaultSearch,
+} from '../redux/actions';
+import RecipePageButton from './RecipePageButton';
 
-function RecipePage(props) {
+function RecipePage() {
   const dispatch = useDispatch();
-  const { match: { params: { id } }, history: { location: { pathname } } } = props;
-  const globalState = useSelector((state) => state);
-  const { mealsToken, cocktailsToken, selectedRecipe } = globalState;
+  const { id } = useParams();
+  const { pathname } = useLocation();
+
+  const {
+    mealsToken,
+    cocktailsToken,
+    selectedRecipe,
+    favoriteRecipes,
+  } = useSelector((state) => state);
 
   const [ingredients, setIngredients] = useState([]);
-  // const [recommendedRecipes, setRecommendations] = useState([]);
+  const [alertStatus, setAlertStatus] = useState(false);
+
+  const isMeal = pathname.includes('food');
+  const inProgress = pathname.includes('in-progress');
 
   useEffect(() => {
-    const token = pathname.includes('food')
-      ? mealsToken
-      : cocktailsToken;
-    dispatch(getRecipeByIdThunk(id, pathname, token));
+    const token = isMeal ? mealsToken : cocktailsToken;
+    dispatch(actionGetRecipeById(id, pathname, token));
+    dispatch(actionDefaultSearch(token, 'foods'));
+    dispatch(actionDefaultSearch(token, 'drinks'));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    const generateIngredientArray = (keyName) => (
-      Object.entries(selectedRecipe)
-        .filter(([key, value]) => (key.includes(keyName) && value))
-        .map(([, value], index) => (
-          [value, selectedRecipe[`strMeasure${index + 1}`]]
-        ))
-    ); // filtra todos os ingredientes e quantidades para formar um array de arrays no formato [ingrediente, quantidade]
-    setIngredients(generateIngredientArray('strIngredient'));
+    const generateIngredientArray = () => Object.entries(selectedRecipe)
+      .filter(([key, value]) => key.includes('strIngredient') && value)
+      .map(([, value], index) => [
+        value,
+        selectedRecipe[`strMeasure${index + 1}`],
+      ]); // filtra todos os ingredientes e quantidades para formar um array de arrays no formato [ingrediente, quantidade]
+    setIngredients(generateIngredientArray());
   }, [selectedRecipe]);
 
-  const {
-    strMeal, strMealThumb, strCategory,
-    strDrink, strDrinkThumb, strAlcoholic,
-  } = selectedRecipe;
-  const isAMeal = pathname.includes('food');
-  const recipe = {
-    thumbnail: isAMeal ? strMealThumb : strDrinkThumb,
-    title: isAMeal ? strMeal : strDrink,
-    category: isAMeal ? strCategory : strAlcoholic,
+  const handleShare = () => {
+    navigator.clipboard.writeText(window.location.href);
+    setAlertStatus(true);
+    const fourSeconds = 4000;
+    setTimeout(() => setAlertStatus(false), fourSeconds);
   };
 
-  const favoriteRecipe = () => {
-    // const recipeDetails = {
-    //   id,
-    //   type: pathname.includes('food') ? 'food' : 'drink',
-    //   nationality,
-    //   category,
-    //   alcoholicOrNot,
-    //   name,
-    //   image
-    // }
+  const {
+    strMeal,
+    strMealThumb,
+    strCategory,
+    strDrink,
+    strDrinkThumb,
+    strAlcoholic,
+    strArea,
+  } = selectedRecipe;
+
+  const recipeBasicInfo = {
+    thumbnail: isMeal ? strMealThumb : strDrinkThumb,
+    title: isMeal ? strMeal : strDrink,
+    category: isMeal ? strCategory : strAlcoholic,
+  };
+
+  const isFavorite = () => favoriteRecipes
+    .some(({ id: favoriteId }) => id === favoriteId); // verifica se a receita já está entre os favoritos
+
+  const handleFavorite = () => {
+    const recipeDetailedInfo = {
+      id,
+      type: isMeal ? 'foods' : 'drinks',
+      nationality: strArea,
+      category: strCategory,
+      alcoholicOrNot: strAlcoholic || 'Non alcoholic',
+      name: recipeBasicInfo.title,
+      image: recipeBasicInfo.thumbnail,
+    };
+
+    if (isFavorite()) {
+      dispatch(actionUnfavoriteRecipe(id)); // envia o id do objeto que deve ser removido dos favoritos
+    } else {
+      dispatch(actionFavoriteRecipe(recipeDetailedInfo)); // envia o objeto para o reducer
+    }
   };
 
   return (
     <main>
       <section>
-        <img src={ recipe.thumbnail } alt={ recipe.title } data-testid="recipe-photo" />
-        <h1 data-testid="recipe-title">{ recipe.title }</h1>
-        <h4 data-testid="recipe-category">{ recipe.category }</h4>
+        <img
+          src={ recipeBasicInfo.thumbnail }
+          alt={ recipeBasicInfo.title }
+          data-testid="recipe-photo"
+        />
+        <h1 data-testid="recipe-title">{recipeBasicInfo.title}</h1>
+        <h4 data-testid="recipe-category">{recipeBasicInfo.category}</h4>
       </section>
       <section>
         <IconButton
           route="share"
+          handleClick={ handleShare }
           dataTestId="share-btn"
         />
         <IconButton
-          route="favorite-false"
-          handleClick={ favoriteRecipe }
+          route={ `favorite-${isFavorite()}` }
+          handleClick={ handleFavorite }
           dataTestId="favorite-btn"
         />
+        <span
+          className={ `alert alert-success fade ${alertStatus ? 'show' : ''}` }
+          role="alert"
+          aria-label="close"
+        >
+          Link copied!
+        </span>
       </section>
-      <Ingredients data={ ingredients } />
-      {/* deve retornar checklist ou lista não ordenada */}
+      <Ingredients
+        ingredientsData={ ingredients }
+        inProgress={ inProgress }
+        id={ id }
+        isMeal={ isMeal }
+      />
       <RecipeInfo />
+      <RecommendationsCarousel type={ isMeal ? 'drinks' : 'foods' } />
+      <RecipePageButton inProgress={ inProgress } ingredientsData={ ingredients } />
     </main>
   );
 }
-
-RecipePage.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({ id: PropTypes.string }),
-  }).isRequired,
-  history: PropTypes.shape({
-    location: PropTypes.shape({ pathname: PropTypes.string }),
-  }).isRequired,
-};
 
 export default RecipePage;
