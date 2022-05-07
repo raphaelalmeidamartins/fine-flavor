@@ -6,7 +6,7 @@ import IconButton from './IconButton';
 
 function LikeOrShare() {
   const { id } = useParams();
-  const [alertStatus, handleShare] = useShare();
+  const [alertStatus, handleShare] = useShare('/in-progress', '');
   const [isFavorite, handleFavorite] = useFavorite(id);
 
   return (

@@ -40,12 +40,12 @@ function useGenerateRecipeObject(recipeId, type) {
     alcoholicOrNot: isMeal ? '' : strAlcoholic,
     name: recipeBasicInfo.title,
     image: recipeBasicInfo.thumbnail,
-    done: `${date.getMonth()}/${date.getDay()}${date.getFullYear()}`,
+    doneDate: `${date.getMonth()}/${date.getDay()}/${date.getFullYear()}`,
     tags: strTags ? strTags.split(',') : [],
   };
 
   const recipeFavoriteObject = { ...recipeDoneObject };
-  delete recipeFavoriteObject.done;
+  delete recipeFavoriteObject.doneDate;
   delete recipeFavoriteObject.tags;
 
   return { recipeBasicInfo, recipeDoneObject, recipeFavoriteObject };

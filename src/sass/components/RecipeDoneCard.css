@@ -1,3 +1,7 @@
 .RecipeDoneCard {
   border: 1px solid black;
 }
+
+.RecipeDoneCard input {
+  width: 100px;
+}

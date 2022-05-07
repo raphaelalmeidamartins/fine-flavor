@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
-function useShare(replaceValue = '') {
+function useShare(replaceValue, newValue = '') {
   const [alertStatus, setAlertStatus] = useState(false);
 
   const handleShare = () => {
     navigator.clipboard.writeText(
-      window.location.href.replace('/done-recipes', replaceValue),
+      window.location.href.replace(replaceValue, newValue),
     );
     setAlertStatus(true);
     const fourSeconds = 4000;

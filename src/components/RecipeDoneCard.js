@@ -1,25 +1,39 @@
+import PropTypes from 'prop-types';
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import useShare from '../hooks/useShare';
-import IconButton from './IconButton';
 import '../sass/components/RecipeDoneCard.css';
+import IconButton from './IconButton';
 
-function RecipeDoneCard(
+function RecipeDoneCard({
   index,
-  { id, type, image, category, name, nationality, alcoholicOrNot, tags },
-) {
-  const [alertStatus, handleShare] = useShare(`${type}s/${id}`);
+  id,
+  type,
+  image,
+  category,
+  name,
+  nationality,
+  alcoholicOrNot,
+  doneDate,
+  tags,
+}) {
+  const history = useHistory();
+  const [alertStatus, handleShare] = useShare('/done-recipes', `/${type}s/${id}`);
 
   return (
     <section className="RecipeDoneCard">
-      <img
+      <input
         src={ image }
         alt="thumbnail"
+        type="image"
+        onClick={ () => history.push(`/${type}s/${id}`) }
         data-testid={ `${index}-horizontal-image` }
       />
       <p data-testid={ `${index}-horizontal-top-text` }>
         {type === 'food' ? `${nationality} - ${category}` : alcoholicOrNot}
       </p>
-      <h3 data-testid={ `${index}-horizontal-name` }>{name}</h3>
+      <p data-testid={ `${index}-horizontal-done-date` }>{doneDate}</p>
+      <a href={ `/${type}s/${id}` } data-testid={ `${index}-horizontal-name` }>{name}</a>
       <IconButton
         route="share"
         handleClick={ handleShare }
@@ -32,7 +46,7 @@ function RecipeDoneCard(
       >
         Link copied!
       </span>
-      { type === 'food' && (
+      {type === 'food' && (
         <section>
           {tags.slice(0, 2).map((tagName) => (
             <span
@@ -43,9 +57,22 @@ function RecipeDoneCard(
             </span>
           ))}
         </section>
-      ) }
+      )}
     </section>
   );
 }
+
+RecipeDoneCard.propTypes = {
+  index: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  nationality: PropTypes.string.isRequired,
+  alcoholicOrNot: PropTypes.string.isRequired,
+  doneDate: PropTypes.string.isRequired,
+  tags: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
 
 export default RecipeDoneCard;

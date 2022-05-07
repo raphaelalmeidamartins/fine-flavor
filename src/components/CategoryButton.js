@@ -41,13 +41,14 @@ function CategoryButton({ categoryName, mealOrDrink, handleClick, dataTestId }) 
 }
 
 CategoryButton.defaultProps = {
+  mealOrDrink: 'Meal',
   handleClick: (handleDefaultClick) => handleDefaultClick(),
   dataTestId: (categoryName) => `${categoryName}-category-filter`,
 };
 
 CategoryButton.propTypes = {
   categoryName: PropTypes.string.isRequired,
-  mealOrDrink: PropTypes.string.isRequired,
+  mealOrDrink: PropTypes.string,
   handleClick: PropTypes.func,
   dataTestId: PropTypes.func,
 };
