@@ -3,10 +3,11 @@ import { useLocation, useParams } from 'react-router-dom';
 
 function useGenerateRecipeObject(recipeId, type) {
   const { pathname } = useLocation();
+  const { mealsToken, cocktailsToken } = useSelector((state) => state);
   const foodsOrDrinks = pathname.includes('foods') || pathname.includes('drinks')
     ? pathname
     : type;
-  const { id } = useParams();
+  const id = useParams();
   const isMeal = foodsOrDrinks.includes('food');
   const date = new Date();
 
