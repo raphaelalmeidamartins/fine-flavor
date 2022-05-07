@@ -7,6 +7,7 @@ import {
   actionSearchByIngredients,
   actionSearchByName,
   actionStartLoading,
+  actionSearchByArea,
   RECEIVE_RECIPE_SUCCESS,
   RECIEVE_CATEGORIES,
   RECIEVE_RECIPES,
@@ -117,4 +118,5 @@ export {
   actionUpdateInProgressIngredients,
   CLEAN_RESULTS,
   actionCleanResults,
+  actionSearchByArea,
 };
