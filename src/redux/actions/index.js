@@ -24,6 +24,7 @@ const FINISH_RECIPE = 'FINISH_RECIPE';
 const UNFINISH_RECIPE = 'UNFINISH_RECIPE';
 const TOGGLE_SEARCHBAR = 'TOGGLE_SEARCHBAR';
 const UPDATE_IN_PROGRESS_INGREDIENTS = 'UPDATE_IN_PROGRESS_INGREDIENTS';
+const CLEAN_RESULTS = 'CLEAN_RESULTS';
 
 const actionGetLocalStorage = (state) => ({
   type: GET_LOCAL_STORAGE,
@@ -77,6 +78,10 @@ const actionUpdateInProgressIngredients = (recipeId, checkedIngredients, isMeal)
   isMeal,
 });
 
+const actionCleanResults = () => ({
+  type: CLEAN_RESULTS,
+});
+
 export {
   GET_LOCAL_STORAGE,
   actionGetLocalStorage,
@@ -110,4 +115,6 @@ export {
   TOGGLE_SEARCHBAR,
   UPDATE_IN_PROGRESS_INGREDIENTS,
   actionUpdateInProgressIngredients,
+  CLEAN_RESULTS,
+  actionCleanResults,
 };
