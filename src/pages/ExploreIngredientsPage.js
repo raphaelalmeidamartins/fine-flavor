@@ -1,22 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import ExploreOption from '../components/ExploreOption';
 import Header from '../components/Header';
 import NavBar from '../components/NavBar';
+import { actionCleanResults, actionSearchByIngredients } from '../redux/actions';
 import services from '../services';
 
 function ExploreIngredientsPage() {
   const { pathname } = useLocation();
   const { mealsToken, cocktailsToken } = useSelector((state) => state);
+  const dispatch = useDispatch();
   const { mealsAPI, cocktailsAPI } = services;
 
   const isMeal = pathname.includes('foods');
-
+  const foodOrDrink = isMeal ? 'foods' : 'drinks';
+  const token = isMeal ? mealsToken : cocktailsToken;
   const [ingredientsList, setIngredientsList] = useState([]);
 
   useEffect(() => {
-    const token = isMeal ? mealsToken : cocktailsToken;
     const fetchFunction = isMeal
       ? mealsAPI.getMealsIngredientList
       : cocktailsAPI.getCocktailsIngredientList;
@@ -26,7 +28,6 @@ function ExploreIngredientsPage() {
       const maxResults = 12;
       const slicedResults = results.slice(0, maxResults);
       setIngredientsList(slicedResults);
-      console.log(slicedResults);
     }
     getAllIngredients();
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -49,6 +50,10 @@ function ExploreIngredientsPage() {
                 text={ ingredientName }
                 route={ isMeal ? '/foods' : '/drinks' }
                 image={ imageSrc }
+                callback={ () => {
+                  dispatch(actionCleanResults());
+                  dispatch(actionSearchByIngredients(token, foodOrDrink, ingredientName));
+                } }
                 dataTestId={ `${index}-ingredient-card` }
                 imageTestId={ `${index}-card-img` }
                 nameTestId={ `${index}-card-name` }
