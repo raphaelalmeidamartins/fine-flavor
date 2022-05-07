@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import ExploreOption from '../components/ExploreOption';
@@ -44,7 +44,11 @@ function ExploreFoodOrDrinkPage() {
 
   return (
     <>
-      <Header title="Explore" />
+      <Header
+        title={
+          pathname === '/explore/foods' ? 'Explore Foods' : 'Explore Drinks'
+        }
+      />
       <main>
         {options.map(([exploreText, route, dataTestId]) => (
           <ExploreOption

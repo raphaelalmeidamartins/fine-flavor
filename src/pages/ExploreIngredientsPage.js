@@ -29,6 +29,7 @@ function ExploreIngredientsPage() {
       console.log(slicedResults);
     }
     getAllIngredients();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
