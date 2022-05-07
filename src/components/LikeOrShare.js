@@ -1,41 +1,13 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
 import { useParams } from 'react-router-dom';
-import useGenerateRecipeObject from '../hooks/useGenerateRecipeObject';
-import {
-  actionFavoriteRecipe, actionUnfavoriteRecipe,
-} from '../redux/actions';
+import useFavorite from '../hooks/useFavorite';
+import useShare from '../hooks/useShare';
 import IconButton from './IconButton';
 
 function LikeOrShare() {
-  const dispatch = useDispatch();
   const { id } = useParams();
-
-  const {
-    favoriteRecipes,
-  } = useSelector((state) => state);
-
-  const [alertStatus, setAlertStatus] = useState(false);
-
-  const { recipeFavoriteObject } = useGenerateRecipeObject();
-
-  const handleShare = () => {
-    navigator.clipboard.writeText(window.location.href.replace('/in-progress', ''));
-    setAlertStatus(true);
-    const fourSeconds = 4000;
-    setTimeout(() => setAlertStatus(false), fourSeconds);
-  };
-
-  const isFavorite = () => favoriteRecipes
-    .some(({ id: favoriteId }) => id === favoriteId); // verifica se a receita já está entre os favoritos
-
-  const handleFavorite = () => {
-    if (isFavorite()) {
-      dispatch(actionUnfavoriteRecipe(id)); // envia o id do objeto que deve ser removido dos favoritos
-    } else {
-      dispatch(actionFavoriteRecipe(recipeFavoriteObject)); // envia o objeto para o reducer
-    }
-  };
+  const [alertStatus, handleShare] = useShare('/in-progress', '');
+  const [isFavorite, handleFavorite] = useFavorite(id);
 
   return (
     <section>
@@ -46,7 +18,7 @@ function LikeOrShare() {
       />
       <IconButton
         route={ `favorite-${isFavorite()}` }
-        handleClick={ handleFavorite }
+        handleClick={ () => handleFavorite(isFavorite()) }
         dataTestId="favorite-btn"
       />
       <span

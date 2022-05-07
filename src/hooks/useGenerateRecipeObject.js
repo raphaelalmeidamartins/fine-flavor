@@ -1,11 +1,20 @@
 import { useSelector } from 'react-redux';
 import { useLocation, useParams } from 'react-router-dom';
 
-function useGenerateRecipeObject() {
+function useGenerateRecipeObject(recipeId, type) {
   const { pathname } = useLocation();
+  const foodsOrDrinks = pathname.includes('foods') || pathname.includes('drinks')
+    ? pathname
+    : type;
   const { id } = useParams();
-  const isMeal = pathname.includes('food');
+  const isMeal = foodsOrDrinks.includes('food');
   const date = new Date();
+
+  if (!id) {
+    const token = isMeal ? mealsToken : cocktailsToken;
+    dispatch(actionGetRecipeById(id, foodsOrDrinks, token));
+  }
+
   const {
     strMeal,
     strMealThumb,
@@ -24,19 +33,19 @@ function useGenerateRecipeObject() {
   };
 
   const recipeDoneObject = {
-    id,
+    id: recipeId || id,
     type: isMeal ? 'food' : 'drink',
     nationality: isMeal ? strArea : '',
     category: strCategory,
     alcoholicOrNot: isMeal ? '' : strAlcoholic,
     name: recipeBasicInfo.title,
     image: recipeBasicInfo.thumbnail,
-    done: `${date.getMonth()}/${date.getDay()}${date.getFullYear()}`,
+    doneDate: `${date.getMonth()}/${date.getDay()}/${date.getFullYear()}`,
     tags: strTags ? strTags.split(',') : [],
   };
 
   const recipeFavoriteObject = { ...recipeDoneObject };
-  delete recipeFavoriteObject.done;
+  delete recipeFavoriteObject.doneDate;
   delete recipeFavoriteObject.tags;
 
   return { recipeBasicInfo, recipeDoneObject, recipeFavoriteObject };

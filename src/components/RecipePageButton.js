@@ -37,7 +37,7 @@ function RecipePageButton({ inProgress, ingredientsData }) {
   const handleClick = () => {
     if (inProgress) {
       handleDone();
-      history.push(`${pathname}/done-recipes`);
+      history.push('/done-recipes');
     } else {
       history.push(`${pathname}/in-progress`);
     }
