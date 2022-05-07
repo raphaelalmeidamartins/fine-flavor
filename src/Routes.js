@@ -39,14 +39,10 @@ function Routes() {
         path="/explore/drinks/ingredients"
         component={ ExploreIngredientsPage }
       />
-      <Route
-        exact
-        path="/explore/drinks/nationalities"
-        component={ ExploreNationalityPage }
-      />
       <Route exact path="/profile" component={ ProfilePage } />
       <Route exact path="/done-recipes" component={ RecipesDonePage } />
       <Route exact path="/favorite-recipes" component={ FavoriteRecipesPage } />
+      <Route><h1>Not Found</h1></Route>
     </Switch>
   );
 }
