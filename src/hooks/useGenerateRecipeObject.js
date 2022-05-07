@@ -1,8 +1,11 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useParams } from 'react-router-dom';
+import { actionGetRecipeById } from '../redux/actions';
 
 function useGenerateRecipeObject(recipeId, type) {
   const { pathname } = useLocation();
+  const dispatch = useDispatch();
+  const { mealsToken, cocktailsToken } = useSelector((state) => state);
   const foodsOrDrinks = pathname.includes('foods') || pathname.includes('drinks')
     ? pathname
     : type;
@@ -12,7 +15,7 @@ function useGenerateRecipeObject(recipeId, type) {
 
   if (!id) {
     const token = isMeal ? mealsToken : cocktailsToken;
-    dispatch(actionGetRecipeById(id, foodsOrDrinks, token));
+    dispatch(actionGetRecipeById(recipeId, foodsOrDrinks, token));
   }
 
   const {

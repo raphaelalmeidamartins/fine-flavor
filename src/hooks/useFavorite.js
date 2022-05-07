@@ -2,12 +2,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { actionFavoriteRecipe, actionUnfavoriteRecipe } from '../redux/actions';
 import useGenerateRecipeObject from './useGenerateRecipeObject';
 
-function useFavorite(recipeId) {
+function useFavorite(recipeId, type) {
   const dispatch = useDispatch();
 
   const { favoriteRecipes } = useSelector((state) => state);
 
-  const { recipeFavoriteObject } = useGenerateRecipeObject(recipeId);
+  const { recipeFavoriteObject } = useGenerateRecipeObject(recipeId, type);
 
   const isFavorite = () => favoriteRecipes
     .some(({ id: favoriteId }) => recipeId === favoriteId); // verifica se a receita já está entre os favoritos
