@@ -13,6 +13,7 @@ function MainPage() {
 
   const mealsToken = useSelector((state) => state.mealsToken);
   const { foods, drinks } = useSelector((state) => state.search.results);
+  const { loading } = useSelector((state) => state.search);
   const results = pathname === '/foods' ? foods : drinks;
   const cocktailsToken = useSelector((state) => state.cocktailsToken);
   const { foods: foodsCategories, drinks: drinksCategories } = useSelector(
@@ -22,10 +23,12 @@ function MainPage() {
   const key = () => (pathname === '/foods' ? 'Meal' : 'Drink');
 
   useEffect(() => {
+    if (!loading) {
+      dispatch(actionDefaultSearch(mealsToken, 'foods'));
+      dispatch(actionDefaultSearch(cocktailsToken, 'drinks'));
+    }
     dispatch(actionRequestCategories(mealsToken, 'foods'));
     dispatch(actionRequestCategories(cocktailsToken, 'drinks'));
-    dispatch(actionDefaultSearch(mealsToken, 'foods'));
-    dispatch(actionDefaultSearch(cocktailsToken, 'drinks'));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

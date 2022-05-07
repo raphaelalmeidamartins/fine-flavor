@@ -1,4 +1,5 @@
 import {
+  CLEAN_RESULTS,
   RECIEVE_CATEGORIES,
   RECIEVE_RECIPES,
   START_LOADING,
@@ -19,7 +20,7 @@ const INITIAL_STATE = {
   searchBar: {
     display: false,
   },
-  loading: true,
+  loading: false,
 };
 
 const search = (state = INITIAL_STATE, action) => {
@@ -60,6 +61,11 @@ const search = (state = INITIAL_STATE, action) => {
         ...state.searchBar,
         display: !state.searchBar.display,
       },
+    };
+  case CLEAN_RESULTS:
+    return {
+      ...state,
+      results: INITIAL_STATE.results,
     };
   default:
     return state;

@@ -175,6 +175,17 @@ const actionSearchByName = (token, foodsOrDrinks, name) => (
   }
 );
 
+const actionSearchByArea = (token, area) => (
+  async (dispatch) => {
+    dispatch(actionStartLoading());
+    let foods = await mealsAPI.getMealsByArea(token, area);
+    const maxResults = 12;
+    foods = !foods ? [] : foods.slice(0, maxResults);
+    notFound(foods);
+    dispatch(actionRecieveRecipes({ foods }));
+  }
+);
+
 export {
   RECEIVE_RECIPE_SUCCESS,
   actionGetRecipeById,
@@ -188,4 +199,5 @@ export {
   actionSearchByIngredients,
   actionSearchByFirstLetter,
   actionSearchByName,
+  actionSearchByArea,
 };
