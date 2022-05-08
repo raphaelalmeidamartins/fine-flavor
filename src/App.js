@@ -15,7 +15,7 @@ function App() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useLayoutEffect(getLocalStorage, []); // semelhante ao componentDidMount
   useLayoutEffect(() => {
-    if (pathname !== '/') setLocalStorage();
+    if (pathname !== '/' && pathname !== '/profile') setLocalStorage();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [globalState]);
 
