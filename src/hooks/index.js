@@ -1,7 +1,9 @@
 import useCategories from './useCategories';
+import useCheckedIngredients from './useCheckedIngredients';
 import useFavorite from './useFavorite';
 import useFoodsOrDrinks from './useFoodsOrDrinks';
 import useGenerateRecipeObject from './useGenerateRecipeObject';
+import useInProgress from './useInProgress';
 import useLocalStorage from './useLocalStorage';
 import usePreviousState from './usePreviousState';
 import useResults from './useResults';
@@ -18,4 +20,6 @@ export {
   useResults,
   useShare,
   useToken,
+  useCheckedIngredients,
+  useInProgress,
 };

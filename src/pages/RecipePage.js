@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useParams } from 'react-router-dom';
 import Ingredients from '../components/Ingredients';
@@ -6,7 +6,12 @@ import LikeOrShare from '../components/LikeOrShare';
 import RecipeInfo from '../components/RecipeInfo';
 import RecipePageButton from '../components/RecipePageButton';
 import RecommendationsCarousel from '../components/RecommendationsCarousel';
-import { useFoodsOrDrinks, useGenerateRecipeObject, useToken } from '../hooks';
+import {
+  useFoodsOrDrinks,
+  useGenerateRecipeObject,
+  useInProgress,
+  useToken,
+} from '../hooks';
 import { actionDefaultSearch, actionGetRecipeById } from '../redux/actions';
 
 function RecipePage() {
@@ -19,18 +24,18 @@ function RecipePage() {
   const isRecipeDone = doneRecipes.map((recipe) => recipe.id).includes(id);
   const token = useToken();
   const isMeal = useFoodsOrDrinks('boolean');
-  const inProgress = pathname.includes('in-progress');
+  const inProgress = useInProgress();
 
   const [ingredients, setIngredients] = useState([]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     dispatch(actionGetRecipeById(id, pathname, token));
     dispatch(actionDefaultSearch(token, 'foods'));
     dispatch(actionDefaultSearch(token, 'drinks'));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [pathname]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const generateIngredientArray = () => Object.entries(selectedRecipe)
       .filter(([key, value]) => key.includes('strIngredient') && value)
       .map(([, value], index) => [

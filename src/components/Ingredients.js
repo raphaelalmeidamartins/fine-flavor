@@ -1,16 +1,14 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useCheckedIngredients, useInProgress } from '../hooks';
 import { actionUpdateInProgressIngredients } from '../redux/actions';
 
 function Ingredients({ ingredientsData, id, isMeal }) {
-  const { pathname } = useLocation();
-  const inProgress = pathname.includes('in-progress');
+  const inProgress = useInProgress();
   const dispatch = useDispatch();
 
-  const { cocktails, meals } = useSelector((state) => state.inProgressRecipes);
-  let checkedIngredients = pathname.includes('foods') ? meals[id] : cocktails[id];
+  let checkedIngredients = useCheckedIngredients();
   checkedIngredients = checkedIngredients || [];
 
   const addIngredient = (ingredient) => {
