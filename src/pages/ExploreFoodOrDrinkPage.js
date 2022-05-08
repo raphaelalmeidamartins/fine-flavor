@@ -3,9 +3,8 @@ import { useLocation } from 'react-router-dom';
 import ExploreOption from '../components/ExploreOption';
 import Header from '../components/Header';
 import NavBar from '../components/NavBar';
-import useFoodsOrDrinks from '../hooks/useFoodsOrDrinks';
+import { useFoodsOrDrinks, useToken } from '../hooks';
 import services from '../services';
-import useToken from '../hooks/useToken';
 
 function ExploreFoodOrDrinkPage() {
   const { pathname } = useLocation();

@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import Header from '../components/Header';
 import NavBar from '../components/NavBar';
 import RecipeCard from '../components/RecipeCard';
-import { actionCleanResults,
+import {
+  actionCleanResults,
   actionDefaultSearch,
   actionSearchByArea } from '../redux/actions';
 import services from '../services';

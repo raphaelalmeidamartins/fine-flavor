@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import useShare from '../hooks/useShare';
-import IconButton from './IconButton';
+import { useShare } from '../hooks';
 import { actionUnfavoriteRecipe } from '../redux/actions';
+import IconButton from './IconButton';
 
 function FavoriteRecipeCard({
   index,

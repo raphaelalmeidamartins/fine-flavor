@@ -6,9 +6,7 @@ import LikeOrShare from '../components/LikeOrShare';
 import RecipeInfo from '../components/RecipeInfo';
 import RecipePageButton from '../components/RecipePageButton';
 import RecommendationsCarousel from '../components/RecommendationsCarousel';
-import useFoodsOrDrinks from '../hooks/useFoodsOrDrinks';
-import useGenerateRecipeObject from '../hooks/useGenerateRecipeObject';
-import useToken from '../hooks/useToken';
+import { useFoodsOrDrinks, useGenerateRecipeObject, useToken } from '../hooks';
 import { actionDefaultSearch, actionGetRecipeById } from '../redux/actions';
 
 function RecipePage() {

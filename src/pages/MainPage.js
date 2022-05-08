@@ -5,10 +5,7 @@ import CategoryButton from '../components/CategoryButton';
 import Header from '../components/Header';
 import NavBar from '../components/NavBar';
 import RecipeCard from '../components/RecipeCard';
-import useCategories from '../hooks/useCategories';
-import useFoodsOrDrinks from '../hooks/useFoodsOrDrinks';
-import useResults from '../hooks/useResults';
-import useToken from '../hooks/useToken';
+import { useCategories, useFoodsOrDrinks, useResults, useToken } from '../hooks';
 import { actionDefaultSearch, actionRequestCategories } from '../redux/actions';
 
 function MainPage() {

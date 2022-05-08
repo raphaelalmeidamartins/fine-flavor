@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import useToken from '../hooks/useToken';
+import { useToken } from '../hooks';
 import {
   actionDefaultSearch, actionSearchByCategory, actionToggleFilter,
 } from '../redux/actions';

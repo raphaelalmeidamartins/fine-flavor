@@ -1,7 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import useFavorite from '../hooks/useFavorite';
-import useShare from '../hooks/useShare';
+import { useFavorite, useShare } from '../hooks';
 import IconButton from './IconButton';
 
 function LikeOrShare() {

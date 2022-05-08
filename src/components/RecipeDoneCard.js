@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import useShare from '../hooks/useShare';
+import { useShare } from '../hooks';
 import '../sass/components/RecipeDoneCard.css';
 import IconButton from './IconButton';
 

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation, useParams } from 'react-router-dom';
-import useGenerateRecipeObject from '../hooks/useGenerateRecipeObject';
+import { useFoodsOrDrinks, useGenerateRecipeObject } from '../hooks';
 import {
   actionFinishRecipe,
   actionUpdateInProgressIngredients,
@@ -25,7 +25,7 @@ function RecipePageButton({ inProgress, ingredientsData }) {
     return inProgress ? 'Finish Recipe' : 'Start Recipe';
   };
 
-  const isMeal = pathname.includes('food');
+  const isMeal = useFoodsOrDrinks('boolean');
   const dispatch = useDispatch();
   const { recipeDoneObject } = useGenerateRecipeObject();
 

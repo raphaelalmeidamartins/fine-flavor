@@ -3,8 +3,7 @@ import { useDispatch } from 'react-redux';
 import ExploreOption from '../components/ExploreOption';
 import Header from '../components/Header';
 import NavBar from '../components/NavBar';
-import useFoodsOrDrinks from '../hooks/useFoodsOrDrinks';
-import useToken from '../hooks/useToken';
+import { useFoodsOrDrinks, useToken } from '../hooks';
 import {
   actionCleanResults,
   actionSearchByIngredients,

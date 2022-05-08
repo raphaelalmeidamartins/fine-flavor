@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import useLocalStorage from '../hooks/useLocalStorage';
+import { useLocalStorage } from '../hooks';
 import { actionUpdateUser } from '../redux/actions';
 
 function LoginPage({ history }) {
