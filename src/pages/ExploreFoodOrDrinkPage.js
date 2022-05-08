@@ -1,41 +1,41 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import ExploreOption from '../components/ExploreOption';
 import Header from '../components/Header';
 import NavBar from '../components/NavBar';
+import useFoodsOrDrinks from '../hooks/useFoodsOrDrinks';
 import services from '../services';
+import useToken from '../hooks/useToken';
 
 function ExploreFoodOrDrinkPage() {
   const { pathname } = useLocation();
-  const { mealsToken, cocktailsToken } = useSelector((state) => state);
   const { mealsAPI, cocktailsAPI } = services;
 
-  const isMeal = pathname.includes('foods');
-  const foodOrDrink = isMeal ? 'foods' : 'drinks';
+  const isMeal = useFoodsOrDrinks('boolean');
+  const foodsOrDrinks = useFoodsOrDrinks();
+  const token = useToken();
 
   const [options, setOptions] = useState([
-    ['By Ingredient', `/explore/${foodOrDrink}/ingredients`, 'explore-by-ingredient'],
+    ['By Ingredient', `/explore/${foodsOrDrinks}/ingredients`, 'explore-by-ingredient'],
   ]);
 
   useEffect(() => {
-    if (foodOrDrink !== 'drinks') {
+    if (foodsOrDrinks !== 'drinks') {
       options.push(
         ['By Nationality', '/explore/foods/nationalities', 'explore-by-nationality'],
       );
     }
 
-    const token = isMeal ? mealsToken : cocktailsToken;
-    const fetchFunction = isMeal
+    const fetchRecipes = isMeal
       ? mealsAPI.getSingleRandomMealDetails
       : cocktailsAPI.getSingleRandomCocktailDetails;
 
     async function randomRecipe() {
-      const [{ idMeal, idDrink }] = await fetchFunction(token);
+      const [{ idMeal, idDrink }] = await fetchRecipes(token);
       const id = idMeal || idDrink;
       setOptions((prevOptions) => [
         ...prevOptions,
-        ['Surprise me!', `/${foodOrDrink}/${id}`, 'explore-surprise'],
+        ['Surprise me!', `/${foodsOrDrinks}/${id}`, 'explore-surprise'],
       ]);
     }
     randomRecipe();

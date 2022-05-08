@@ -131,7 +131,7 @@ async function getCocktailsByGlass(token, glass) {
 }
 
 function getCocktailsIngredientThumbnail(ingredient) {
-  return `https://www.thecocktaildb.com/images/ingredients/${ingredient}.png`;
+  return `https://www.thecocktaildb.com/images/ingredients/${ingredient}-Small.png`;
   // retorna imagem do ingrediente fornecido. Esta função não é assíncrona
 }
 

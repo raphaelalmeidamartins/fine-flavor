@@ -104,7 +104,7 @@ async function getMealsByArea(token, area) {
 }
 
 function getMealsIngredientThumbnail(ingredient) {
-  return `https://www.themealdb.com/images/ingredients/${ingredient}.png`;
+  return `https://www.themealdb.com/images/ingredients/${ingredient}-Small.png`;
   // retorna imagem de um ingrediente. Obs: não é uma função assíncrona
 }
 

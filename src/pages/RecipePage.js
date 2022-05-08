@@ -4,30 +4,28 @@ import { useLocation, useParams } from 'react-router-dom';
 import Ingredients from '../components/Ingredients';
 import LikeOrShare from '../components/LikeOrShare';
 import RecipeInfo from '../components/RecipeInfo';
-import RecommendationsCarousel from '../components/RecommendationsCarousel';
-import { actionGetRecipeById, actionDefaultSearch } from '../redux/actions';
 import RecipePageButton from '../components/RecipePageButton';
+import RecommendationsCarousel from '../components/RecommendationsCarousel';
+import useFoodsOrDrinks from '../hooks/useFoodsOrDrinks';
 import useGenerateRecipeObject from '../hooks/useGenerateRecipeObject';
+import useToken from '../hooks/useToken';
+import { actionDefaultSearch, actionGetRecipeById } from '../redux/actions';
 
 function RecipePage() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const { pathname } = useLocation();
 
-  const { mealsToken, cocktailsToken, selectedRecipe } = useSelector(
-    (state) => state,
-  );
-
+  const selectedRecipe = useSelector((state) => state.selectedRecipe);
   const doneRecipes = useSelector((state) => state.doneRecipes);
   const isRecipeDone = doneRecipes.map((recipe) => recipe.id).includes(id);
+  const token = useToken();
+  const isMeal = useFoodsOrDrinks('boolean');
+  const inProgress = pathname.includes('in-progress');
 
   const [ingredients, setIngredients] = useState([]);
 
-  const isMeal = pathname.includes('food');
-  const inProgress = pathname.includes('in-progress');
-
   useEffect(() => {
-    const token = isMeal ? mealsToken : cocktailsToken;
     dispatch(actionGetRecipeById(id, pathname, token));
     dispatch(actionDefaultSearch(token, 'foods'));
     dispatch(actionDefaultSearch(token, 'drinks'));
@@ -66,9 +64,12 @@ function RecipePage() {
       />
       <RecipeInfo />
       <RecommendationsCarousel type={ isMeal ? 'drinks' : 'foods' } />
-      { !isRecipeDone && (
-        <RecipePageButton inProgress={ inProgress } ingredientsData={ ingredients } />
-      ) }
+      {!isRecipeDone && (
+        <RecipePageButton
+          inProgress={ inProgress }
+          ingredientsData={ ingredients }
+        />
+      )}
     </main>
   );
 }
