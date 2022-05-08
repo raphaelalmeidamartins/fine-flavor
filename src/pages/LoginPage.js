@@ -32,6 +32,7 @@ function LoginPage({ history }) {
         <input
           name="email"
           type="email"
+          placeholder="Enter your email"
           data-testid="email-input"
           onChange={ ({ target }) => {
             dispatch(actionUpdateUser(target.name, target.value));
@@ -40,6 +41,7 @@ function LoginPage({ history }) {
         <input
           name="password"
           type="password"
+          placeholder="Enter your password"
           data-testid="password-input"
           onChange={ ({ target }) => setPassword(target.value) }
         />
@@ -48,7 +50,7 @@ function LoginPage({ history }) {
           data-testid="login-submit-btn"
           disabled={ !validateFields() }
         >
-          Entrar
+          Enter
         </button>
       </form>
     </div>
