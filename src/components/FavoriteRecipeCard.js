@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import useFavorite from '../hooks/useFavorite';
 import useShare from '../hooks/useShare';
 import IconButton from './IconButton';
+import { actionUnfavoriteRecipe } from '../redux/actions';
 
 function FavoriteRecipeCard({
   index,
@@ -16,8 +17,8 @@ function FavoriteRecipeCard({
   alcoholicOrNot,
 }) {
   const history = useHistory();
+  const dispatch = useDispatch();
   const [alertStatus, handleShare] = useShare('/favorite-recipes', `/${type}s/${id}`);
-  const [isFavorite, handleFavorite] = useFavorite(id, type);
 
   return (
     <section className="RecipeDoneCard">
@@ -39,8 +40,8 @@ function FavoriteRecipeCard({
           dataTestId={ `${index}-horizontal-share-btn` }
         />
         <IconButton
-          route={ `favorite-${isFavorite()}` }
-          handleClick={ () => handleFavorite(isFavorite()) }
+          route="favorite-true"
+          handleClick={ () => dispatch(actionUnfavoriteRecipe(id)) }
           dataTestId={ `${index}-horizontal-favorite-btn` }
         />
         <span

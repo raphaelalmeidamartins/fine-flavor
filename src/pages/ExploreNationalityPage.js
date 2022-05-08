@@ -33,6 +33,7 @@ function ExploreNationalityPage() {
     }
     requestNationalities();
     handleSearch('All');
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
