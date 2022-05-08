@@ -1,17 +1,15 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import useToken from '../hooks/useToken';
 import {
   actionDefaultSearch, actionSearchByCategory, actionToggleFilter,
 } from '../redux/actions';
 
 function CategoryButton({ categoryName, mealOrDrink, handleClick, dataTestId }) {
-  const mealsToken = useSelector((state) => state.mealsToken);
-  const cocktailsToken = useSelector((state) => state.cocktailsToken);
-  const token = mealOrDrink === 'Meal' ? mealsToken : cocktailsToken;
+  const token = useToken();
   const foodsOrDrinks = mealOrDrink === 'Meal' ? 'foods' : 'drinks';
   const categories = useSelector((state) => state.search.categories);
-
   const dispatch = useDispatch();
 
   const handleDefaultClick = () => {

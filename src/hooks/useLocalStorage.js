@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { actionGetLocalStorage } from '../redux/actions';
 
 // option tem que ser get ou set
-const useLocalStorage = (option) => {
+function useLocalStorage(option) {
   const {
     cocktailsToken,
     mealsToken,
@@ -36,6 +36,6 @@ const useLocalStorage = (option) => {
         .forEach(([key, value]) => localStorage.setItem(key, JSON.stringify(value)));
     }
   };
-};
+}
 
 export default useLocalStorage;

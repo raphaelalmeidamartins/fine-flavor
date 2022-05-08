@@ -5,36 +5,33 @@ import CategoryButton from '../components/CategoryButton';
 import Header from '../components/Header';
 import NavBar from '../components/NavBar';
 import RecipeCard from '../components/RecipeCard';
+import useCategories from '../hooks/useCategories';
+import useFoodsOrDrinks from '../hooks/useFoodsOrDrinks';
+import useResults from '../hooks/useResults';
+import useToken from '../hooks/useToken';
 import { actionDefaultSearch, actionRequestCategories } from '../redux/actions';
 
 function MainPage() {
   const { pathname } = useLocation();
-  const dispatch = useDispatch();
-
-  const mealsToken = useSelector((state) => state.mealsToken);
-  const { foods, drinks } = useSelector((state) => state.search.results);
   const { loading } = useSelector((state) => state.search);
-  const results = pathname === '/foods' ? foods : drinks;
-  const cocktailsToken = useSelector((state) => state.cocktailsToken);
-  const { foods: foodsCategories, drinks: drinksCategories } = useSelector(
-    (state) => state.search.categories,
-  );
-  const categories = pathname === '/foods' ? foodsCategories : drinksCategories;
-  const key = () => (pathname === '/foods' ? 'Meal' : 'Drink');
+  const dispatch = useDispatch();
+  const foodsOrDrinks = useFoodsOrDrinks();
+  const results = useResults();
+  const token = useToken();
+  const categories = useCategories();
+  const key = () => (foodsOrDrinks === 'foods' ? 'Meal' : 'Drink');
 
   useEffect(() => {
     if (!loading) {
-      dispatch(actionDefaultSearch(mealsToken, 'foods'));
-      dispatch(actionDefaultSearch(cocktailsToken, 'drinks'));
+      dispatch(actionDefaultSearch(token, foodsOrDrinks));
     }
-    dispatch(actionRequestCategories(mealsToken, 'foods'));
-    dispatch(actionRequestCategories(cocktailsToken, 'drinks'));
+    dispatch(actionRequestCategories(token, foodsOrDrinks));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [pathname]);
 
   return (
     <div>
-      <Header title={ pathname === '/foods' ? 'Foods' : 'Drinks' } search />
+      <Header title={ foodsOrDrinks === 'foods' ? 'Foods' : 'Drinks' } search />
       <section>
         <CategoryButton categoryName="All" mealOrDrink={ key() } />
         {Boolean(categories.length)
