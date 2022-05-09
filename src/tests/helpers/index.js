@@ -17,6 +17,7 @@ function renderWithRouterAndRedux(
   } = {},
 ) {
   const history = createMemoryHistory();
+
   return {
     ...render(
       <Provider store={ store }>
