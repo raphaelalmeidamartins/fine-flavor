@@ -8,6 +8,7 @@ import rootReducer from '../../redux/reducers';
 
 function renderWithRouterAndRedux(
   component,
+  route = '/',
   {
     initialState,
     store = configureStore({
@@ -16,7 +17,7 @@ function renderWithRouterAndRedux(
     }),
   } = {},
 ) {
-  const history = createMemoryHistory();
+  const history = createMemoryHistory({ initialEntries: [route] });
 
   return {
     ...render(
