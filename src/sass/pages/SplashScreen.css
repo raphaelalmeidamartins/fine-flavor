@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap");
+/* Regular */
+/* Bold */
+/* Italic */
+/* Italic bold */
+.SplashScreen {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: conic-gradient(from 180deg at 50% 74.53%, #6b1c34 0deg, #c41f52 0.12deg, #6b1c34 360deg);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  height: 100vh;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: fixed;
+  width: 100vw;
+}
+
+.SplashScreen svg {
+  position: absolute;
+  width: 287px;
+  height: 288px;
+  left: calc(50% - 287px / 2 - 0.5px);
+  top: calc(50% - 288px / 2 - 238px);
+}
+
+.SplashScreen img {
+  position: absolute;
+  width: 469px;
+  height: 461px;
+  left: calc(50% - 469px / 2 - 0.5px);
+  bottom: -178px;
+  -webkit-filter: drop-shadow(0px -10px 25px rgba(69, 28, 41, 0.25));
+          filter: drop-shadow(0px -10px 25px rgba(69, 28, 41, 0.25));
+}
+
+.SplashScreen p {
+  font-family: "Source Sans Pro";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 120%;
+  color: #e8e8e2;
+  text-align: center;
+}
+
+.SplashScreen p strong {
+  font-family: "Source Sans Pro";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 120%;
+}
+/*# sourceMappingURL=SplashScreen.css.map */
