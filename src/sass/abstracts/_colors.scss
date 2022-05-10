@@ -1,0 +1,33 @@
+$primary-plus-1: #fffff9;
+$primary-normal: #e8e8e2;
+$primary-minus-1: #c2c2bd;
+
+$secondary-plus-1: #91173c;
+$seconday-normal: #6b1c34;
+$secondary-minus-1: #451c29;
+
+$accent-plus-1: #ffa83b;
+$accent-normal: #df891e;
+$accent-minus-1: #b87521;
+
+$other-plus-1: #31b534;
+$other-normal: #358f37;
+$other-minus-1: #3c693d;
+
+$text-icon-plus-1: #545150;
+$text-icon-normal: #2e2827;
+$text-icon-minus-1: #080707;
+
+$gradient-one: conic-gradient(
+  from 180deg at 50% 74.53%,
+  #6b1c34 0deg,
+  #c41f52 0.12deg,
+  #6b1c34 360deg
+);
+
+$gradient-two: conic-gradient(
+  from 180.42deg at 50% 113.57%,
+  #063207 0deg,
+  #31b534 0.12deg,
+  #063207 360deg
+);

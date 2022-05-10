@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap');
+
+/* Regular */
+@mixin h1-regular {
+  font-family: "Source Sans Pro";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 120%;
+}
+
+@mixin h2-regular {
+  font-family: "Source Sans Pro";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 120%;
+}
+
+@mixin h3-regular {
+  font-family: "Source Sans Pro";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 120%;
+}
+
+@mixin p-regular {
+  font-family: "Source Sans Pro";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 150%;
+}
+
+/* Bold */
+@mixin h1-bold {
+  font-family: "Source Sans Pro";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 120%;
+}
+
+@mixin h2-bold {
+  font-family: "Source Sans Pro";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 120%;
+}
+
+@mixin h3-bold {
+  font-family: "Source Sans Pro";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 120%;
+}
+
+@mixin p-bold {
+  font-family: "Source Sans Pro";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 120%;
+}
+
+/* Italic */
+@mixin h1-italic {
+  font-size: 32px;
+  font-family: "Source Sans Pro";
+  font-style: italic;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 120%;
+}
+
+@mixin h2-italic {
+  font-size: 28px;
+  font-family: "Source Sans Pro";
+  font-style: italic;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 120%;
+}
+
+@mixin h3-italic {
+  font-size: 24px;
+  font-family: "Source Sans Pro";
+  font-style: italic;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 120%;
+}
+
+@mixin p-italic {
+  font-size: 20px;
+  font-family: "Source Sans Pro";
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+}
+
+/* Italic bold */
+@mixin h1-bold-italic {
+  font-family: "Source Sans Pro";
+  font-style: italic;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 120%;
+}
+
+@mixin h2-bold-italic {
+  font-family: "Source Sans Pro";
+  font-style: italic;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 120%;
+}
+
+@mixin h3-bold-italic {
+  font-family: "Source Sans Pro";
+  font-style: italic;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 120%;
+}
+
+@mixin p-bold-italic {
+  font-family: "Source Sans Pro";
+  font-style: italic;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 150%;
+}
+
+@mixin category-button {
+  font-family: "Source Sans Pro";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 150%;
+}
