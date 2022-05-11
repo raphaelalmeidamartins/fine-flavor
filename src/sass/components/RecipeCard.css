@@ -1,8 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap");
+/* Regular */
+/* Bold */
+/* Italic */
+/* Italic bold */
 .RecipeCard {
-  border: 1px solid black;
-  width: 100px;
+  background: #451c29;
+  border: 1px solid #e8e8e2;
+  border-radius: 10px;
+  height: 165px;
+  width: 165px;
 }
 
 .RecipeCard img {
+  border-radius: 10px 10px 0px 0px;
+  height: 120px;
   width: 100%;
 }
+
+.RecipeCard h3 {
+  font-family: "Source Sans Pro";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 150%;
+  color: #fffff9;
+  padding: 10px;
+  text-align: left;
+  width: 100%;
+}
+/*# sourceMappingURL=RecipeCard.css.map */

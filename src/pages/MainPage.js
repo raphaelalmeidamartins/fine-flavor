@@ -14,10 +14,11 @@ function MainPage() {
   const { loading } = useSelector((state) => state.search);
   const dispatch = useDispatch();
   const foodsOrDrinks = useFoodsOrDrinks();
+  const foodsOrDrinksBool = useFoodsOrDrinks('boolean');
   const results = useResults();
   const token = useToken();
   const categories = useCategories();
-  const key = () => (foodsOrDrinks === 'foods' ? 'Meal' : 'Drink');
+  const key = () => (foodsOrDrinksBool ? 'Meal' : 'Drink');
 
   useEffect(() => {
     if (!loading) {
@@ -29,7 +30,7 @@ function MainPage() {
 
   return (
     <div className="MainPage">
-      <Header title={ foodsOrDrinks === 'foods' ? 'Foods' : 'Drinks' } search />
+      <Header title={ foodsOrDrinksBool ? 'Foods' : 'Drinks' } search />
       <section className="MainPage-categories">
         <CategoryButton categoryName="All" mealOrDrink={ key() } />
         {Boolean(categories.length)
@@ -43,15 +44,13 @@ function MainPage() {
       </section>
       <main>
         {Boolean(results?.length)
-          && results.map((recipe, index) => (
+          && results.map((recipe) => (
             <RecipeCard
               key={ recipe[`id${key()}`] }
               id={ recipe[`id${key()}`] }
               mealOrDrink={ key() }
-              index={ index }
               thumbnail={ recipe[`str${key()}Thumb`] }
               title={ recipe[`str${key()}`] }
-              titleTestId={ `${index}-card-name` }
             />
           ))}
       </main>
