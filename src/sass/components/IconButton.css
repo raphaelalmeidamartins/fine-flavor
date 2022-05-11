@@ -1,0 +1,41 @@
+.IconButton {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: transparent;
+  border-radius: 14px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  height: 36px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-transition: 300ms;
+  transition: 300ms;
+  width: 36px;
+}
+
+.IconButton svg {
+  fill: #545150;
+  height: 22px;
+  width: 22px;
+  -webkit-box-flex: 0;
+      -ms-flex: none;
+          flex: none;
+  -ms-flex-positive: 0;
+      flex-grow: 0;
+}
+
+.IconButton-selected {
+  background-color: #df891e;
+}
+
+.IconButton-selected svg {
+  fill: #fffff9;
+}
+/*# sourceMappingURL=IconButton.css.map */

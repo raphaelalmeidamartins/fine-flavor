@@ -1,0 +1,29 @@
+@import "../abstracts/colors";
+
+.IconButton {
+  align-items: center;
+  background-color: transparent;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: row;
+  height: 36px;
+  justify-content: center;
+  transition: 300ms;
+  width: 36px;
+
+  svg {
+    fill: $text-icon-plus-1;
+    height: 22px;
+    width: 22px;
+    flex: none;
+    flex-grow: 0;
+  }
+}
+
+.IconButton-selected {
+  background-color: $accent-normal;
+
+  svg {
+    fill: $primary-plus-1;
+  }
+}

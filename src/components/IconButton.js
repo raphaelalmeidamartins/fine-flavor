@@ -9,6 +9,7 @@ import IconMeals from '../assets/icons/IconMeals';
 import IconProfile from '../assets/icons/IconProfile';
 import IconSearch from '../assets/icons/IconSearch';
 import IconShare from '../assets/icons/IconShare';
+import '../sass/components/IconButton.css';
 
 function IconButton({ route, handleClick }) {
   const icons = {

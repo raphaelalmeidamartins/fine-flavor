@@ -1,5 +1,23 @@
 .NavBar {
-  border: 1px solid black;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #fffff9;
+  border-top: 1px solid #c2c2bd;
   bottom: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  height: 80px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0px 20px;
   position: fixed;
+  width: 100%;
 }
+/*# sourceMappingURL=NavBar.css.map */
