@@ -24,7 +24,7 @@ function SearchBar() {
 
   const [searchValue, setSearchValue] = useState('');
   const [ingredient, setIngredient] = useState('Off');
-  const [name, setName] = useState('Off');
+  const [name, setName] = useState('On');
   const [firstLetter, setFirstLetter] = useState('Off');
 
   const displayClass = 'SearchBar SearchBar-display';
@@ -88,6 +88,7 @@ function SearchBar() {
         <button
           type="button"
           onClick={ handleSubmit }
+          disabled={ searchValue === '' }
         >
           Search
         </button>

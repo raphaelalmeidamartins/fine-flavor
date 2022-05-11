@@ -64,8 +64,12 @@
   margin-left: 20px;
 }
 
-.SearchBar fieldset:first-child button:hover {
+.SearchBar fieldset:first-child button:hover:not(:disabled) {
   background-color: #b87521;
+}
+
+.SearchBar fieldset:first-child button:disabled {
+  opacity: 0.4;
 }
 
 .SearchBar fieldset:last-child {

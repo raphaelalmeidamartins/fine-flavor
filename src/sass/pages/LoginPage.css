@@ -98,7 +98,11 @@
   width: 100%;
 }
 
-.LoginPage form button:hover {
+.LoginPage form button:hover:not(:disabled) {
   background-color: #b87521;
+}
+
+.LoginPage form button:disabled {
+  opacity: 0.4;
 }
 /*# sourceMappingURL=LoginPage.css.map */
