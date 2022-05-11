@@ -1,22 +1,22 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import SplashScreen from './pages/SplashScreen';
 import ExploreFoodOrDrinkPage from './pages/ExploreFoodOrDrinkPage';
 import ExploreIngredientsPage from './pages/ExploreIngredientsPage';
 import ExploreNationalityPage from './pages/ExploreNationalityPage';
 import ExplorePage from './pages/ExplorePage';
 import FavoriteRecipesPage from './pages/FavoriteRecipesPage';
-// import LoginPage from './pages/LoginPage';
+import LoginPage from './pages/LoginPage';
 import MainPage from './pages/MainPage';
 import ProfilePage from './pages/ProfilePage';
 import RecipePage from './pages/RecipePage';
 import RecipesDonePage from './pages/RecipesDonePage';
+// import SplashScreen from './pages/SplashScreen';
 
 function Routes() {
   return (
     <Switch>
       {/* <Route exact path="/" component={ SplashScreen } /> */}
-      <Route exact path="/" component={ SplashScreen } />
+      <Route exact path="/" component={ LoginPage } />
       <Route exact path="/foods" component={ MainPage } />
       <Route exact path="/drinks" component={ MainPage } />
       <Route exact path="/foods/:id" component={ RecipePage } />

@@ -3,11 +3,19 @@
 /* Bold */
 /* Italic */
 /* Italic bold */
-* {
-  margin: 0;
+*,
+*:after,
+*:before {
   border: 0;
+  margin: 0;
   padding: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  text-decoration: none;
+}
+
+body {
+  font-size: 100%;
+  list-style-type: none;
 }
 /*# sourceMappingURL=index.css.map */
