@@ -1,0 +1,61 @@
+@import "../abstracts/colors";
+@import "../abstracts/typography";
+@import "../abstracts/mixins";
+
+.LoginPage {
+  align-items: center;
+  background: $gradient-two;
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  width: 100vw;
+
+  img {
+    height: 424px;
+    left: 20px;
+    position: absolute;
+    right: -160px;
+    top: -9px;
+  }
+
+  form {
+    position: absolute;
+    height: 260.19px;
+    top: 422.9px;
+    width: 288px;
+
+    h1 {
+      @include h1-bold;
+      color: $primary-plus-1;
+      margin-bottom: 34px;
+      text-align: center;
+      width: 100%;
+    }
+
+    input {
+      align-items: center;
+      background-color: $primary-normal;
+      border-radius: 5px;
+      display: flex;
+      flex-direction: row;
+      height: 50px;
+      margin-bottom: 20px;
+      mix-blend-mode: normal;
+      opacity: 0.4;
+      padding: 10px 20px;
+      width: 100%;
+    }
+
+    button {
+      @include button($accent-normal, $primary-plus-1);
+      @include p-regular;
+      width: 100%;
+
+      &:hover {
+        background-color: $accent-minus-1;
+      }
+    }
+  }
+}

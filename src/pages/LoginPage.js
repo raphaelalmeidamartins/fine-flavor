@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import plate2 from '../assets/imgs/plate-2.png';
 import { useLocalStorage } from '../hooks';
 import { actionUpdateUser } from '../redux/actions';
+import '../sass/pages/LoginPage.css';
 
 function LoginPage({ history }) {
   const email = useSelector((state) => state.user.email);
@@ -27,8 +29,10 @@ function LoginPage({ history }) {
   };
 
   return (
-    <div>
+    <div className="LoginPage">
+      <img src={ plate2 } alt="" />
       <form onSubmit={ handleSubmit }>
+        <h1>Sign In</h1>
         <input
           name="email"
           type="email"
