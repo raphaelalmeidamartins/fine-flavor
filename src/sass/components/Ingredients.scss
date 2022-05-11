@@ -1,0 +1,14 @@
+@import "../abstracts/colors";
+@import "../abstracts/typography";
+
+.Ingredients {
+  h2 {
+    @include h2-regular;
+    color: $text-icon-minus-1;
+  }
+  
+  li {
+    @include p-regular;
+    color: $text-icon-minus-1;
+  }
+}

@@ -3,6 +3,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useCheckedIngredients, useInProgress } from '../hooks';
 import { actionUpdateInProgressIngredients } from '../redux/actions';
+import '../sass/components/Ingredients.css';
 
 function Ingredients({ ingredientsData, id, isMeal }) {
   const inProgress = useInProgress();
