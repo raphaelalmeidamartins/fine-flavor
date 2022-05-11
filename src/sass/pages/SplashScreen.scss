@@ -12,25 +12,25 @@
   width: 100vw;
 
   svg {
-    position: absolute;
-    width: 287px;
     height: 288px;
     left: calc(50% - 287px / 2 - 0.5px);
+    position: absolute;
     top: calc(50% - 288px / 2 - 238px);
+    width: 287px;
   }
 
   img {
-    position: absolute;
-    width: 469px;
-    height: 461px;
-    left: calc(50% - 469px / 2 - 0.5px);
     bottom: -178px;
     filter: drop-shadow(0px -10px 25px rgba(69, 28, 41, 0.25));
+    left: calc(50% - 469px / 2 - 0.5px);
+    height: 461px;
+    position: absolute;
+    width: 469px;
   }
 
   p {
     @include h2-regular;
-    color: $primary-normal;
+    color: $primary-plus-1;
     text-align: center;
 
     strong {

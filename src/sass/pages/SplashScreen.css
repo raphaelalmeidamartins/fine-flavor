@@ -7,7 +7,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background: conic-gradient(from 180deg at 50% 74.53%, #6b1c34 0deg, #c41f52 0.12deg, #6b1c34 360deg);
+  background: conic-gradient(from 180deg at 50% 100%, #6b1c34 -359.72deg, #c41f52 0.05deg, #6b1c34 0.28deg, #c41f52 360.05deg);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -24,21 +24,21 @@
 }
 
 .SplashScreen svg {
-  position: absolute;
-  width: 287px;
   height: 288px;
   left: calc(50% - 287px / 2 - 0.5px);
+  position: absolute;
   top: calc(50% - 288px / 2 - 238px);
+  width: 287px;
 }
 
 .SplashScreen img {
-  position: absolute;
-  width: 469px;
-  height: 461px;
-  left: calc(50% - 469px / 2 - 0.5px);
   bottom: -178px;
   -webkit-filter: drop-shadow(0px -10px 25px rgba(69, 28, 41, 0.25));
           filter: drop-shadow(0px -10px 25px rgba(69, 28, 41, 0.25));
+  left: calc(50% - 469px / 2 - 0.5px);
+  height: 461px;
+  position: absolute;
+  width: 469px;
 }
 
 .SplashScreen p {
@@ -47,7 +47,7 @@
   font-weight: 400;
   font-size: 28px;
   line-height: 120%;
-  color: #e8e8e2;
+  color: #fffff9;
   text-align: center;
 }
 
