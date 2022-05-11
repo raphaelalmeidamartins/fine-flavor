@@ -13,6 +13,7 @@ import {
   useToken,
 } from '../hooks';
 import { actionDefaultSearch, actionGetRecipeById } from '../redux/actions';
+import '../sass/pages/RecipePage.css';
 
 function RecipePage() {
   const dispatch = useDispatch();
@@ -48,31 +49,33 @@ function RecipePage() {
   const { recipeBasicInfo } = useGenerateRecipeObject();
 
   return (
-    <main>
-      <section>
-        <img
-          src={ recipeBasicInfo.thumbnail }
-          alt={ recipeBasicInfo.title }
-          data-testid="recipe-photo"
-        />
-        <h1 data-testid="recipe-title">{recipeBasicInfo.title}</h1>
-        <h4 data-testid="recipe-category">{recipeBasicInfo.category}</h4>
-      </section>
-      <LikeOrShare />
-      <Ingredients
-        ingredientsData={ ingredients }
-        inProgress={ inProgress }
-        id={ id }
-        isMeal={ isMeal }
+    <main className="RecipePage">
+      <img
+        src={ recipeBasicInfo.thumbnail }
+        alt={ recipeBasicInfo.title }
+        data-testid="recipe-photo"
       />
-      <RecipeInfo />
-      <RecommendationsCarousel type={ isMeal ? 'drinks' : 'foods' } />
-      {!isRecipeDone && (
-        <RecipePageButton
-          inProgress={ inProgress }
+      <section className="RecipePage-info">
+        <div>
+          <LikeOrShare />
+          <h1 data-testid="recipe-title">{recipeBasicInfo.title}</h1>
+          <h2 data-testid="recipe-category">{recipeBasicInfo.category}</h2>
+        </div>
+        <Ingredients
           ingredientsData={ ingredients }
+          inProgress={ inProgress }
+          id={ id }
+          isMeal={ isMeal }
         />
-      )}
+        <RecipeInfo />
+        <RecommendationsCarousel type={ isMeal ? 'drinks' : 'foods' } />
+        {!isRecipeDone && (
+          <RecipePageButton
+            inProgress={ inProgress }
+            ingredientsData={ ingredients }
+          />
+        )}
+      </section>
     </main>
   );
 }
