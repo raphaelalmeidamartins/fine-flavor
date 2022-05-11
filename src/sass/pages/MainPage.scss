@@ -1,0 +1,22 @@
+@import '../abstracts/colors';
+
+.MainPage {
+  background-color: $primary-plus-1;
+  padding: 80px 0;
+
+  section.MainPage-categories {
+    display: flex;
+    overflow-x: scroll;
+    margin: 20px 0;
+    margin-bottom: 40px;
+    padding: 0 20px;
+
+    .CategoryButton:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+
+  main {
+    margin: 0 20px;
+  }
+}

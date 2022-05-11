@@ -1,0 +1,23 @@
+.MainPage {
+  background-color: #fffff9;
+  padding: 80px 0;
+}
+
+.MainPage section.MainPage-categories {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow-x: scroll;
+  margin: 20px 0;
+  margin-bottom: 40px;
+  padding: 0 20px;
+}
+
+.MainPage section.MainPage-categories .CategoryButton:not(:last-child) {
+  margin-right: 10px;
+}
+
+.MainPage main {
+  margin: 0 20px;
+}
+/*# sourceMappingURL=MainPage.css.map */

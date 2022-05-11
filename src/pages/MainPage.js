@@ -7,6 +7,7 @@ import NavBar from '../components/NavBar';
 import RecipeCard from '../components/RecipeCard';
 import { useCategories, useFoodsOrDrinks, useResults, useToken } from '../hooks';
 import { actionDefaultSearch, actionRequestCategories } from '../redux/actions';
+import '../sass/pages/MainPage.css';
 
 function MainPage() {
   const { pathname } = useLocation();
@@ -27,9 +28,9 @@ function MainPage() {
   }, [pathname]);
 
   return (
-    <div>
+    <div className="MainPage">
       <Header title={ foodsOrDrinks === 'foods' ? 'Foods' : 'Drinks' } search />
-      <section>
+      <section className="MainPage-categories">
         <CategoryButton categoryName="All" mealOrDrink={ key() } />
         {Boolean(categories.length)
           && categories.map((name) => (

@@ -3,10 +3,13 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useToken } from '../hooks';
 import {
-  actionDefaultSearch, actionSearchByCategory, actionToggleFilter,
+  actionDefaultSearch,
+  actionSearchByCategory,
+  actionToggleFilter,
 } from '../redux/actions';
+import '../sass/components/CategoryButton.css';
 
-function CategoryButton({ categoryName, mealOrDrink, handleClick, dataTestId }) {
+function CategoryButton({ categoryName, mealOrDrink, handleClick }) {
   const token = useToken();
   const foodsOrDrinks = mealOrDrink === 'Meal' ? 'foods' : 'drinks';
   const categories = useSelector((state) => state.search.categories);
@@ -27,10 +30,22 @@ function CategoryButton({ categoryName, mealOrDrink, handleClick, dataTestId }) 
     }
   };
 
+  const returnClassName = () => {
+    const { filter } = categories;
+
+    const selected = 'CategoryButton CategoryButton-selected';
+    const unselected = 'CategoryButton CategoryButton-unselected';
+
+    if (categoryName === 'All' && filter === '') {
+      return selected;
+    }
+    return filter === categoryName ? selected : unselected;
+  };
+
   return (
     <button
+      className={ returnClassName() }
       type="button"
-      data-testid={ dataTestId(categoryName) }
       onClick={ () => handleClick(handleDefaultClick) }
     >
       {categoryName}
@@ -41,14 +56,12 @@ function CategoryButton({ categoryName, mealOrDrink, handleClick, dataTestId }) 
 CategoryButton.defaultProps = {
   mealOrDrink: 'Meal',
   handleClick: (handleDefaultClick) => handleDefaultClick(),
-  dataTestId: (categoryName) => `${categoryName}-category-filter`,
 };
 
 CategoryButton.propTypes = {
   categoryName: PropTypes.string.isRequired,
   mealOrDrink: PropTypes.string,
   handleClick: PropTypes.func,
-  dataTestId: PropTypes.func,
 };
 
 export default CategoryButton;

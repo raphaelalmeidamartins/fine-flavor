@@ -1,0 +1,25 @@
+@import '../abstracts/colors';
+
+.CategoryButton {
+  align-items: center;
+  border-radius: 12px;
+  display: flex;
+  flex-flow: row nowrap;
+  height: 35px;
+  justify-content: center;
+  left: 20px;
+  min-width: 140px;
+  padding: 0 5px;
+  transition: background 400ms ease;
+}
+
+.CategoryButton-selected {
+  background: $other-normal;
+  color: $primary-plus-1;
+}
+
+.CategoryButton-unselected {
+  background: $primary-plus-1;
+  border: 1px solid $other-normal;
+  color: $other-normal;
+}

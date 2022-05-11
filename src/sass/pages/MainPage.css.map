@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,SAAS,CAAC;EACR,gBAAgB,ECHD,OAAO;EDItB,OAAO,EAAE,MAAM;CAiBhB;;AAnBD,AAIE,SAJO,CAIP,OAAO,AAAA,oBAAoB,CAAC;EAC1B,OAAO,EAAE,IAAI;EACb,UAAU,EAAE,MAAM;EAClB,MAAM,EAAE,MAAM;EACd,aAAa,EAAE,IAAI;EACnB,OAAO,EAAE,MAAM;CAKhB;;AAdH,AAWI,SAXK,CAIP,OAAO,AAAA,oBAAoB,CAOzB,eAAe,AAAA,IAAK,CAAA,WAAW,EAAE;EAC/B,YAAY,EAAE,IAAI;CACnB;;AAbL,AAgBE,SAhBO,CAgBP,IAAI,CAAC;EACH,MAAM,EAAE,MAAM;CACf",
+    "sources": [
+        "MainPage.scss",
+        "../abstracts/_colors.scss"
+    ],
+    "names": [],
+    "file": "MainPage.css"
+}
