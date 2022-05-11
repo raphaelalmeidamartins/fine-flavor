@@ -15,7 +15,7 @@ function RecipeInfo() {
           src={ strYoutube.replace('watch?v=', 'embed/') }
           title="Recipe video"
           height="300px"
-          width="500px"
+          width="100%"
           allowFullScreen
           data-testid="video"
         />
