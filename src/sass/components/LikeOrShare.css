@@ -1,0 +1,51 @@
+.LikeOrShare {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.LikeOrShare button {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #91173c;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 4px 15px rgba(63, 63, 63, 0.15);
+          box-shadow: 0px 4px 15px rgba(63, 63, 63, 0.15);
+  color: #e8e8e2;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  height: 49.66px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 0px 12px;
+  border-radius: 14px;
+  height: 36px;
+  margin: 0 5px;
+}
+
+.LikeOrShare button:hover:not(:disabled) {
+  background-color: #6b1c34;
+}
+
+.LikeOrShare button:disabled {
+  opacity: 0.4;
+}
+
+.LikeOrShare button svg {
+  fill: #e8e8e2;
+}
+
+.LikeOrShare span {
+  position: absolute;
+  margin-top: 40px;
+  right: 0;
+  width: 150px;
+}
+/*# sourceMappingURL=LikeOrShare.css.map */

@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useFavorite, useShare } from '../hooks';
 import IconButton from './IconButton';
+import '../sass/components/LikeOrShare.css';
 
 function LikeOrShare() {
   const { id } = useParams();
@@ -9,7 +10,7 @@ function LikeOrShare() {
   const [isFavorite, handleFavorite] = useFavorite(id);
 
   return (
-    <section>
+    <section className="LikeOrShare">
       <IconButton
         route="share"
         handleClick={ handleShare }

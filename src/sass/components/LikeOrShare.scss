@@ -1,0 +1,24 @@
+@import "../abstracts/colors";
+@import "../abstracts/mixins";
+
+.LikeOrShare {
+  display: flex;
+
+  button {
+    @include button($secondary-plus-1, $secondary-normal, $primary-normal);
+    border-radius: 14px;
+    height: 36px;
+    margin: 0 5px;
+
+    svg {
+      fill: $primary-normal;
+    }
+  }
+
+  span {
+    position: absolute;
+    margin-top: 40px;
+    right: 0;
+    width: 150px;
+  }
+}
