@@ -4,16 +4,22 @@ import IconButton from './IconButton';
 
 function NavBar() {
   return (
-    <nav data-testid="footer" className="NavBar">
+    <nav className="NavBar">
       <ul>
         <li>
-          <IconButton route="/drinks" dataTestId="drinks-bottom-btn" />
+          <IconButton route="/foods" />
         </li>
         <li>
-          <IconButton route="/explore" dataTestId="explore-bottom-btn" />
+          <IconButton route="/drinks" />
         </li>
         <li>
-          <IconButton route="/foods" dataTestId="food-bottom-btn" />
+          <IconButton route="/explore" />
+        </li>
+        <li>
+          <IconButton route="/favorite-recipes" />
+        </li>
+        <li>
+          <IconButton route="/profile" />
         </li>
       </ul>
     </nav>
