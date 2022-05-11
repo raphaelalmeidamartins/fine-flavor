@@ -11,18 +11,13 @@ function ProfilePage() {
   return (
     <div>
       <Header title="Profile" />
-      <h2
-        data-testid="profile-email"
-      >
-        {email}
-      </h2>
+      <h2 data-testid="profile-email">{email}</h2>
       <button
         data-testid="profile-done-btn"
         type="button"
         onClick={ () => history.push('/done-recipes') }
       >
         Done Recipes
-
       </button>
       <button
         data-testid="profile-favorite-btn"
@@ -30,7 +25,6 @@ function ProfilePage() {
         onClick={ () => history.push('/favorite-recipes') }
       >
         Favorite Recipes
-
       </button>
       <button
         data-testid="profile-logout-btn"
@@ -41,9 +35,7 @@ function ProfilePage() {
         } }
       >
         Logout
-
       </button>
-
       <NavBar />
     </div>
   );
