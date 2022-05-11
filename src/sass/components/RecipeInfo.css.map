@@ -1,0 +1,11 @@
+{
+    "version": 3,
+    "mappings": "AEAA,OAAO,CAAC,8JAAI;AAEZ,aAAa;AAiCb,UAAU;AAiCV,YAAY;AAiCZ,iBAAiB;AFlGjB,AACE,WADS,CACT,EAAE,CAAC;EEQH,WAAW,EAAE,iBAAiB;EAC9B,UAAU,EAAE,MAAM;EAClB,WAAW,EAAE,GAAG;EAChB,SAAS,EAAE,IAAI;EACf,WAAW,EAAE,IAAI;EFVf,KAAK,ECYW,OAAO;CDXxB;;AAJH,AAME,WANS,CAMT,CAAC,CAAC;EEmBF,WAAW,EAAE,iBAAiB;EAC9B,UAAU,EAAE,MAAM;EAClB,WAAW,EAAE,GAAG;EAChB,SAAS,EAAE,IAAI;EACf,WAAW,EAAE,IAAI;EFrBf,KAAK,ECOW,OAAO;CDNxB",
+    "sources": [
+        "RecipeInfo.scss",
+        "../abstracts/_colors.scss",
+        "../abstracts/_typography.scss"
+    ],
+    "names": [],
+    "file": "RecipeInfo.css"
+}

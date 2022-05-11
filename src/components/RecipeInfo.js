@@ -1,12 +1,13 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import '../sass/components/RecipeInfo.css';
 
 function RecipeInfo() {
   const { strYoutube, strInstructions } = useSelector((state) => state.selectedRecipe);
   return (
     <section className="RecipeInfo">
       <div>
-        <h2>Modo de preparo</h2>
+        <h2>Directions</h2>
         <p data-testid="instructions">{strInstructions}</p>
       </div>
       {strYoutube && (
