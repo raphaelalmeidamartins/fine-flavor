@@ -32,7 +32,7 @@ function Ingredients({ ingredientsData, id, isMeal }) {
 
   return (
     <section className="Ingredients">
-      <h2>Ingredientes</h2>
+      <h2>Ingredients</h2>
       <ul>
         {ingredientsData.map(([ingredient, measure], index) => (
           <li
