@@ -10,12 +10,12 @@ import MainPage from './pages/MainPage';
 import ProfilePage from './pages/ProfilePage';
 import RecipePage from './pages/RecipePage';
 import RecipesDonePage from './pages/RecipesDonePage';
-// import SplashScreen from './pages/SplashScreen';
+import SplashScreen from './pages/SplashScreen';
 
 function Routes() {
   return (
     <Switch>
-      {/* <Route exact path="/" component={ SplashScreen } /> */}
+      <Route exact path="/" component={ SplashScreen } />
       <Route exact path="/" component={ LoginPage } />
       <Route exact path="/foods" component={ MainPage } />
       <Route exact path="/drinks" component={ MainPage } />

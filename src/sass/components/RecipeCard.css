@@ -1,19 +1,24 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap");
 /* Regular */
 /* Bold */
 /* Italic */
 /* Italic bold */
 .RecipeCard {
-  background: #451c29;
-  border: 1px solid #e8e8e2;
-  border-radius: 10px;
-  height: 165px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  background: transparent;
   width: 165px;
 }
 
 .RecipeCard img {
-  border-radius: 10px 10px 0px 0px;
-  height: 120px;
+  border-radius: 10px;
+  height: 165px;
   width: 100%;
 }
 
@@ -23,9 +28,16 @@
   font-weight: 400;
   font-size: 20px;
   line-height: 150%;
-  color: #fffff9;
+  color: #2e2827;
+  display: -webkit-box;
+  max-height: 70px;
+  overflow: hidden;
   padding: 10px;
   text-align: left;
+  /* Luá nos ajudou com essas propriedades para cortar os títulos grandes */
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
   width: 100%;
 }
 /*# sourceMappingURL=RecipeCard.css.map */
