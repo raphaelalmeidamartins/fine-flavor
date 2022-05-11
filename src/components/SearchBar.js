@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
+import IconRadioChecked from '../assets/icons/IconRadioChecked';
+import IconRadioUnchecked from '../assets/icons/IconRadioUnchecked';
+import { useFoodsOrDrinks, useResults, useToken } from '../hooks';
 import {
   actionSearchByFirstLetter,
   actionSearchByIngredients,
@@ -13,14 +16,11 @@ function SearchBar() {
   const { pathname } = useLocation();
   const dispatch = useDispatch();
 
-  const { foods, drinks } = useSelector((state) => state.search.results);
-  const results = pathname === '/foods' ? foods : drinks;
+  const results = useResults();
 
-  const mealsToken = useSelector((state) => state.mealsToken);
-  const cocktailsToken = useSelector((state) => state.cocktailsToken);
-  const foodsOrDrinks = pathname === '/foods' ? 'foods' : 'drinks';
-  const mealOrDrink = () => (pathname === '/foods' ? 'Meal' : 'Drink');
-  const token = pathname === '/foods' ? mealsToken : cocktailsToken;
+  const foodsOrDrinks = useFoodsOrDrinks();
+  const mealOrDrink = () => (foodsOrDrinks === 'foods' ? 'Meal' : 'Drink');
+  const token = useToken();
 
   const [searchValue, setSearchValue] = useState('');
   const [ingredient, setIngredient] = useState('Off');
@@ -28,16 +28,14 @@ function SearchBar() {
   const [firstLetter, setFirstLetter] = useState('Off');
 
   const displayClass = 'SearchBar SearchBar-display';
-
-  // Deixamos esses comentários aqui para quando formos implementar o CSS
-  // const hiddenClass = 'SearchBar SearchBar-hidden';
-  // const { display } = useSelector((state) => state.search.searchBar);
+  const hiddenClass = 'SearchBar SearchBar-hidden';
+  const { display } = useSelector((state) => state.search.searchBar);
 
   useEffect(() => {
     if (results.length === 1) {
       history.push(`${pathname}/${results[0][`id${mealOrDrink()}`]}`);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [results]);
 
   const handleChange = ({ target }) => {
@@ -67,26 +65,38 @@ function SearchBar() {
         action: actionSearchByName,
       },
     };
-    const [key] = Object.entries(fields)
-      .find(([currKey]) => fields[currKey].value === 'On');
+    const [key] = Object.entries(fields).find(
+      ([currKey]) => fields[currKey].value === 'On',
+    );
     const { action } = fields[key];
     dispatch(action(token, foodsOrDrinks, searchValue));
   };
 
   return (
-    <form className={ displayClass } onSubmit={ handleSubmit }>
-      <input
-        data-testid="search-input"
-        type="text"
-        value={ searchValue }
-        onChange={ ({ target }) => setSearchValue(target.value) }
-        placeholder="Search Recipe"
-      />
+    <form
+      className={ display ? displayClass : hiddenClass }
+      onSubmit={ handleSubmit }
+    >
+      <fieldset>
+        <input
+          data-testid="search-input"
+          type="text"
+          value={ searchValue }
+          onChange={ ({ target }) => setSearchValue(target.value) }
+          placeholder="Search Recipe"
+        />
+        <button
+          type="button"
+          onClick={ handleSubmit }
+        >
+          Search
+        </button>
+      </fieldset>
       <fieldset>
         <label htmlFor="ingredient-search-radio">
+          { ingredient === 'On' ? <IconRadioChecked /> : <IconRadioUnchecked /> }
           <input
             id="ingredient-search-radio"
-            data-testid="ingredient-search-radio"
             type="radio"
             name="searchType"
             value={ ingredient }
@@ -95,9 +105,9 @@ function SearchBar() {
           Ingredient
         </label>
         <label htmlFor="name-search-radio">
+          { name === 'On' ? <IconRadioChecked /> : <IconRadioUnchecked /> }
           <input
             id="name-search-radio"
-            data-testid="name-search-radio"
             type="radio"
             name="searchType"
             value={ name }
@@ -106,9 +116,9 @@ function SearchBar() {
           Name
         </label>
         <label htmlFor="first-letter-search-radio">
+          { firstLetter === 'On' ? <IconRadioChecked /> : <IconRadioUnchecked /> }
           <input
             id="first-letter-search-radio"
-            data-testid="first-letter-search-radio"
             type="radio"
             name="searchType"
             value={ firstLetter }
@@ -117,9 +127,6 @@ function SearchBar() {
           First Letter
         </label>
       </fieldset>
-      <button data-testid="exec-search-btn" type="button" onClick={ handleSubmit }>
-        Search
-      </button>
     </form>
   );
 }

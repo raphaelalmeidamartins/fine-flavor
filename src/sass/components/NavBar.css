@@ -10,8 +10,8 @@
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
   height: 80px;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;

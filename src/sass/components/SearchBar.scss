@@ -1,0 +1,53 @@
+@import "../abstracts/colors";
+@import "../abstracts/mixins";
+
+.SearchBar {
+  height: fit-content;
+  overflow: hidden;
+  padding: 10px 20px 20px;
+  transition: 400ms ease;
+
+  fieldset {
+    display: flex;
+    flex-flow: row nowrap;
+
+    &:first-child {
+      margin-bottom: 20px;
+
+      input {
+        @include input;
+      }
+
+      button {
+        @include button($accent-normal, $accent-minus-1, $primary-plus-1);
+        margin-left: 20px;
+      }
+    }
+
+    &:last-child {
+      justify-content: space-between;
+
+      label {
+        color: $text-icon-normal;
+
+        svg {
+          fill: $text-icon-plus-1;
+          height: 22px;
+          margin-right: 10px;
+          width: 22px;
+        }
+
+        input {
+          position: absolute;
+          visibility: hidden;
+        }
+      }
+    }
+  }
+}
+
+.SearchBar-hidden {
+  height: 0;
+  padding-bottom: 0;
+  padding-top: 0;
+}

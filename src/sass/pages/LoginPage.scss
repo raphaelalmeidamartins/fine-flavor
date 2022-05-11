@@ -35,27 +35,16 @@
     }
 
     input {
-      align-items: center;
-      background-color: $primary-normal;
-      border-radius: 5px;
-      display: flex;
-      flex-direction: row;
-      height: 50px;
+      @include input;
       margin-bottom: 20px;
       mix-blend-mode: normal;
       opacity: 0.4;
-      padding: 10px 20px;
-      width: 100%;
     }
 
     button {
-      @include button($accent-normal, $primary-plus-1);
+      @include button($accent-normal, $accent-minus-1, $primary-plus-1);
       @include p-regular;
       width: 100%;
-
-      &:hover {
-        background-color: $accent-minus-1;
-      }
     }
   }
 }

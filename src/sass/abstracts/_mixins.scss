@@ -1,4 +1,4 @@
-@mixin button($background-color, $color) {
+@mixin button($background-color, $hover-background-color, $color) {
   align-items: center;
   background-color: $background-color;
   border-radius: 5px;
@@ -8,5 +8,20 @@
   flex-direction: row;
   height: 49.66px;
   justify-content: center;
-  padding: 0px;
+  padding: 0px 12px;
+
+  &:hover {
+    background-color: $hover-background-color;
+  }
+}
+
+@mixin input {
+  align-items: center;
+  background-color: $primary-normal;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  height: 50px;
+  padding: 10px 20px;
+  width: 100%;
 }

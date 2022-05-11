@@ -62,11 +62,11 @@
       -ms-flex-direction: row;
           flex-direction: row;
   height: 50px;
+  padding: 10px 20px;
+  width: 100%;
   margin-bottom: 20px;
   mix-blend-mode: normal;
   opacity: 0.4;
-  padding: 10px 20px;
-  width: 100%;
 }
 
 .LoginPage form button {
@@ -89,7 +89,7 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding: 0px;
+  padding: 0px 12px;
   font-family: "Source Sans Pro";
   font-style: normal;
   font-weight: 400;

@@ -1,0 +1,27 @@
+@import '../abstracts/colors';
+@import '../abstracts/typography';
+
+.Header-container {
+  background-color: $primary-plus-1;
+  border-bottom: 1px solid $primary-minus-1;
+  display: flex;
+  flex-flow: column nowrap;
+  position: fixed;
+  top: 0;
+  width: 100%;
+
+  .Header {
+    align-items: center;
+    display: flex;
+    flex-flow: row nowrap;
+    height: 80px;
+    justify-content: space-between;
+    padding: 0px 20px;
+    width: 100%;
+  
+    h1 {
+      @include h2-bold;
+      margin: 0;
+    }
+  }
+}
