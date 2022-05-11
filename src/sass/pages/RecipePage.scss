@@ -1,0 +1,37 @@
+@import "../abstracts/colors";
+@import "../abstracts/typography";
+@import "../abstracts/mixins";
+
+.RecipePage {
+  img {
+    width: 100%;
+  }
+
+  .RecipePage-info {
+    background-color: $primary-plus-1;
+    border-radius: 20px;
+    margin-top: -20px;
+    padding-top: 20px;
+    padding: 30px;
+    position: absolute;
+    width: 100%;
+
+
+    h1 {
+      @include h1-bold;
+    }
+
+    h2 {
+      @include h2-italic
+    }
+
+    .LikeOrShare {
+      float: right;
+      // margin-right: 30px;
+    }
+
+    p {
+      word-wrap: break-word;
+    }
+  }
+}

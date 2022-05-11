@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap");
+/* Regular */
+/* Bold */
+/* Italic */
+/* Italic bold */
+.RecipePage img {
+  width: 100%;
+}
+
+.RecipePage .RecipePage-info {
+  background-color: #fffff9;
+  border-radius: 20px;
+  margin-top: -20px;
+  padding-top: 20px;
+  padding: 30px;
+  position: absolute;
+  width: 100%;
+}
+
+.RecipePage .RecipePage-info h1 {
+  font-family: "Source Sans Pro";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 120%;
+}
+
+.RecipePage .RecipePage-info h2 {
+  font-size: 28px;
+  font-family: "Source Sans Pro";
+  font-style: italic;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 120%;
+}
+
+.RecipePage .RecipePage-info .LikeOrShare {
+  float: right;
+}
+
+.RecipePage .RecipePage-info p {
+  word-wrap: break-word;
+}
+/*# sourceMappingURL=RecipePage.css.map */
