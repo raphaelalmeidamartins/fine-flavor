@@ -1,24 +1,31 @@
-@import '../abstracts/colors';
-@import '../abstracts/typography';
+@import "../abstracts/colors";
+@import "../abstracts/typography";
 
 .RecipeCard {
-  background: $secondary-minus-1;
-  border: 1px solid $primary-normal;
-  border-radius: 10px;
-  height: 165px;
+  display: flex;
+  flex-flow: column nowrap;
+  background: transparent;
   width: 165px;
 
   img {
-    border-radius: 10px 10px 0px 0px;
-    height: 120px;
+    border-radius: 10px;
+    height: 165px;
     width: 100%;
   }
 
   h3 {
     @include p-regular;
-    color: $primary-plus-1;
+    color: $text-icon-normal;
+    display: -webkit-box;
+    max-height: 70px;
+    overflow: hidden;
     padding: 10px;
     text-align: left;
+
+    /* Luá nos ajudou com essas propriedades para cortar os títulos grandes */
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
     width: 100%;
   }
 }
