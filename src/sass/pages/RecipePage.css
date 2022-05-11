@@ -26,11 +26,10 @@
 }
 
 .RecipePage .RecipePage-info h2 {
-  font-size: 28px;
   font-family: "Source Sans Pro";
   font-style: italic;
   font-weight: 400;
-  font-size: 24px;
+  font-size: 28px;
   line-height: 120%;
 }
 
