@@ -1,6 +1,5 @@
 @import "../abstracts/colors";
 @import "../abstracts/typography";
-@import "../abstracts/mixins";
 
 .RecipePage {
   img {
@@ -11,27 +10,27 @@
     background-color: $primary-plus-1;
     border-radius: 20px;
     margin-top: -20px;
-    padding-top: 20px;
-    padding: 30px;
+    padding: 30px 30px 100px;
     position: absolute;
     width: 100%;
 
 
     h1 {
       @include h1-bold;
+      color: $text-icon-minus-1;
     }
 
-    h2 {
-      @include h2-italic
+    .RecipePage-category {
+      @include h2-italic;
+      color: $text-icon-normal;
     }
 
     .LikeOrShare {
       float: right;
-      // margin-right: 30px;
     }
 
     p {
-      word-wrap: break-word;
+      @include p-regular;
     }
   }
 }

@@ -11,8 +11,7 @@
   background-color: #fffff9;
   border-radius: 20px;
   margin-top: -20px;
-  padding-top: 20px;
-  padding: 30px;
+  padding: 30px 30px 100px;
   position: absolute;
   width: 100%;
 }
@@ -23,14 +22,16 @@
   font-weight: 600;
   font-size: 32px;
   line-height: 120%;
+  color: #080707;
 }
 
-.RecipePage .RecipePage-info h2 {
+.RecipePage .RecipePage-info .RecipePage-category {
   font-family: "Source Sans Pro";
   font-style: italic;
   font-weight: 400;
   font-size: 28px;
   line-height: 120%;
+  color: #2e2827;
 }
 
 .RecipePage .RecipePage-info .LikeOrShare {
@@ -38,6 +39,10 @@
 }
 
 .RecipePage .RecipePage-info p {
-  word-wrap: break-word;
+  font-family: "Source Sans Pro";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 150%;
 }
 /*# sourceMappingURL=RecipePage.css.map */

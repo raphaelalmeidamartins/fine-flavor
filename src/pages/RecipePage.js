@@ -59,7 +59,12 @@ function RecipePage() {
         <div>
           <LikeOrShare />
           <h1 data-testid="recipe-title">{recipeBasicInfo.title}</h1>
-          <h2 data-testid="recipe-category">{recipeBasicInfo.category}</h2>
+          <h2
+            className="RecipePage-category"
+            data-testid="recipe-category"
+          >
+            {recipeBasicInfo.category}
+          </h2>
         </div>
         <Ingredients
           ingredientsData={ ingredients }
