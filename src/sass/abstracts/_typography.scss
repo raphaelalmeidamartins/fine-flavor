@@ -68,38 +68,34 @@
 
 /* Italic */
 @mixin h1-italic {
-  font-size: 32px;
   font-family: "Source Sans Pro";
   font-style: italic;
   font-weight: 400;
-  font-size: 28px;
+  font-size: 32px;
   line-height: 120%;
 }
 
 @mixin h2-italic {
-  font-size: 28px;
   font-family: "Source Sans Pro";
   font-style: italic;
   font-weight: 400;
-  font-size: 24px;
+  font-size: 28px;
   line-height: 120%;
 }
 
 @mixin h3-italic {
-  font-size: 24px;
   font-family: "Source Sans Pro";
   font-style: italic;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 24px;
   line-height: 120%;
 }
 
 @mixin p-italic {
-  font-size: 20px;
   font-family: "Source Sans Pro";
   font-style: italic;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 20px;
   line-height: 150%;
 }
 
