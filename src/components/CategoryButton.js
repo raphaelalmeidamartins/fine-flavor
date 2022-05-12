@@ -9,7 +9,7 @@ import {
 } from '../redux/actions';
 import '../sass/components/CategoryButton.css';
 
-function CategoryButton({ categoryName, mealOrDrink, handleClick }) {
+function CategoryButton({ categoryName, mealOrDrink, handleClick, isSelected }) {
   const token = useToken();
   const foodsOrDrinks = mealOrDrink === 'Meal' ? 'foods' : 'drinks';
   const categories = useSelector((state) => state.search.categories);
@@ -36,6 +36,8 @@ function CategoryButton({ categoryName, mealOrDrink, handleClick }) {
     const selected = 'CategoryButton CategoryButton-selected';
     const unselected = 'CategoryButton CategoryButton-unselected';
 
+    if (isSelected) return selected;
+    if (!mealOrDrink) return unselected;
     if (categoryName === 'All' && filter === '') {
       return selected;
     }
@@ -54,14 +56,16 @@ function CategoryButton({ categoryName, mealOrDrink, handleClick }) {
 }
 
 CategoryButton.defaultProps = {
-  mealOrDrink: 'Meal',
+  mealOrDrink: undefined,
   handleClick: (handleDefaultClick) => handleDefaultClick(),
+  isSelected: false,
 };
 
 CategoryButton.propTypes = {
   categoryName: PropTypes.string.isRequired,
   mealOrDrink: PropTypes.string,
   handleClick: PropTypes.func,
+  isSelected: PropTypes.bool,
 };
 
 export default CategoryButton;

@@ -4,29 +4,30 @@ import CategoryButton from '../components/CategoryButton';
 import FavoriteRecipeCard from '../components/FavoriteRecipeCard';
 import Header from '../components/Header';
 import NavBar from '../components/NavBar';
+import '../sass/pages/FavoriteRecipesPage.css';
 
 function FavoriteRecipesPage() {
   const { favoriteRecipes } = useSelector((state) => state);
   const [filter, setFilter] = useState('All');
 
   return (
-    <div>
+    <div className="FavoriteRecipesPage">
       <Header title="Favorite Recipes" />
-      <section>
+      <section className="FavoriteRecipesPage-categories">
         <CategoryButton
           categoryName="All"
-          dataTestId={ () => 'filter-by-all-btn' }
           handleClick={ () => setFilter('All') }
+          isSelected={ filter === 'All' }
         />
         <CategoryButton
           categoryName="Foods"
-          dataTestId={ () => 'filter-by-food-btn' }
           handleClick={ () => setFilter('food') }
+          isSelected={ filter === 'food' }
         />
         <CategoryButton
           categoryName="Drinks"
-          dataTestId={ () => 'filter-by-drink-btn' }
           handleClick={ () => setFilter('drink') }
+          isSelected={ filter === 'drink' }
         />
       </section>
       <main>
