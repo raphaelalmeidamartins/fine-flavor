@@ -5,10 +5,17 @@
   display: flex;
 
   button {
-    @include button($secondary-plus-1, $secondary-normal, $primary-normal);
+    background-color: $secondary-plus-1;
     border-radius: 14px;
-    height: 36px;
-    margin: 0 5px;
+    color: $primary-normal;
+
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+
+    &:hover {
+      background-color: $secondary-normal;
+    }
 
     svg {
       fill: $primary-normal;
