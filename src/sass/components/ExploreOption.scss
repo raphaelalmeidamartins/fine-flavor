@@ -1,0 +1,10 @@
+@import '../abstracts/mixins';
+@import '../abstracts/colors';
+@import '../abstracts/typography';
+
+.ExploreOption {
+  @include button($accent-normal, $accent-minus-1, $primary-plus-1);
+  @include p-regular;
+  margin-bottom: 0 !important;
+  width: 100%;
+}

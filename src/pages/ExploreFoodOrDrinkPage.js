@@ -4,6 +4,7 @@ import ExploreOption from '../components/ExploreOption';
 import Header from '../components/Header';
 import NavBar from '../components/NavBar';
 import { useFoodsOrDrinks, useToken } from '../hooks';
+import '../sass/pages/ExploreFoodOrDrinkPage.css';
 import services from '../services';
 
 function ExploreFoodOrDrinkPage() {
@@ -42,19 +43,18 @@ function ExploreFoodOrDrinkPage() {
   }, []);
 
   return (
-    <div>
+    <div className="ExploreFoodOrDrinkPage">
       <Header
         title={
           pathname === '/explore/foods' ? 'Explore Foods' : 'Explore Drinks'
         }
       />
       <main>
-        {options.map(([exploreText, route, dataTestId]) => (
+        {options.map(([exploreText, route]) => (
           <ExploreOption
             key={ exploreText }
             text={ exploreText }
             route={ route }
-            dataTestId={ dataTestId }
           />
         ))}
       </main>

@@ -2,25 +2,23 @@ import React from 'react';
 import ExploreOption from '../components/ExploreOption';
 import Header from '../components/Header';
 import NavBar from '../components/NavBar';
+import '../sass/pages/ExplorePage.css';
 
 function ExplorePage() {
-  const options = [
-    ['Explore Foods', '/explore/foods', 'explore-foods'],
-    ['Explore Drinks', '/explore/drinks', 'explore-drinks'],
-  ];
-
   return (
-    <div>
+    <div className="ExplorePage">
       <Header title="Explore" />
       <main>
-        {options.map(([exploreText, route, dataTestId]) => (
-          <ExploreOption
-            key={ exploreText }
-            text={ exploreText }
-            route={ route }
-            dataTestId={ dataTestId }
-          />
-        ))}
+        <ExploreOption
+          key="Explore Foods"
+          text="Explore Foods"
+          route="/explore/foods"
+        />
+        <ExploreOption
+          key="Explore Drinks"
+          text="Explore Drinks"
+          route="/explore/drinks"
+        />
       </main>
       <NavBar />
     </div>

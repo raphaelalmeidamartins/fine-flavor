@@ -1,0 +1,42 @@
+.ExplorePage {
+  background-color: #fffff9;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  height: 100vh;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 80px 0 100px 0;
+  width: 100vw;
+}
+
+.ExplorePage main {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 20px;
+}
+
+.ExplorePage main .ExploreOption {
+  margin-bottom: 20px !important;
+}
+
+.ExplorePage main .ExploreOption p {
+  margin: 0;
+}
+/*# sourceMappingURL=ExplorePage.css.map */

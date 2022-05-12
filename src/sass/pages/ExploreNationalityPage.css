@@ -1,0 +1,47 @@
+.ExploreNationalityPage {
+  background-color: #fffff9;
+  padding: 80px 0 100px 0;
+}
+
+.ExploreNationalityPage .select-container {
+  margin: 20px;
+}
+
+.ExploreNationalityPage .select-container select {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #e8e8e2;
+  border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  height: 50px;
+  padding: 10px 20px;
+  width: 100%;
+  color: #2e2827;
+}
+
+.ExploreNationalityPage main {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  gap: 20px;
+  -ms-grid-columns: 165px 165px;
+      grid-template-columns: 165px 165px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 40px 20px 20px;
+}
+/*# sourceMappingURL=ExploreNationalityPage.css.map */

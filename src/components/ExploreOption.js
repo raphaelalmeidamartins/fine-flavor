@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import '../sass/components/ExploreOption.css';
 
 function ExploreOption(
-  { text, route, image, callback, dataTestId, imageTestId, nameTestId },
+  { text, route, image, callback },
 ) {
   const history = useHistory();
   const handleClick = callback
@@ -11,12 +12,12 @@ function ExploreOption(
     : () => history.push(route);
   return (
     <button
+      className="ExploreOption"
       type="button"
       onClick={ handleClick }
-      data-testid={ dataTestId }
     >
-      {image ? <img src={ image } alt={ text } data-testid={ imageTestId } /> : null}
-      <p { ...nameTestId ? { 'data-testid': nameTestId } : {} }>{ text }</p>
+      {image ? <img src={ image } alt={ text } /> : null}
+      <p>{ text }</p>
     </button>
   );
 }
@@ -24,8 +25,6 @@ function ExploreOption(
 ExploreOption.defaultProps = {
   image: '',
   callback: null,
-  imageTestId: '',
-  nameTestId: '',
 };
 
 ExploreOption.propTypes = {
@@ -33,9 +32,6 @@ ExploreOption.propTypes = {
   route: PropTypes.string.isRequired,
   image: PropTypes.string,
   callback: PropTypes.func,
-  dataTestId: PropTypes.string.isRequired,
-  imageTestId: PropTypes.string,
-  nameTestId: PropTypes.string,
 };
 
 export default ExploreOption;

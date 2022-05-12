@@ -18,11 +18,17 @@
 }
 
 .MainPage main {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 165px 165px;
       grid-template-columns: 165px 165px;
   gap: 20px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   margin: 0 20px;
 }
 /*# sourceMappingURL=MainPage.css.map */

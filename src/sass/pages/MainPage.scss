@@ -17,9 +17,11 @@
   }
 
   main {
+    align-items: center;
     display: grid;
     grid-template-columns: 165px 165px;
     gap: 20px;
+    justify-content: center;
     margin: 0 20px;
   }
 }

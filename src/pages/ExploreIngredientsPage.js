@@ -8,6 +8,7 @@ import {
   actionCleanResults,
   actionSearchByIngredients,
 } from '../redux/actions';
+import '../sass/pages/ExploreIngredientsPage.css';
 import services from '../services';
 
 function ExploreIngredientsPage() {
@@ -35,10 +36,10 @@ function ExploreIngredientsPage() {
   }, []);
 
   return (
-    <div>
+    <div className="ExploreIngredientsPage">
       <Header title="Explore Ingredients" />
       <main>
-        {ingredientsList.map(({ strIngredient, strIngredient1 }, index) => {
+        {ingredientsList.map(({ strIngredient, strIngredient1 }) => {
           const ingredientName = strIngredient || strIngredient1;
           const imageSrc = isMeal
             ? mealsAPI.getMealsIngredientThumbnail(ingredientName)
@@ -60,13 +61,9 @@ function ExploreIngredientsPage() {
                   ),
                 );
               } }
-              dataTestId={ `${index}-ingredient-card` }
-              imageTestId={ `${index}-card-img` }
-              nameTestId={ `${index}-card-name` }
             />
           );
         })}
-        {/* tem que renderizar mais de um ExploreOption */}
       </main>
       <NavBar />
     </div>

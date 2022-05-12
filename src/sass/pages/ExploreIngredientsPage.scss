@@ -1,0 +1,41 @@
+@import '../abstracts/colors';
+@import '../abstracts/mixins';
+
+.ExploreIngredientsPage {
+  background-color: $primary-plus-1;
+  display: flex;
+  flex-flow: column nowrap;
+  min-height: 100vh;
+  justify-content: center;
+  padding: 80px 0 100px 0;
+  width: 100vw;
+
+  main {
+    align-items: center;
+    display: grid;
+    flex-flow: column nowrap;
+    gap: 20px;
+    grid-template-columns: 165px 165px;
+    justify-content: center;
+    margin: 40px 20px 20px;
+
+    .ExploreOption {
+      @include button($other-plus-1, $other-normal, $primary-plus-1);
+      border-radius: 10px;
+      flex-flow: column nowrap;
+      height: 165px;
+      margin-bottom: 20px !important;
+      padding: 5px 15px;
+      width: 165px;
+
+      img {
+        height: 80px;
+        width: 80px;
+        margin-bottom: 5px;
+      }
+      p {
+        margin: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+@import '../abstracts/colors';
+
+.ExploreFoodOrDrinkPage {
+  background-color: $primary-plus-1;
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100vh;
+  justify-content: center;
+  padding: 80px 0 100px 0;
+  width: 100vw;
+
+  main {
+    align-items: center;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    margin: 20px;
+
+    .ExploreOption {
+      margin-bottom: 20px !important;
+
+      p {
+        margin: 0;
+      }
+    }
+  }
+}

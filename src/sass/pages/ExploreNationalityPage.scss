@@ -1,0 +1,26 @@
+@import '../abstracts/colors';
+@import '../abstracts/mixins';
+
+.ExploreNationalityPage {
+  background-color: $primary-plus-1;
+  padding: 80px 0 100px 0;
+
+  .select-container {
+    margin: 20px;
+
+    select {
+      @include input;
+      color: $text-icon-normal;
+    }
+  }
+
+  main {
+    align-items: center;
+    display: grid;
+    flex-flow: column nowrap;
+    gap: 20px;
+    grid-template-columns: 165px 165px;
+    justify-content: center;
+    margin: 40px 20px 20px;
+  }
+}
