@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import IconCheckboxChecked from '../assets/icons/IconCheckboxChecked';
+import IconCheckboxUnchecked from '../assets/icons/IconCheckboxUnchecked';
 import { useCheckedIngredients, useInProgress } from '../hooks';
 import { actionUpdateInProgressIngredients } from '../redux/actions';
 import '../sass/components/Ingredients.css';
@@ -30,23 +32,28 @@ function Ingredients({ ingredientsData, id, isMeal }) {
     else removeIngredient(ingredient);
   };
 
+  const isChecked = (ingredient) => checkedIngredients.includes(ingredient);
+
   return (
-    <section className="Ingredients">
+    <section
+      className={
+        inProgress ? 'Ingredients Ingredients-InProgress' : 'Ingredients'
+      }
+    >
       <h2>Ingredients</h2>
       <ul>
         {ingredientsData.map(([ingredient, measure], index) => (
-          <li
-            key={ ingredient }
-            data-testid={ `${index}-ingredient-name-and-measure` }
-          >
+          <li key={ ingredient } className={ isChecked(ingredient) ? 'checked' : '' }>
             {inProgress ? (
-              <label
-                htmlFor={ `ingredient-${index}` }
-                data-testid={ `${index}-ingredient-step` }
-              >
+              <label htmlFor={ `ingredient-${index}` }>
+                {isChecked(ingredient) ? (
+                  <IconCheckboxChecked />
+                ) : (
+                  <IconCheckboxUnchecked />
+                )}
                 <input
                   type="checkbox"
-                  checked={ checkedIngredients.includes(ingredient) }
+                  checked={ isChecked(ingredient) }
                   onChange={ (e) => handleChange(e, ingredient) }
                   id={ `ingredient-${index}` }
                 />

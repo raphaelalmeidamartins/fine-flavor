@@ -9,9 +9,38 @@
     color: $text-icon-minus-1;
     margin-bottom: 20px;
   }
-  
-  li {
-    @include p-regular;
-    color: $text-icon-minus-1;
+
+  ul {
+    list-style-position: inside;
+
+    li {
+      @include p-regular;
+      align-items: center;
+      color: $text-icon-minus-1;
+      display: flex;
+
+      &.checked {
+        font-style: italic;
+        text-decoration: line-through;
+      }
+
+      svg {
+        fill: $accent-normal;
+        height: 22px;
+        margin-right: 10px;
+        width: 22px;
+      }
+
+      input {
+        position: absolute;
+        visibility: hidden;
+      }
+    }
+  }
+}
+
+.Ingredients-InProgress {
+  ul {
+    list-style-type: none;
   }
 }

@@ -17,12 +17,43 @@
   margin-bottom: 20px;
 }
 
-.Ingredients li {
+.Ingredients ul {
+  list-style-position: inside;
+}
+
+.Ingredients ul li {
   font-family: "Source Sans Pro";
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
   line-height: 150%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   color: #080707;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.Ingredients ul li.checked {
+  font-style: italic;
+  text-decoration: line-through;
+}
+
+.Ingredients ul li svg {
+  fill: #df891e;
+  height: 22px;
+  margin-right: 10px;
+  width: 22px;
+}
+
+.Ingredients ul li input {
+  position: absolute;
+  visibility: hidden;
+}
+
+.Ingredients-InProgress ul {
+  list-style-type: none;
 }
 /*# sourceMappingURL=Ingredients.css.map */
