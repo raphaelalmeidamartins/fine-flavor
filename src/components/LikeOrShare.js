@@ -14,12 +14,10 @@ function LikeOrShare() {
       <IconButton
         route="share"
         handleClick={ handleShare }
-        dataTestId="share-btn"
       />
       <IconButton
         route={ `favorite-${isFavorite()}` }
         handleClick={ () => handleFavorite(isFavorite()) }
-        dataTestId="favorite-btn"
       />
       <span
         className={ `alert alert-success fade ${alertStatus ? 'show' : ''}` }

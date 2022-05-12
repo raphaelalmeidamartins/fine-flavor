@@ -1,0 +1,72 @@
+@import "../abstracts/colors";
+@import "../abstracts/mixins";
+@import "../abstracts/typography";
+
+.FavoriteRecipeCard {
+  display: flex;
+  margin-bottom: 20px;
+
+  input {
+    border-radius: 10px;
+    height: 165px;
+    margin-right: 20px;
+    width: 165px;
+  }
+
+  .FavoriteRecipeCard-info {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+
+    p {
+      color: $text-icon-plus-1;
+      font-size: 16px;
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+  
+    a {
+      @include h3-bold;
+      color: $text-icon-normal;
+      display: -webkit-box;
+      overflow: hidden;
+      margin-bottom: 20px;
+      text-overflow: ellipsis;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      width: 100%;
+    }
+  
+    .FavoriteRecipeCard-LikeOrShare {
+      align-items: flex-end;
+      display: flex;
+      height: 36px;
+      position: relative;
+    
+      button {
+        background-color: $secondary-plus-1;
+        border-radius: 14px;
+        color: $primary-normal;
+        flex: none;
+    
+        &:not(:last-child) {
+          margin-right: 10px;
+        }
+    
+        &:hover {
+          background-color: $secondary-normal;
+        }
+    
+        svg {
+          fill: $primary-normal;
+        }
+      }
+
+      span {
+        position: absolute;
+        right: 0;
+        width: 150px;
+      }
+    }
+  }
+}

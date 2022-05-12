@@ -6,7 +6,6 @@ import '../sass/components/RecipeDoneCard.css';
 import IconButton from './IconButton';
 
 function RecipeDoneCard({
-  index,
   id,
   type,
   image,
@@ -27,17 +26,15 @@ function RecipeDoneCard({
         alt="thumbnail"
         type="image"
         onClick={ () => history.push(`/${type}s/${id}`) }
-        data-testid={ `${index}-horizontal-image` }
       />
-      <p data-testid={ `${index}-horizontal-top-text` }>
+      <p>
         {type === 'food' ? `${nationality} - ${category}` : alcoholicOrNot}
       </p>
-      <p data-testid={ `${index}-horizontal-done-date` }>{doneDate}</p>
-      <a href={ `/${type}s/${id}` } data-testid={ `${index}-horizontal-name` }>{name}</a>
+      <p>{doneDate}</p>
+      <a href={ `/${type}s/${id}` }>{name}</a>
       <IconButton
         route="share"
         handleClick={ handleShare }
-        dataTestId={ `${index}-horizontal-share-btn` }
       />
       <span
         className={ `alert alert-success fade ${alertStatus ? 'show' : ''}` }
@@ -50,7 +47,6 @@ function RecipeDoneCard({
         <section>
           {tags.slice(0, 2).map((tagName) => (
             <span
-              data-testid={ `${index}-${tagName}-horizontal-tag` }
               key={ tagName }
             >
               {tagName}
@@ -63,7 +59,6 @@ function RecipeDoneCard({
 }
 
 RecipeDoneCard.propTypes = {
-  index: PropTypes.number.isRequired,
   id: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,

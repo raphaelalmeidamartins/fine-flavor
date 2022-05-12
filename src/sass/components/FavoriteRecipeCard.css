@@ -1,0 +1,93 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap");
+/* Regular */
+/* Bold */
+/* Italic */
+/* Italic bold */
+.FavoriteRecipeCard {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.FavoriteRecipeCard input {
+  border-radius: 10px;
+  height: 165px;
+  margin-right: 20px;
+  width: 165px;
+}
+
+.FavoriteRecipeCard .FavoriteRecipeCard-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.FavoriteRecipeCard .FavoriteRecipeCard-info p {
+  color: #545150;
+  font-size: 16px;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+.FavoriteRecipeCard .FavoriteRecipeCard-info a {
+  font-family: "Source Sans Pro";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 120%;
+  color: #2e2827;
+  display: -webkit-box;
+  overflow: hidden;
+  margin-bottom: 20px;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  width: 100%;
+}
+
+.FavoriteRecipeCard .FavoriteRecipeCard-info .FavoriteRecipeCard-LikeOrShare {
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 36px;
+  position: relative;
+}
+
+.FavoriteRecipeCard .FavoriteRecipeCard-info .FavoriteRecipeCard-LikeOrShare button {
+  background-color: #91173c;
+  border-radius: 14px;
+  color: #e8e8e2;
+  -webkit-box-flex: 0;
+      -ms-flex: none;
+          flex: none;
+}
+
+.FavoriteRecipeCard .FavoriteRecipeCard-info .FavoriteRecipeCard-LikeOrShare button:not(:last-child) {
+  margin-right: 10px;
+}
+
+.FavoriteRecipeCard .FavoriteRecipeCard-info .FavoriteRecipeCard-LikeOrShare button:hover {
+  background-color: #6b1c34;
+}
+
+.FavoriteRecipeCard .FavoriteRecipeCard-info .FavoriteRecipeCard-LikeOrShare button svg {
+  fill: #e8e8e2;
+}
+
+.FavoriteRecipeCard .FavoriteRecipeCard-info .FavoriteRecipeCard-LikeOrShare span {
+  position: absolute;
+  right: 0;
+  width: 150px;
+}
+/*# sourceMappingURL=FavoriteRecipeCard.css.map */
