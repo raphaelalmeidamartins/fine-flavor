@@ -8,8 +8,8 @@ function NavBar() {
       <IconButton route="/foods" />
       <IconButton route="/drinks" />
       <IconButton route="/explore" />
+      <IconButton route="/done-recipes" />
       <IconButton route="/favorite-recipes" />
-      <IconButton route="/profile" />
     </nav>
   );
 }

@@ -9,6 +9,7 @@ import IconMeals from '../assets/icons/IconMeals';
 import IconProfile from '../assets/icons/IconProfile';
 import IconSearch from '../assets/icons/IconSearch';
 import IconShare from '../assets/icons/IconShare';
+import IconDoneRecipes from '../assets/icons/IconDoneRecipes';
 import '../sass/components/IconButton.css';
 
 function IconButton({ route, handleClick }) {
@@ -18,6 +19,7 @@ function IconButton({ route, handleClick }) {
     '/drinks': <IconDrinks />,
     '/explore': <IconExplore />,
     '/favorite-recipes': <IconFavoriteFill />,
+    '/done-recipes': <IconDoneRecipes />,
     'favorite-true': <IconFavoriteFill />,
     'favorite-false': <IconFavoriteOutline />,
     share: <IconShare />,
