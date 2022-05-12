@@ -42,7 +42,7 @@ function ExploreFoodOrDrinkPage() {
   }, []);
 
   return (
-    <>
+    <div>
       <Header
         title={
           pathname === '/explore/foods' ? 'Explore Foods' : 'Explore Drinks'
@@ -59,7 +59,7 @@ function ExploreFoodOrDrinkPage() {
         ))}
       </main>
       <NavBar />
-    </>
+    </div>
   );
 }
 

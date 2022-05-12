@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import CategoryButton from '../components/CategoryButton';
-import Header from '../components/Header';
 import FavoriteRecipeCard from '../components/FavoriteRecipeCard';
+import Header from '../components/Header';
+import NavBar from '../components/NavBar';
 
 function FavoriteRecipesPage() {
   const { favoriteRecipes } = useSelector((state) => state);
@@ -37,6 +38,7 @@ function FavoriteRecipesPage() {
             <FavoriteRecipeCard key={ recipe.id } index={ index } { ...recipe } />
           ))}
       </main>
+      <NavBar />
     </div>
   );
 }

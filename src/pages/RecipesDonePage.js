@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import CategoryButton from '../components/CategoryButton';
 import Header from '../components/Header';
+import NavBar from '../components/NavBar';
 import RecipeDoneCard from '../components/RecipeDoneCard';
 
 function RecipesDonePage() {
@@ -37,6 +38,7 @@ function RecipesDonePage() {
             <RecipeDoneCard key={ recipe.id } index={ index } { ...recipe } />
           ))}
       </main>
+      <NavBar />
     </div>
   );
 }

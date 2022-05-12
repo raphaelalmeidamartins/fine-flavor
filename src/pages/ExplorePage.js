@@ -10,7 +10,7 @@ function ExplorePage() {
   ];
 
   return (
-    <>
+    <div>
       <Header title="Explore" />
       <main>
         {options.map(([exploreText, route, dataTestId]) => (
@@ -23,7 +23,7 @@ function ExplorePage() {
         ))}
       </main>
       <NavBar />
-    </>
+    </div>
   );
 }
 
