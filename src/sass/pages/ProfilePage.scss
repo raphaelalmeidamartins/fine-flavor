@@ -1,0 +1,36 @@
+@import '../abstracts/colors';
+@import '../abstracts/mixins';
+@import '../abstracts/typography';
+
+.ProfilePage {
+  background-color: $primary-plus-1;
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100vh;
+  justify-content: center;
+  padding: 80px 0 100px 0;
+  width: 100vw;
+
+  main {
+    align-items: center;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    margin: 20px;
+
+    h2 {
+      @include p-regular;
+      margin-bottom: 20px
+    }
+
+    button {
+      @include button($accent-normal, $accent-minus-1, $primary-plus-1);
+      margin-bottom: 20px !important;
+      width: 100%;
+
+      p {
+        margin: 0;
+      }
+    }
+  }
+}

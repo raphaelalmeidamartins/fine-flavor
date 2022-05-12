@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap");
+/* Regular */
+/* Bold */
+/* Italic */
+/* Italic bold */
+.ProfilePage {
+  background-color: #fffff9;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  height: 100vh;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 80px 0 100px 0;
+  width: 100vw;
+}
+
+.ProfilePage main {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 20px;
+}
+
+.ProfilePage main h2 {
+  font-family: "Source Sans Pro";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 150%;
+  margin-bottom: 20px;
+}
+
+.ProfilePage main button {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #df891e;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 4px 15px rgba(63, 63, 63, 0.15);
+          box-shadow: 0px 4px 15px rgba(63, 63, 63, 0.15);
+  color: #fffff9;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  height: 49.66px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 0px 12px;
+  margin-bottom: 20px !important;
+  width: 100%;
+}
+
+.ProfilePage main button:hover:not(:disabled) {
+  background-color: #b87521;
+}
+
+.ProfilePage main button:disabled {
+  opacity: 0.4;
+}
+
+.ProfilePage main button p {
+  margin: 0;
+}
+/*# sourceMappingURL=ProfilePage.css.map */
