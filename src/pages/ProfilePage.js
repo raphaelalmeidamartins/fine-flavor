@@ -31,7 +31,7 @@ function ProfilePage() {
         type="button"
         onClick={ () => {
           localStorage.clear();
-          history.push('/');
+          history.push('/login');
         } }
       >
         Logout
