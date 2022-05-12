@@ -4,6 +4,21 @@
 .RecipePage {
   height: fit-content;
 
+  .Header-container {
+    background-color: transparent;
+    border: 0;
+    z-index: 20;
+
+    .GoBackButton {
+      background-color: $accent-normal;
+      box-shadow: 0px 4px 15px rgba(63, 63, 63, 0.303);
+
+      svg {
+        fill: $primary-plus-1;
+      }
+    }
+  }
+
   img {
     width: 100%;
   }

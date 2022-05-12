@@ -9,6 +9,22 @@
   height: fit-content;
 }
 
+.RecipePage .Header-container {
+  background-color: transparent;
+  border: 0;
+  z-index: 20;
+}
+
+.RecipePage .Header-container .GoBackButton {
+  background-color: #df891e;
+  -webkit-box-shadow: 0px 4px 15px rgba(63, 63, 63, 0.303);
+          box-shadow: 0px 4px 15px rgba(63, 63, 63, 0.303);
+}
+
+.RecipePage .Header-container .GoBackButton svg {
+  fill: #fffff9;
+}
+
 .RecipePage img {
   width: 100%;
 }

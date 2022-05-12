@@ -15,14 +15,7 @@
 
     li {
       @include p-regular;
-      align-items: center;
       color: $text-icon-minus-1;
-      display: flex;
-
-      &.checked {
-        font-style: italic;
-        text-decoration: line-through;
-      }
 
       svg {
         fill: $accent-normal;
@@ -42,5 +35,10 @@
 .Ingredients-InProgress {
   ul {
     list-style-type: none;
+
+    li.checked {
+      font-style: italic;
+      text-decoration: line-through;
+    }
   }
 }

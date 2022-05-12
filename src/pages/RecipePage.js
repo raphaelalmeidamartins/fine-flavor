@@ -1,6 +1,7 @@
 import React, { useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useParams } from 'react-router-dom';
+import Header from '../components/Header';
 import Ingredients from '../components/Ingredients';
 import LikeOrShare from '../components/LikeOrShare';
 import RecipeInfo from '../components/RecipeInfo';
@@ -50,6 +51,7 @@ function RecipePage() {
 
   return (
     <main className="RecipePage">
+      <Header title="" back />
       <img
         src={ recipeBasicInfo.thumbnail }
         alt={ recipeBasicInfo.title }
