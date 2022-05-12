@@ -2,7 +2,7 @@
 @import "../abstracts/mixins";
 @import "../abstracts/typography";
 
-.FavoriteRecipeCard {
+.RecipeDoneCard {
   display: flex;
   margin-bottom: 20px;
 
@@ -13,17 +13,23 @@
     width: 165px;
   }
 
-  .FavoriteRecipeCard-info {
+  .RecipeDoneCard-info {
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
     width: 100%;
 
-    p {
+    p:not(.done-date) {
       color: $text-icon-plus-1;
       font-size: 16px;
       font-style: italic;
       margin-bottom: 0;
+    }
+
+    p.done-date {
+      color: $text-icon-plus-1;
+      font-size: 14px;
+      margin-bottom: 5px;
     }
   
     a {
@@ -31,15 +37,15 @@
       color: $text-icon-normal;
       display: -webkit-box;
       overflow: hidden;
-      margin-bottom: 20px;
       max-height: 70px;
       text-overflow: ellipsis;
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 2;
+      white-space: nowrap;
       width: 100%;
     }
   
-    .FavoriteRecipeCard-LikeOrShare {
+    .RecipeDoneCard-LikeOrShare {
       align-items: flex-end;
       display: flex;
       height: 36px;
@@ -68,6 +74,23 @@
         position: absolute;
         right: 0;
         width: 150px;
+      }
+    }
+
+    .tags {
+      display: flex;
+      flex-flow: row wrap;
+
+      span {
+        border: 1px solid $accent-minus-1;
+        border-radius: 5px;
+        color: $accent-minus-1;
+        font-size: 14px;
+        padding: 0 5px;
+
+        &:not(:last-child) {
+          margin-right: 5px;
+        }
       }
     }
   }

@@ -28,13 +28,14 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  width: 100%;
 }
 
 .FavoriteRecipeCard .FavoriteRecipeCard-info p {
   color: #545150;
   font-size: 16px;
   font-style: italic;
-  margin-bottom: 10px;
+  margin-bottom: 0;
 }
 
 .FavoriteRecipeCard .FavoriteRecipeCard-info a {
@@ -47,6 +48,7 @@
   display: -webkit-box;
   overflow: hidden;
   margin-bottom: 20px;
+  max-height: 70px;
   text-overflow: ellipsis;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;

@@ -4,8 +4,8 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useShare } from '../hooks';
 import { actionUnfavoriteRecipe } from '../redux/actions';
-import IconButton from './IconButton';
 import '../sass/components/FavoriteRecipeCard.css';
+import IconButton from './IconButton';
 
 function FavoriteRecipeCard({
   id,

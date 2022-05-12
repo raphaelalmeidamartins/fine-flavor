@@ -1,13 +1,14 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useFavorite, useShare } from '../hooks';
-import IconButton from './IconButton';
 import '../sass/components/LikeOrShare.css';
+import IconButton from './IconButton';
 
-function LikeOrShare() {
+function LikeOrShare({ recipeId }) {
   const { id } = useParams();
   const [alertStatus, handleShare] = useShare('/in-progress', '');
-  const [isFavorite, handleFavorite] = useFavorite(id);
+  const [isFavorite, handleFavorite] = useFavorite(id || recipeId);
 
   return (
     <section className="LikeOrShare">
@@ -29,5 +30,13 @@ function LikeOrShare() {
     </section>
   );
 }
+
+LikeOrShare.defaultProps = {
+  recipeId: undefined,
+};
+
+LikeOrShare.propTypes = {
+  recipeId: PropTypes.string,
+};
 
 export default LikeOrShare;

@@ -1,7 +1,123 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap");
+/* Regular */
+/* Bold */
+/* Italic */
+/* Italic bold */
 .RecipeDoneCard {
-  border: 1px solid black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 20px;
 }
 
 .RecipeDoneCard input {
-  width: 100px;
+  border-radius: 10px;
+  height: 165px;
+  margin-right: 20px;
+  width: 165px;
 }
+
+.RecipeDoneCard .RecipeDoneCard-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+}
+
+.RecipeDoneCard .RecipeDoneCard-info p:not(.done-date) {
+  color: #545150;
+  font-size: 16px;
+  font-style: italic;
+  margin-bottom: 0;
+}
+
+.RecipeDoneCard .RecipeDoneCard-info p.done-date {
+  color: #545150;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.RecipeDoneCard .RecipeDoneCard-info a {
+  font-family: "Source Sans Pro";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 120%;
+  color: #2e2827;
+  display: -webkit-box;
+  overflow: hidden;
+  max-height: 70px;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.RecipeDoneCard .RecipeDoneCard-info .RecipeDoneCard-LikeOrShare {
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 36px;
+  position: relative;
+}
+
+.RecipeDoneCard .RecipeDoneCard-info .RecipeDoneCard-LikeOrShare button {
+  background-color: #91173c;
+  border-radius: 14px;
+  color: #e8e8e2;
+  -webkit-box-flex: 0;
+      -ms-flex: none;
+          flex: none;
+}
+
+.RecipeDoneCard .RecipeDoneCard-info .RecipeDoneCard-LikeOrShare button:not(:last-child) {
+  margin-right: 10px;
+}
+
+.RecipeDoneCard .RecipeDoneCard-info .RecipeDoneCard-LikeOrShare button:hover {
+  background-color: #6b1c34;
+}
+
+.RecipeDoneCard .RecipeDoneCard-info .RecipeDoneCard-LikeOrShare button svg {
+  fill: #e8e8e2;
+}
+
+.RecipeDoneCard .RecipeDoneCard-info .RecipeDoneCard-LikeOrShare span {
+  position: absolute;
+  right: 0;
+  width: 150px;
+}
+
+.RecipeDoneCard .RecipeDoneCard-info .tags {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+}
+
+.RecipeDoneCard .RecipeDoneCard-info .tags span {
+  border: 1px solid #b87521;
+  border-radius: 5px;
+  color: #b87521;
+  font-size: 14px;
+  padding: 0 5px;
+}
+
+.RecipeDoneCard .RecipeDoneCard-info .tags span:not(:last-child) {
+  margin-right: 5px;
+}
+/*# sourceMappingURL=RecipeDoneCard.css.map */

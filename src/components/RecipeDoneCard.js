@@ -17,7 +17,10 @@ function RecipeDoneCard({
   tags,
 }) {
   const history = useHistory();
-  const [alertStatus, handleShare] = useShare('/done-recipes', `/${type}s/${id}`);
+  const [alertStatus, handleShare] = useShare(
+    '/done-recipes',
+    `/${type}s/${id}`,
+  );
 
   return (
     <section className="RecipeDoneCard">
@@ -27,33 +30,32 @@ function RecipeDoneCard({
         type="image"
         onClick={ () => history.push(`/${type}s/${id}`) }
       />
-      <p>
-        {type === 'food' ? `${nationality} - ${category}` : alcoholicOrNot}
-      </p>
-      <p>{doneDate}</p>
-      <a href={ `/${type}s/${id}` }>{name}</a>
-      <IconButton
-        route="share"
-        handleClick={ handleShare }
-      />
-      <span
-        className={ `alert alert-success fade ${alertStatus ? 'show' : ''}` }
-        role="alert"
-        aria-label="close"
-      >
-        Link copied!
-      </span>
-      {type === 'food' && (
-        <section>
-          {tags.slice(0, 2).map((tagName) => (
-            <span
-              key={ tagName }
-            >
-              {tagName}
-            </span>
-          ))}
-        </section>
-      )}
+      <div className="RecipeDoneCard-info">
+        <div>
+          <p>
+            {type === 'food' ? `${nationality} - ${category}` : alcoholicOrNot}
+          </p>
+          <a href={ `/${type}s/${id}` }>{name}</a>
+          <p className="done-date">{`Done in: ${doneDate}`}</p>
+          {type === 'food' && (
+            <section className="tags">
+              {tags.slice(0, 2).map((tagName) => (
+                <span key={ tagName }>{tagName}</span>
+              ))}
+            </section>
+          )}
+        </div>
+        <div className="RecipeDoneCard-LikeOrShare">
+          <IconButton route="share" handleClick={ handleShare } />
+          <span
+            className={ `alert alert-success fade ${alertStatus ? 'show' : ''}` }
+            role="alert"
+            aria-label="close"
+          >
+            Link copied!
+          </span>
+        </div>
+      </div>
     </section>
   );
 }
