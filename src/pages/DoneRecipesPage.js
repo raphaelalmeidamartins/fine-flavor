@@ -4,29 +4,30 @@ import CategoryButton from '../components/CategoryButton';
 import Header from '../components/Header';
 import NavBar from '../components/NavBar';
 import RecipeDoneCard from '../components/RecipeDoneCard';
+import '../sass/pages/DoneRecipesPage.css';
 
-function RecipesDonePage() {
+function DoneRecipesPage() {
   const { doneRecipes } = useSelector((state) => state);
   const [filter, setFilter] = useState('All');
 
   return (
-    <div>
+    <div className="DoneRecipesPage">
       <Header title="Done Recipes" />
-      <section>
+      <section className="DoneRecipesPage-categories">
         <CategoryButton
           categoryName="All"
-          dataTestId={ () => 'filter-by-all-btn' }
           handleClick={ () => setFilter('All') }
+          isSelected={ filter === 'All' }
         />
         <CategoryButton
           categoryName="Foods"
-          dataTestId={ () => 'filter-by-food-btn' }
           handleClick={ () => setFilter('food') }
+          isSelected={ filter === 'food' }
         />
         <CategoryButton
           categoryName="Drinks"
-          dataTestId={ () => 'filter-by-drink-btn' }
           handleClick={ () => setFilter('drink') }
+          isSelected={ filter === 'drink' }
         />
       </section>
       <main>
@@ -43,4 +44,4 @@ function RecipesDonePage() {
   );
 }
 
-export default RecipesDonePage;
+export default DoneRecipesPage;

@@ -9,7 +9,7 @@ import LoginPage from './pages/LoginPage';
 import MainPage from './pages/MainPage';
 import ProfilePage from './pages/ProfilePage';
 import RecipePage from './pages/RecipePage';
-import RecipesDonePage from './pages/RecipesDonePage';
+import DoneRecipesPage from './pages/DoneRecipesPage';
 import SplashScreen from './pages/SplashScreen';
 
 function Routes() {
@@ -42,7 +42,7 @@ function Routes() {
         component={ ExploreIngredientsPage }
       />
       <Route exact path="/profile" component={ ProfilePage } />
-      <Route exact path="/done-recipes" component={ RecipesDonePage } />
+      <Route exact path="/done-recipes" component={ DoneRecipesPage } />
       <Route exact path="/favorite-recipes" component={ FavoriteRecipesPage } />
       <Route><h1>Not Found</h1></Route>
     </Switch>
