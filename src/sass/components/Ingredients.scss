@@ -37,8 +37,10 @@
     list-style-type: none;
 
     li.checked {
-      font-style: italic;
-      text-decoration: line-through;
+      label {
+        font-style: italic;
+        text-decoration: line-through;
+      }
     }
   }
 }

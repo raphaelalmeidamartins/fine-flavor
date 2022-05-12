@@ -46,7 +46,7 @@
   list-style-type: none;
 }
 
-.Ingredients-InProgress ul li.checked {
+.Ingredients-InProgress ul li.checked label {
   font-style: italic;
   text-decoration: line-through;
 }
