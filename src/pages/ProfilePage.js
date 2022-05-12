@@ -10,7 +10,7 @@ function ProfilePage() {
 
   return (
     <div>
-      <Header title="Profile" />
+      <Header title="Profile" back />
       <h2 data-testid="profile-email">{email}</h2>
       <button
         data-testid="profile-done-btn"

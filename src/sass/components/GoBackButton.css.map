@@ -1,0 +1,10 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,aAAa,CAAC;EACZ,WAAW,EAAE,MAAM;EACnB,gBAAgB,EAAE,WAAW;EAC7B,aAAa,EAAE,IAAI;EACnB,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,GAAG;EACnB,MAAM,EAAE,IAAI;EACZ,eAAe,EAAE,MAAM;EACvB,UAAU,EAAE,KAAK;EACjB,KAAK,EAAE,IAAI;CASZ;;AAlBD,AAWE,aAXW,CAWX,GAAG,CAAC;EACF,IAAI,ECEW,OAAO;EDDtB,MAAM,EAAE,IAAI;EACZ,KAAK,EAAE,IAAI;EACX,IAAI,EAAE,IAAI;EACV,SAAS,EAAE,CAAC;CACb",
+    "sources": [
+        "GoBackButton.scss",
+        "../abstracts/_colors.scss"
+    ],
+    "names": [],
+    "file": "GoBackButton.css"
+}
