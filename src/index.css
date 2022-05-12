@@ -22,5 +22,8 @@ html {
 body {
   font-size: 100%;
   list-style-type: none;
+  min-height: -webkit-fit-content;
+  min-height: -moz-fit-content;
+  min-height: fit-content;
 }
 /*# sourceMappingURL=index.css.map */

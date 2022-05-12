@@ -5,9 +5,5 @@
 .RecipePageButton {
   @include button($other-plus-1, $other-normal, $primary-plus-1);
   @include p-regular;
-  bottom: 20px;
-  left: 50%;
-  margin-left: -40%;
-  position: fixed;
   width: 80%;
 }

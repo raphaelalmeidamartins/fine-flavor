@@ -3,6 +3,12 @@
 /* Bold */
 /* Italic */
 /* Italic bold */
+.RecipePage {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
 .RecipePage img {
   width: 100%;
 }
@@ -11,7 +17,7 @@
   background-color: #fffff9;
   border-radius: 20px;
   margin-top: -20px;
-  padding: 30px 30px 100px;
+  padding: 37px 20px 100px;
   position: absolute;
   width: 100%;
 }
@@ -23,6 +29,7 @@
   font-size: 32px;
   line-height: 120%;
   color: #080707;
+  margin-bottom: 10px;
 }
 
 .RecipePage .RecipePage-info .RecipePage-category {
@@ -32,6 +39,7 @@
   font-size: 28px;
   line-height: 120%;
   color: #2e2827;
+  margin-bottom: 30px;
 }
 
 .RecipePage .RecipePage-info .LikeOrShare {
@@ -44,5 +52,26 @@
   font-weight: 400;
   font-size: 20px;
   line-height: 150%;
+}
+
+.RecipePage .RecipePageButton-container {
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 249, 0)), to(#fffff9));
+  background: linear-gradient(180deg, rgba(255, 255, 249, 0) 0%, #fffff9 100%);
+  bottom: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  left: 50%;
+  padding: 20px 0;
+  position: fixed;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 100vw;
 }
 /*# sourceMappingURL=RecipePage.css.map */

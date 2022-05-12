@@ -7,7 +7,7 @@ function RecipeInfo() {
   return (
     <section className="RecipeInfo">
       <div>
-        <h2>Directions</h2>
+        <h2>Instructions</h2>
         <p data-testid="instructions">{strInstructions}</p>
       </div>
       {strYoutube && (

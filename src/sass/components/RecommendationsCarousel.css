@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap");
+/* Regular */
+/* Bold */
+/* Italic */
+/* Italic bold */
+.RecommendationsCarousel-container {
+  height: 223px;
+  margin-bottom: 50px;
+}
+
+.RecommendationsCarousel-container h2 {
+  font-family: "Source Sans Pro";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 120%;
+  color: #080707;
+  margin-bottom: 20px;
+}
+
+.RecommendationsCarousel-container .RecommendationsCarousel {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  left: 0;
+  overflow-x: scroll;
+  padding: 0 20px;
+  position: absolute;
+  width: 100vw;
+}
+
+.RecommendationsCarousel-container .RecommendationsCarousel .RecipeCard {
+  -webkit-box-flex: 0;
+      -ms-flex: none;
+          flex: none;
+}
+
+.RecommendationsCarousel-container .RecommendationsCarousel .RecipeCard:not(:last-child) {
+  margin-right: 20px;
+}
+/*# sourceMappingURL=RecommendationsCarousel.css.map */

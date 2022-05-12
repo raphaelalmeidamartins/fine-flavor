@@ -3,13 +3,18 @@
 /* Bold */
 /* Italic */
 /* Italic bold */
+.Ingredients {
+  margin-bottom: 30px;
+}
+
 .Ingredients h2 {
   font-family: "Source Sans Pro";
   font-style: normal;
-  font-weight: 400;
+  font-weight: 600;
   font-size: 28px;
   line-height: 120%;
   color: #080707;
+  margin-bottom: 20px;
 }
 
 .Ingredients li {

@@ -75,10 +75,12 @@ function RecipePage() {
         <RecipeInfo />
         <RecommendationsCarousel type={ isMeal ? 'drinks' : 'foods' } />
         {!isRecipeDone && (
-          <RecipePageButton
-            inProgress={ inProgress }
-            ingredientsData={ ingredients }
-          />
+          <div className="RecipePageButton-container">
+            <RecipePageButton
+              inProgress={ inProgress }
+              ingredientsData={ ingredients }
+            />
+          </div>
         )}
       </section>
     </main>

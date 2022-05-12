@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import Slider from 'react-slick';
+import '../sass/components/RecommendationsCarousel.css';
 import RecipeCard from './RecipeCard';
 
 function RecommendationsCarousel({ type }) {
@@ -12,29 +12,22 @@ function RecommendationsCarousel({ type }) {
 
   const key = () => (type === 'foods' ? 'Meal' : 'Drink');
 
-  const settings = {
-    dots: true,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 2,
-    slidesToScroll: 2,
-  };
-
   return (
-    <Slider { ...settings }>
-      { slicedResults.map(((recipe, index) => (
-        <div key={ recipe[`id${key()}`] } data-testid={ `${index}-recomendation-card` }>
+    <div className="RecommendationsCarousel-container">
+      <h2>Recommended</h2>
+      <div className="RecommendationsCarousel">
+        { slicedResults.map((recipe, index) => (
           <RecipeCard
+            key={ recipe[`id${key()}`] }
             id={ recipe[`id${key()}`] }
             mealOrDrink={ key() }
             index={ index }
             thumbnail={ recipe[`str${key()}Thumb`] }
             title={ recipe[`str${key()}`] }
-            titleTestId={ `${index}-recomendation-title` }
           />
-        </div>
-      ))) }
-    </Slider>
+        ))}
+      </div>
+    </div>
   );
 }
 
