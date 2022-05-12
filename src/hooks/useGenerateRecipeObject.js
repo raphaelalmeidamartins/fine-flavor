@@ -10,13 +10,20 @@ function useGenerateRecipeObject(recipeId, type) {
     ? pathname
     : type;
   const { id } = useParams();
-  const isMeal = foodsOrDrinks.includes('food');
-  const date = new Date();
+  const isMeal = foodsOrDrinks?.includes('food');
 
   if (!id) {
     const token = isMeal ? mealsToken : cocktailsToken;
     dispatch(actionGetRecipeById(recipeId, foodsOrDrinks, token));
   }
+
+  const returnDate = () => {
+    const date = new Date();
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+    return `${month}/${day}/${year}`;
+  };
 
   const {
     strMeal,
@@ -43,7 +50,7 @@ function useGenerateRecipeObject(recipeId, type) {
     alcoholicOrNot: isMeal ? '' : strAlcoholic,
     name: recipeBasicInfo.title,
     image: recipeBasicInfo.thumbnail,
-    doneDate: `${date.getMonth()}/${date.getDay()}/${date.getFullYear()}`,
+    doneDate: returnDate(),
     tags: strTags ? strTags.split(',') : [],
   };
 
