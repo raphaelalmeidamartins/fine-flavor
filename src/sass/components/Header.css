@@ -45,4 +45,9 @@
   line-height: 120%;
   margin: 0;
 }
+
+.Header-container .Header div {
+  height: 36px;
+  width: 36px;
+}
 /*# sourceMappingURL=Header.css.map */
